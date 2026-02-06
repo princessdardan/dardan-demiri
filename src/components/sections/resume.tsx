@@ -13,59 +13,75 @@ interface ResumeProps {
   resumeUrl?: string;
 }
 
-// Sample experiences - ordered by manual priority, not just chronological
+// Work experience from resume - ordered by manual priority
 const sampleExperiences: Experience[] = [
   {
     id: "1",
-    company: "Tech Startup Inc.",
-    role: "Senior Frontend Developer",
-    startDate: "2022-03",
+    company: "Aira Publishing",
+    role: "Software Engineer",
+    startDate: "2024-06",
     endDate: undefined, // Present
     achievements: [
-      "Led the rebuild of the main product from jQuery to React, improving performance by 60%",
-      "Established frontend architecture patterns and coding standards for a team of 5 developers",
-      "Implemented automated testing pipeline reducing production bugs by 40%",
+      "Architected and shipped a custom headless commerce platform for digital and physical educational products, replacing brittle legacy workflows with a scalable React + GraphQL system",
+      "Designed metadata-driven product models supporting bundles, multi-format SKUs, and grade-level segmentation, reducing catalog maintenance effort and error rates",
+      "Delivered server-rendered and aggressively cached storefronts using modern React tooling, improving page load performance while constraining infrastructure spend",
+      "Converted curriculum and publishing requirements from non-technical stakeholders into durable data models and intuitive UI flows",
     ],
-    technologies: ["React", "TypeScript", "Next.js", "GraphQL", "Tailwind CSS"],
+    technologies: ["React", "GraphQL", "Next.js", "TypeScript", "Headless CMS"],
     order: 1,
   },
   {
     id: "2",
-    company: "Digital Agency Co.",
-    role: "Full Stack Developer",
+    company: "Scholarly Elite Tutoring",
+    role: "Software Engineer",
     startDate: "2020-06",
-    endDate: "2022-02",
+    endDate: "2024-06",
     achievements: [
-      "Delivered 15+ client projects including e-commerce sites and web applications",
-      "Built custom CMS solutions reducing content update time by 70%",
-      "Mentored junior developers and conducted code reviews",
+      "Designed and maintained a Ruby on Rails content-authoring platform that automated the creation of client-specific tutoring materials, eliminating manual document assembly",
+      "Built admin tooling and configurable templates enabling educators to generate personalized learning content at scale with consistent quality",
+      "Replaced error-prone manual workflows with structured data models and automation, significantly reducing operational overhead",
+      "Drove continuous system improvement by incorporating direct educator feedback into product and technical decisions",
     ],
-    technologies: ["React", "Node.js", "PostgreSQL", "AWS", "Docker"],
+    technologies: ["Ruby on Rails", "PostgreSQL", "JavaScript", "REST APIs"],
     order: 2,
   },
   {
     id: "3",
-    company: "Freelance",
-    role: "Web Developer",
-    startDate: "2019-01",
-    endDate: "2020-05",
+    company: "Danny's Fish & Chips",
+    role: "Co-Managing Partner",
+    startDate: "2019-05",
+    endDate: undefined, // Present (concurrent role)
     achievements: [
-      "Developed websites and applications for 10+ small business clients",
-      "Specialized in responsive design and performance optimization",
-      "Built long-term client relationships with 90% repeat business rate",
+      "Co-managed daily operations of a high-volume restaurant with a long-standing repeat customer base",
+      "Built first-hand understanding of customer retention, promotions, loyalty incentives, and real-world operational constraints",
+      "Evaluated and adopted digital tools for marketing, operations, and customer engagement with strict focus on ROI, reliability, and staff usability",
     ],
-    technologies: ["JavaScript", "React", "WordPress", "CSS", "PHP"],
+    technologies: ["Operations", "Customer Engagement", "Digital Marketing"],
     order: 3,
+  },
+  {
+    id: "4",
+    company: "Scholarly Elite Tutoring",
+    role: "Business Development Manager",
+    startDate: "2018-04",
+    endDate: "2024-06",
+    achievements: [
+      "Leveraged data-driven strategies to optimize the client conversion process, resulting in a 14.7% increase in conversion rates",
+      "Designed and executed a strategic brand extension plan for the company's educational publishing division",
+      "Conducted in-depth research and led the implementation of CRM software to strengthen data collection; collaborated with the marketing team to refine client acquisition strategies in alignment with the company's long-term vision",
+    ],
+    technologies: ["CRM", "Data Analysis", "Strategic Planning", "Marketing"],
+    order: 4,
   },
 ];
 
 const sampleEducation: Education[] = [
   {
-    institution: "University of Technology",
-    degree: "Bachelor of Science",
-    field: "Computer Science",
-    startDate: "2015-09",
-    endDate: "2019-05",
+    institution: "University of Toronto",
+    degree: "Honours BSc",
+    field: "Mathematics, Statistics, Economics",
+    startDate: "2018-09",
+    endDate: "2022-05",
   },
 ];
 
@@ -125,7 +141,7 @@ export function Resume({
 
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-[19px] top-0 bottom-0 w-px bg-border" />
+            <div className="absolute left-4.75 top-0 bottom-0 w-px bg-border" />
 
             <div className="space-y-8">
               {sortedExperiences.map((exp, index) => (
@@ -138,7 +154,7 @@ export function Resume({
                   className="relative pl-12"
                 >
                   {/* Timeline dot */}
-                  <div className="absolute left-[15px] top-1.5 w-[9px] h-[9px] rounded-full bg-accent border-2 border-background" />
+                  <div className="absolute left-3.75 top-1.5 w-2.25 h-2.25 rounded-full bg-accent border-2 border-background" />
 
                   <div className="bg-surface rounded-xl border border-border p-6">
                     {/* Header */}

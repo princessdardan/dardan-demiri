@@ -26,17 +26,19 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_BASE_URL || "https://dardandemiri.com"
   ),
   title: {
-    default: "Dardan Demiri | Web Developer",
+    default: "Dardan Demiri | Full-Stack Engineer",
     template: "%s | Dardan Demiri",
   },
   description:
-    "Web developer specializing in modern React applications. Building fast, accessible, and beautifully crafted digital experiences.",
+    "Full-stack engineer with 5+ years building React applications and Ruby on Rails systems. Specializing in content delivery, internal tooling, and customer engagement.",
   keywords: [
-    "web developer",
-    "frontend developer",
+    "full-stack engineer",
+    "software engineer",
     "React developer",
+    "Ruby on Rails developer",
     "Next.js",
     "TypeScript",
+    "Toronto",
     "portfolio",
   ],
   authors: [{ name: "Dardan Demiri" }],
@@ -46,23 +48,23 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://dardandemiri.com",
     siteName: "Dardan Demiri",
-    title: "Dardan Demiri | Web Developer",
+    title: "Dardan Demiri | Full-Stack Engineer",
     description:
-      "Web developer specializing in modern React applications. Building fast, accessible, and beautifully crafted digital experiences.",
+      "Full-stack engineer with 5+ years building React applications and Ruby on Rails systems. Specializing in content delivery, internal tooling, and customer engagement.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Dardan Demiri - Web Developer",
+        alt: "Dardan Demiri - Full-Stack Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dardan Demiri | Web Developer",
+    title: "Dardan Demiri | Full-Stack Engineer",
     description:
-      "Web developer specializing in modern React applications.",
+      "Full-stack engineer building React and Ruby on Rails systems.",
     images: ["/og-image.png"],
   },
   robots: {

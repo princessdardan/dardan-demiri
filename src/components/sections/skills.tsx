@@ -12,70 +12,42 @@ interface SkillsProps {
   featuredSkills?: string[]; // Skills that have portfolio projects
 }
 
-// Default skills data organized by tier and category
+// Skills data aligned with resume's Technical Core section
+// projectSlugs link skills to portfolio projects for filtering
 const defaultSkills: Skill[] = [
-  // Primary tier (6-8 per category max)
-  // Frontend - Primary
-  { name: "React", tier: "primary", category: "frontend", projectSlugs: ["project-one", "project-two"] },
-  { name: "Next.js", tier: "primary", category: "frontend", projectSlugs: ["project-one"] },
-  { name: "TypeScript", tier: "primary", category: "frontend", projectSlugs: ["project-one"] },
-  { name: "Tailwind CSS", tier: "primary", category: "frontend", projectSlugs: ["project-one"] },
-  { name: "HTML/CSS", tier: "primary", category: "frontend" },
+  // Primary tier - Languages from resume
+  { name: "TypeScript", tier: "primary", category: "frontend", projectSlugs: ["dannys-fish-and-chips", "aira-publishing", "lash-her"] },
   { name: "JavaScript", tier: "primary", category: "frontend" },
+  { name: "React", tier: "primary", category: "frontend", projectSlugs: ["aira-publishing"] },
+  { name: "Next.js", tier: "primary", category: "frontend", projectSlugs: ["dannys-fish-and-chips", "aira-publishing", "lash-her"] },
+  { name: "Ruby", tier: "primary", category: "backend" },
+  { name: "Python", tier: "primary", category: "backend" },
+  { name: "Java", tier: "primary", category: "backend" },
+  { name: "SQL", tier: "primary", category: "backend" },
 
-  // Backend - Primary
-  { name: "Node.js", tier: "primary", category: "backend", projectSlugs: ["project-two"] },
-  { name: "PostgreSQL", tier: "primary", category: "backend", projectSlugs: ["project-one"] },
+  // Primary tier - Frameworks from resume
+  { name: "Ruby on Rails", tier: "primary", category: "backend" },
+  { name: "Remix", tier: "primary", category: "frontend" },
+
+  // Primary tier - Data & APIs from resume
+  { name: "PostgreSQL", tier: "primary", category: "backend", projectSlugs: ["dannys-fish-and-chips"] },
+  { name: "GraphQL", tier: "primary", category: "backend", projectSlugs: ["aira-publishing"] },
   { name: "REST APIs", tier: "primary", category: "backend" },
-  { name: "GraphQL", tier: "primary", category: "backend" },
 
-  // Tools - Primary
-  { name: "Git", tier: "primary", category: "tools" },
-  { name: "VS Code", tier: "primary", category: "tools" },
-  { name: "Figma", tier: "primary", category: "tools" },
-  { name: "Vercel", tier: "primary", category: "tools" },
-
-  // Practices - Primary
-  { name: "Responsive Design", tier: "primary", category: "practices" },
-  { name: "Accessibility", tier: "primary", category: "practices" },
-  { name: "Performance", tier: "primary", category: "practices" },
-
-  // Familiar tier (4-6 per category)
-  // Frontend - Familiar
-  { name: "Vue.js", tier: "familiar", category: "frontend" },
-  { name: "Framer Motion", tier: "familiar", category: "frontend" },
-  { name: "Redux", tier: "familiar", category: "frontend" },
-  { name: "D3.js", tier: "familiar", category: "frontend", projectSlugs: ["project-two"] },
-
-  // Backend - Familiar
-  { name: "Python", tier: "familiar", category: "backend" },
-  { name: "MongoDB", tier: "familiar", category: "backend", projectSlugs: ["project-two"] },
-  { name: "Redis", tier: "familiar", category: "backend" },
-  { name: "AWS", tier: "familiar", category: "backend", projectSlugs: ["project-two"] },
-
-  // Tools - Familiar
-  { name: "Docker", tier: "familiar", category: "tools" },
-  { name: "GitHub Actions", tier: "familiar", category: "tools" },
-  { name: "Stripe", tier: "familiar", category: "tools", projectSlugs: ["project-one"] },
-  { name: "Playwright", tier: "familiar", category: "tools" },
-
-  // Practices - Familiar
-  { name: "Testing", tier: "familiar", category: "practices" },
-  { name: "CI/CD", tier: "familiar", category: "practices" },
-  { name: "SEO", tier: "familiar", category: "practices" },
-
-  // Learning tier (3-4 per category)
-  // Frontend - Learning
-  { name: "Svelte", tier: "learning", category: "frontend" },
-  { name: "Three.js", tier: "learning", category: "frontend" },
-
-  // Backend - Learning
-  { name: "Rust", tier: "learning", category: "backend" },
-  { name: "Go", tier: "learning", category: "backend" },
-
-  // Tools - Learning
-  { name: "Kubernetes", tier: "learning", category: "tools" },
-  { name: "Terraform", tier: "learning", category: "tools" },
+  // Primary tier - Infrastructure from resume
+  { name: "Vercel", tier: "primary", category: "tools", projectSlugs: ["dannys-fish-and-chips", "lash-her"] },
+  { name: "AWS", tier: "primary", category: "tools" },
+  { name: "Git", tier: "primary", category: "tools", projectSlugs: ["dannys-fish-and-chips", "aira-publishing", "lash-her"] },
+  { name: "GitHub Actions", tier: "primary", category: "tools", projectSlugs: ["dannys-fish-and-chips"] },
+  { name: "Headless CMS", tier: "primary", category: "tools", projectSlugs: ["dannys-fish-and-chips", "aira-publishing"] },
+  { name: "Supabase", tier: "primary", category: "tools", projectSlugs: ["dannys-fish-and-chips"] },
+  { name: "Railway", tier: "primary", category: "tools", projectSlugs: ["dannys-fish-and-chips"] },
+  { name: "Shopify", tier: "primary", category: "tools", projectSlugs: ["aira-publishing"] },
+  { name: "Docker", tier: "primary", category: "tools" },
+  { name: "Tailwind CSS", tier: "primary", category: "frontend", projectSlugs: ["dannys-fish-and-chips", "lash-her"] },
+  { name: "CI/CD", tier: "primary", category: "practices", projectSlugs: ["dannys-fish-and-chips"] },
+  { name: "Analytics-driven UX", tier: "primary", category: "practices", projectSlugs: ["aira-publishing", "lash-her"] },
+  { name: "Content Systems", tier: "primary", category: "practices", projectSlugs: ["dannys-fish-and-chips", "aira-publishing"] },
 ];
 
 const tierLabels: Record<SkillTier, string> = {

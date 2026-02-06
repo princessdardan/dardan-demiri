@@ -10,15 +10,15 @@ interface PersonSchemaProps {
 
 export function PersonJsonLd({
   name = "Dardan Demiri",
-  jobTitle = "Web Developer",
-  description = "Web developer specializing in modern React applications. Building fast, accessible, and beautifully crafted digital experiences.",
+  jobTitle = "Full-Stack Engineer",
+  description = "Full-stack engineer with 5+ years building React applications and Ruby on Rails systems that power content delivery, internal tooling, and customer engagement.",
   url = "https://dardandemiri.com",
-  email = "hello@dardandemiri.com",
+  email = "dardemiri@gmail.com",
   sameAs = [
-    "https://github.com/dardandemiri",
-    "https://linkedin.com/in/dardandemiri",
+    "https://github.com/princessdardan",
+    "https://linkedin.com/in/dardan-demiri",
   ],
-  image = "https://dardandemiri.com/images/profile.jpg",
+  image = "https://dardandemiri.com/images/profile.jpeg",
 }: PersonSchemaProps) {
   const schema = {
     "@context": "https://schema.org",
@@ -34,10 +34,12 @@ export function PersonJsonLd({
       "Web Development",
       "React",
       "Next.js",
+      "Ruby on Rails",
       "TypeScript",
       "JavaScript",
-      "Frontend Development",
-      "User Interface Design",
+      "Full-Stack Development",
+      "PostgreSQL",
+      "GraphQL",
     ],
   };
 

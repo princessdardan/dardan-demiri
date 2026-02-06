@@ -54,21 +54,13 @@ const fadeInUp = {
 };
 
 export function About({
-  photo = "/images/profile.jpg",
+  photo = "/images/profile.jpeg",
   photoAlt = "Dardan Demiri",
-  bio = `I'm a web developer who loves turning complex problems into elegant,
-intuitive solutions. With a background in both design and engineering,
-I bring a unique perspective to every project—balancing aesthetic appeal
-with technical excellence.
+  bio = `I'm a full-stack engineer with 5+ years building React applications and Ruby on Rails systems that power content delivery, internal tooling, and customer engagement. My strong mathematical foundation from the University of Toronto supports scalable system design and pragmatic, ROI-driven technical decisions.
 
-When I'm not coding, you'll find me exploring new technologies, contributing
-to open source, or enjoying the outdoors. I believe in continuous learning
-and staying curious about the ever-evolving world of web development.
+I combine production engineering with first-hand business operations experience—running a restaurant has given me unique insight into customer retention, loyalty incentives, and real-world operational constraints. This perspective helps me build software that actually solves problems for the people using it.
 
-I approach every project as a partnership. I listen carefully, communicate
-clearly, and deliver work I'm genuinely proud of. Whether you need a
-stunning marketing site or a complex web application, I'm here to help
-bring your vision to life.`,
+I approach every project as a partnership. I listen carefully, communicate clearly, and deliver work I'm genuinely proud of. Whether you need a content authoring platform, an e-commerce solution, or analytics-driven tooling, I'm here to help bring your vision to life.`,
   strengths = defaultStrengths,
 }: AboutProps) {
   return (
@@ -88,21 +80,7 @@ bring your vision to life.`,
             variants={fadeInUp}
             className="relative"
           >
-            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-accent-muted">
-              {/* Placeholder for photo - replace with actual image */}
-              <div className="absolute inset-0 flex items-center justify-center text-accent">
-                <div className="text-center">
-                  <div className="w-24 h-24 rounded-full bg-accent/20 mx-auto mb-4 flex items-center justify-center">
-                    <Users className="w-12 h-12" />
-                  </div>
-                  <p className="text-sm text-foreground-muted">
-                    Add your photo at
-                    <br />
-                    <code className="text-xs">/public/images/profile.jpg</code>
-                  </p>
-                </div>
-              </div>
-              {/* Uncomment when photo is added:
+            <div className="relative aspect-square max-w-sm mx-auto rounded-2xl overflow-hidden bg-accent-muted">
               <Image
                 src={photo}
                 alt={photoAlt}
@@ -111,7 +89,6 @@ bring your vision to life.`,
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority
               />
-              */}
             </div>
             {/* Decorative element */}
             <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-accent/10 rounded-2xl -z-10" />

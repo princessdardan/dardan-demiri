@@ -29,7 +29,7 @@ interface ContactProps {
 }
 
 export function Contact({
-  email = "hello@dardandemiri.com",
+  email = "dardemiri@gmail.com",
   responseTime = "1-2 business days",
 }: ContactProps) {
   const [formState, setFormState] = useState<
@@ -102,7 +102,7 @@ export function Contact({
                   Message Sent!
                 </h3>
                 <p className="text-foreground-muted mb-6">
-                  Thanks for reaching out. I'll get back to you within{" "}
+                  Thanks for reaching out. I&rsquo;ll get back to you within{" "}
                   {responseTime}.
                 </p>
                 <Button variant="outline" asChild>
@@ -120,7 +120,7 @@ export function Contact({
                 {/* Error Banner */}
                 {formState === "error" && (
                   <div className="mb-6 p-4 rounded-lg bg-red-50 border border-red-200 flex items-start gap-3">
-                    <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                    <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
                     <div className="flex-1">
                       <p className="text-sm text-red-800">{errorMessage}</p>
                       <div className="mt-2 flex gap-3">

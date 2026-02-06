@@ -12,7 +12,6 @@ import {
   ExternalLink,
   Github,
   ChevronDown,
-  Code2,
   Quote,
 } from "lucide-react";
 
@@ -25,106 +24,116 @@ interface PortfolioProps {
 // Sample projects for demonstration
 const sampleProjects: Project[] = [
   {
-    slug: "project-one",
-    title: "E-Commerce Platform",
-    client: "Fashion Brand",
+    slug: "dannys-fish-and-chips",
+    title: "Danny's Fish and Chips Website",
+    client: "Danny's Fish and Chips",
     description:
-      "A modern e-commerce platform with real-time inventory management, personalized recommendations, and seamless checkout experience.",
-    thumbnail: "/images/projects/project-1.jpg",
-    thumbnailAlt: "E-commerce platform screenshot",
+      "A modern restaurant website for a beloved Barrie, Ontario fish and chips establishment serving Simcoe County since 1975. Features server-rendered pages with dynamic content management through a headless CMS.",
+    thumbnail: "/images/projects/dannys-fish-and-chips-site.png",
+    thumbnailAlt: "Danny's Fish and Chips website screenshot showing the hero section with golden fish and chips",
     outcomes: [
-      "40% increase in conversion rate",
-      "60% faster page load times",
-      "Reduced cart abandonment by 25%",
+      "Complete redesign modernizing a 50-year-old brand for the digital age",
+      "Server-rendered pages with optimal Core Web Vitals scores",
+      "Easy content management for menu updates and specials",
     ],
-    testimonial: {
-      quote:
-        "Dardan transformed our online presence. The new platform exceeded our expectations and our customers love it.",
-      author: "Sarah Johnson",
-      role: "Marketing Director",
-      company: "Fashion Brand Co.",
-    },
-    liveUrl: "https://example.com",
-    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Stripe", "PostgreSQL"],
+    liveUrl: "https://dannys-fish-and-chips.vercel.app",
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Radix UI", "Strapi CMS", "PostgreSQL", "Vercel", "Railway", "GitHub Actions", "Supabase"],
     architecture: [
-      "Next.js App Router with server components for optimal performance",
-      "Headless CMS integration for product management",
-      "Stripe for secure payment processing",
-      "Redis caching for inventory and session management",
+      "Next.js App Router with server components for SEO and performance",
+      "Strapi 5 headless CMS for restaurant content management",
+      "Vercel frontend hosting with Railway backend infrastructure",
+      "GitHub Actions CI/CD pipeline for automated deployments",
     ],
     challenges: [
       {
-        challenge: "Real-time inventory sync across multiple warehouses",
+        challenge: "Enabling non-technical staff to update menus and specials",
         solution:
-          "Implemented WebSocket connections with Redis pub/sub for instant inventory updates",
+          "Integrated Strapi CMS with intuitive content models for menu items, pricing, and daily specials",
       },
       {
-        challenge: "Handling high traffic during flash sales",
+        challenge: "Maintaining fast load times with high-quality food imagery",
         solution:
-          "Added edge caching, queue-based checkout, and horizontal scaling with Kubernetes",
+          "Implemented Next.js Image optimization with responsive sizing and lazy loading",
       },
     ],
-    codeSnippet: {
-      language: "typescript",
-      description: "Real-time inventory hook",
-      code: `const useInventory = (productId: string) => {
-  const [stock, setStock] = useState<number>(0);
-
-  useEffect(() => {
-    const ws = new WebSocket(INVENTORY_WS_URL);
-    ws.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      if (data.productId === productId) {
-        setStock(data.quantity);
-      }
-    };
-    return () => ws.close();
-  }, [productId]);
-
-  return stock;
-};`,
-    },
-    githubUrl: "https://github.com",
+    githubUrl: "https://github.com/princessdardan/dannys-fish-and-chips",
     featured: true,
     dateCompleted: "2024-06",
     status: "live",
   },
   {
-    slug: "project-two",
-    title: "Healthcare Dashboard",
-    client: "Medical Startup",
+    slug: "aira-publishing",
+    title: "Aira Publishing E-Commerce Platform",
+    client: "Aira Publishing",
     description:
-      "A comprehensive healthcare analytics dashboard helping medical professionals track patient outcomes and optimize treatment plans.",
-    thumbnail: "/images/projects/project-2.jpg",
-    thumbnailAlt: "Healthcare dashboard screenshot",
+      "A custom headless commerce platform for Ontario's educational market, enabling teachers to easily find and purchase curriculum-aligned resources for Math, English, and French classrooms.",
+    thumbnail: "/images/projects/aira-publishing-site.png",
+    thumbnailAlt: "Aira Publishing website showing lesson planning solutions for Ontario classrooms",
     outcomes: [
-      "Reduced data retrieval time by 80%",
-      "Improved patient outcome tracking",
-      "HIPAA compliant architecture",
+      "Replaced legacy workflows with a scalable React + GraphQL system",
+      "Metadata-driven product models supporting bundles and multi-format SKUs",
+      "Grade-level segmentation reducing catalog maintenance effort",
     ],
-    liveUrl: undefined, // NDA project
-    techStack: ["React", "D3.js", "Node.js", "MongoDB", "AWS"],
+    liveUrl: "https://airapublishing.com",
+    techStack: ["React", "GraphQL", "Next.js", "TypeScript", "Headless CMS", "Shopify", "Analytics-driven UX"],
     architecture: [
-      "React with Redux for complex state management",
-      "D3.js for interactive data visualizations",
-      "Node.js API with HIPAA-compliant data handling",
-      "MongoDB for flexible medical record storage",
+      "Server-rendered storefronts with aggressive caching for performance",
+      "Metadata-driven product models for bundles, SKUs, and grade levels",
+      "GraphQL API enabling flexible content queries",
+      "Headless CMS for curriculum and publishing content management",
     ],
     challenges: [
       {
-        challenge: "Visualizing complex medical data intuitively",
+        challenge: "Converting non-technical curriculum requirements into durable data models",
         solution:
-          "Created custom D3.js components with drill-down capabilities and contextual tooltips",
+          "Designed intuitive UI flows and product schemas that publishing stakeholders could understand and maintain",
       },
       {
-        challenge: "Ensuring HIPAA compliance throughout",
+        challenge: "Managing complex product relationships across formats and grade levels",
         solution:
-          "Implemented end-to-end encryption, audit logging, and role-based access control",
+          "Built metadata-driven models supporting bundles, multi-format SKUs, and grade-level segmentation",
       },
     ],
     featured: true,
-    dateCompleted: "2024-03",
-    status: "nda",
+    dateCompleted: "2024-06",
+    status: "live",
+  },
+  {
+    slug: "lash-her",
+    title: "Lash Her Beauty Platform",
+    client: "Lash Her",
+    description:
+      "A modern beauty services website offering bespoke lash artistry booking and professional training programs. Features an elegant design with booking integration and training course showcases.",
+    thumbnail: "/images/projects/lash-her-site.png",
+    thumbnailAlt: "Lash Her website showing luxury lash artistry services and training",
+    outcomes: [
+      "Streamlined booking experience for lash services",
+      "Professional training program showcase with course details",
+      "Mobile-responsive design for on-the-go booking",
+    ],
+    liveUrl: "https://lashher.com",
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Playwright", "Analytics-driven UX", "Vercel"],
+    architecture: [
+      "Next.js App Router with optimized font loading",
+      "Component-driven architecture for maintainability",
+      "Playwright integration for automated E2E testing",
+    ],
+    challenges: [
+      {
+        challenge: "Creating an elegant, luxurious aesthetic matching the premium brand",
+        solution:
+          "Designed with careful attention to typography, spacing, and imagery that conveys sophistication",
+      },
+      {
+        challenge: "Balancing service booking with training program information",
+        solution:
+          "Implemented clear navigation separating client services from professional training pathways",
+      },
+    ],
+    githubUrl: "https://github.com/princessdardan/lash-her-frontend",
+    featured: true,
+    dateCompleted: "2024-08",
+    status: "live",
   },
 ];
 
@@ -230,19 +239,7 @@ function ProjectCard({
       <div className="grid md:grid-cols-2 gap-0">
         {/* Project Image */}
         <div className="relative aspect-video md:aspect-auto">
-          <div className="absolute inset-0 bg-accent-muted flex items-center justify-center">
-            {/* Placeholder - replace with actual image */}
-            <div className="text-center text-accent p-8">
-              <Code2 className="w-16 h-16 mx-auto mb-4 opacity-50" />
-              <p className="text-sm text-foreground-muted">
-                Project screenshot
-                <br />
-                <code className="text-xs">
-                  /public/images/projects/{project.slug}.jpg
-                </code>
-              </p>
-            </div>
-            {/* Uncomment when images are added:
+          <div className="absolute inset-0 bg-accent-muted">
             <Image
               src={project.thumbnail}
               alt={project.thumbnailAlt}
@@ -250,7 +247,6 @@ function ProjectCard({
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
-            */}
           </div>
         </div>
 
@@ -438,7 +434,7 @@ function ProjectCard({
                 <div className="mt-8 p-6 bg-surface rounded-xl border border-border">
                   <Quote className="w-8 h-8 text-accent mb-4" />
                   <blockquote className="text-lg text-foreground italic mb-4">
-                    "{project.testimonial.quote}"
+                    &ldquo;{project.testimonial.quote}&rdquo;
                   </blockquote>
                   <div className="text-sm">
                     <p className="font-semibold text-foreground">

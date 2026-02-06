@@ -1,5 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import { Resend } from "resend";
+
+// Create Resend client (only if API key exists)
+const resend = process.env.RESEND_API_KEY
+  ? new Resend(process.env.RESEND_API_KEY)
+  : null;
 
 // Validation schema
 const contactSchema = z.object({
@@ -82,22 +88,13 @@ export async function POST(request: NextRequest) {
     }
 
     // Send email via Resend (if configured)
-    if (process.env.RESEND_API_KEY) {
-      const { Resend } = await import("resend");
-      const resend = new Resend(process.env.RESEND_API_KEY);
-
+    if (resend) {
       await resend.emails.send({
         from: process.env.RESEND_FROM_EMAIL || "Contact Form <onboarding@resend.dev>",
-        to: process.env.CONTACT_EMAIL || "hello@dardandemiri.com",
+        to: process.env.CONTACT_EMAIL || "dardemiri@gmail.com",
         replyTo: email,
         subject: `New contact from ${name}`,
-        text: `
-Name: ${name}
-Email: ${email}
-
-Message:
-${message}
-        `.trim(),
+        text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
         html: `
 <h2>New Contact Form Submission</h2>
 <p><strong>Name:</strong> ${escapeHtml(name)}</p>

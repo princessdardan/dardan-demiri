@@ -13,11 +13,7 @@ interface HeroProps {
     status: "available" | "busy" | "open";
     message: string;
   };
-  stats?: {
-    years: string;
-    projects: string;
-    clients: string;
-  };
+  yearsExperience?: string;
 }
 
 // Animation variants for staggered entrance (visual hierarchy order)
@@ -46,17 +42,13 @@ const itemVariants = {
 
 export function Hero({
   name = "Dardan Demiri",
-  title = "Web Developer",
-  tagline = "I craft fast, accessible, and beautifully designed web experiences that help businesses grow and users thrive.",
+  title = "Full-Stack Engineer",
+  tagline = "Full-stack engineer with 5+ years building React applications and Ruby on Rails systems that power content delivery, internal tooling, and customer engagement.",
   availability = {
     status: "available",
     message: "Available for new projects",
   },
-  stats = {
-    years: "5+",
-    projects: "30+",
-    clients: "15+",
-  },
+  yearsExperience = "5+",
 }: HeroProps) {
   const availabilityColors = {
     available: "bg-green-500",
@@ -138,34 +130,18 @@ export function Hero({
             </Button>
           </motion.div>
 
-          {/* Stats */}
+          {/* Years of Experience */}
           <motion.div
             variants={itemVariants}
-            className="flex items-center justify-center gap-8 md:gap-12 text-center"
+            className="flex items-center justify-center text-center"
           >
             <div>
               <div className="text-2xl md:text-3xl font-bold text-foreground">
-                {stats.years}
+                {yearsExperience}
               </div>
               <div className="text-sm text-foreground-muted">
                 Years Experience
               </div>
-            </div>
-            <div className="w-px h-12 bg-border" />
-            <div>
-              <div className="text-2xl md:text-3xl font-bold text-foreground">
-                {stats.projects}
-              </div>
-              <div className="text-sm text-foreground-muted">
-                Projects Completed
-              </div>
-            </div>
-            <div className="w-px h-12 bg-border" />
-            <div>
-              <div className="text-2xl md:text-3xl font-bold text-foreground">
-                {stats.clients}
-              </div>
-              <div className="text-sm text-foreground-muted">Happy Clients</div>
             </div>
           </motion.div>
         </motion.div>
@@ -194,17 +170,13 @@ export function Hero({
 // CSS-only fallback component for no-JS users
 export function HeroNoJS({
   name = "Dardan Demiri",
-  title = "Web Developer",
-  tagline = "I craft fast, accessible, and beautifully designed web experiences that help businesses grow and users thrive.",
+  title = "Full-Stack Engineer",
+  tagline = "Full-stack engineer with 5+ years building React applications and Ruby on Rails systems that power content delivery, internal tooling, and customer engagement.",
   availability = {
     status: "available" as const,
     message: "Available for new projects",
   },
-  stats = {
-    years: "5+",
-    projects: "30+",
-    clients: "15+",
-  },
+  yearsExperience = "5+",
 }: HeroProps) {
   const availabilityColors = {
     available: "bg-green-500",
@@ -261,30 +233,14 @@ export function HeroNoJS({
             </Button>
           </div>
 
-          <div className="flex items-center justify-center gap-8 md:gap-12 text-center opacity-0 animate-fade-in animate-delay-5">
+          <div className="flex items-center justify-center text-center opacity-0 animate-fade-in animate-delay-5">
             <div>
               <div className="text-2xl md:text-3xl font-bold text-foreground">
-                {stats.years}
+                {yearsExperience}
               </div>
               <div className="text-sm text-foreground-muted">
                 Years Experience
               </div>
-            </div>
-            <div className="w-px h-12 bg-border" />
-            <div>
-              <div className="text-2xl md:text-3xl font-bold text-foreground">
-                {stats.projects}
-              </div>
-              <div className="text-sm text-foreground-muted">
-                Projects Completed
-              </div>
-            </div>
-            <div className="w-px h-12 bg-border" />
-            <div>
-              <div className="text-2xl md:text-3xl font-bold text-foreground">
-                {stats.clients}
-              </div>
-              <div className="text-sm text-foreground-muted">Happy Clients</div>
             </div>
           </div>
         </div>
