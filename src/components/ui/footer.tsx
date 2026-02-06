@@ -8,8 +8,8 @@ interface FooterProps {
 
 export function Footer({
   name = "Dardan Demiri",
-  github = "https://github.com/dardandemiri",
-  linkedin = "https://linkedin.com/in/dardandemiri",
+  github = "https://github.com/princessdardan",
+  linkedin = "https://linkedin.com/in/dardan-demiri",
 }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
