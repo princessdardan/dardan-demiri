@@ -109,6 +109,7 @@ export function SkillCloud({ skills, highlightCategory, onSkillClick }: SkillClo
   const shouldReduceMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number>(0);
+  const isPointerDown = useRef(false);
 
   // Fixed X tilt to show the sphere at a pleasant viewing angle
   const rotationX = 0.3;
@@ -156,14 +157,25 @@ export function SkillCloud({ skills, highlightCategory, onSkillClick }: SkillClo
     return () => cancelAnimationFrame(rafRef.current);
   }, [shouldReduceMotion]);
 
-  // Mouse move handler: tilt orb based on cursor position within container
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
+  // Pointer down: start drag for touch/pen (mouse tilts on hover without press)
+  const handlePointerDown = useCallback(
+    (e: React.PointerEvent<HTMLDivElement>) => {
+      if (e.pointerType === "mouse") return;
+      isPointerDown.current = true;
+      (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
+    },
+    []
+  );
+
+  // Pointer move: tilt orb based on pointer position within container
+  const handlePointerMove = useCallback(
+    (e: React.PointerEvent<HTMLDivElement>) => {
       if (shouldReduceMotion || !containerRef.current) return;
+      if (e.pointerType !== "mouse" && !isPointerDown.current) return;
+
       const rect = containerRef.current.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
       const cy = rect.top + rect.height / 2;
-      // Normalize to [-1, 1]
       const nx = (e.clientX - cx) / (rect.width / 2);
       const ny = (e.clientY - cy) / (rect.height / 2);
       tiltY.set(nx * 0.3);
@@ -172,7 +184,14 @@ export function SkillCloud({ skills, highlightCategory, onSkillClick }: SkillClo
     [shouldReduceMotion, tiltX, tiltY]
   );
 
-  const handleMouseLeave = useCallback(() => {
+  const handlePointerUp = useCallback(() => {
+    isPointerDown.current = false;
+    tiltX.set(0);
+    tiltY.set(0);
+  }, [tiltX, tiltY]);
+
+  const handlePointerLeave = useCallback(() => {
+    isPointerDown.current = false;
     tiltX.set(0);
     tiltY.set(0);
   }, [tiltX, tiltY]);
@@ -225,9 +244,11 @@ export function SkillCloud({ skills, highlightCategory, onSkillClick }: SkillClo
     <div
       ref={containerRef}
       className="relative mx-auto aspect-square max-w-[500px] cursor-grab active:cursor-grabbing"
-      style={{ perspective: "800px" }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      style={{ perspective: "800px", touchAction: "none" }}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerLeave={handlePointerLeave}
       aria-label="Interactive skill cloud"
     >
       {/* SVG connection lines (subtle) */}
