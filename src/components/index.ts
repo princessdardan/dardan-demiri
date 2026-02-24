@@ -4,10 +4,15 @@ export { Container } from "./ui/container";
 export { Section, SectionHeader } from "./ui/section";
 export { Navigation } from "./ui/navigation";
 export { Footer } from "./ui/footer";
+export { ModeToggle } from "./ui/mode-toggle";
+export { BackgroundEffect } from "./ui/background-effect";
+export { SkillCloud } from "./ui/skill-cloud";
+export { SkillDetailModal } from "./ui/skill-detail-modal";
 
 // Section Components
 export { Hero } from "./sections/hero";
 export { About } from "./sections/about";
+export { Features } from "./sections/features";
 export { Portfolio } from "./sections/portfolio";
 export { Skills } from "./sections/skills";
 export { Resume } from "./sections/resume";

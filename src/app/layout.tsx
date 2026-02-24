@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 import { PersonJsonLd } from "@/components/seo/json-ld";
+import { Analytics } from "@vercel/analytics/next"
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -30,7 +32,7 @@ export const metadata: Metadata = {
     template: "%s | Dardan Demiri",
   },
   description:
-    "Full-stack engineer with 5+ years building React applications and Ruby on Rails systems. Specializing in content delivery, internal tooling, and customer engagement.",
+    "Toronto-based full-stack engineer with 5+ years building React applications and Ruby on Rails systems. Specializing in content delivery, internal tooling, and customer engagement.",
   keywords: [
     "full-stack engineer",
     "software engineer",
@@ -50,7 +52,7 @@ export const metadata: Metadata = {
     siteName: "Dardan Demiri",
     title: "Dardan Demiri | Full-Stack Engineer",
     description:
-      "Full-stack engineer with 5+ years building React applications and Ruby on Rails systems. Specializing in content delivery, internal tooling, and customer engagement.",
+      "Toronto-based full-stack engineer with 5+ years building React applications and Ruby on Rails systems. Specializing in content delivery, internal tooling, and customer engagement.",
     images: [
       {
         url: "/og-image.png",
@@ -64,7 +66,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dardan Demiri | Full-Stack Engineer",
     description:
-      "Full-stack engineer building React and Ruby on Rails systems.",
+      "Toronto-based full-stack engineer building React and Ruby on Rails systems.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -86,15 +88,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
-        className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} antialiased bg-background text-foreground`}
+        className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} antialiased`}
       >
-        <PersonJsonLd />
-        <a href="#main-content" className="skip-to-content">
-          Skip to main content
-        </a>
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <PersonJsonLd />
+          <a href="#main-content" className="skip-to-content">
+            Skip to main content
+          </a>
+          {children}
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   );

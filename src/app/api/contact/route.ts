@@ -91,7 +91,7 @@ export async function POST(request: NextRequest) {
     if (resend) {
       await resend.emails.send({
         from: process.env.RESEND_FROM_EMAIL || "Contact Form <onboarding@resend.dev>",
-        to: process.env.CONTACT_EMAIL || "dardemiri@gmail.com",
+        to: process.env.CONTACT_EMAIL || "dardandemiridev@gmail.com",
         replyTo: email,
         subject: `New contact from ${name}`,
         text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,

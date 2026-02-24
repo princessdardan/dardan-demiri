@@ -1,22 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Link as ScrollLink } from "react-scroll";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { ArrowDown, Download } from "lucide-react";
+import { personalInfo } from "@/data";
 
-interface HeroProps {
-  name?: string;
-  title?: string;
-  tagline?: string;
-  availability?: {
-    status: "available" | "busy" | "open";
-    message: string;
-  };
-  yearsExperience?: string;
-}
-
-// Animation variants for staggered entrance (visual hierarchy order)
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -40,40 +30,27 @@ const itemVariants = {
   },
 };
 
-export function Hero({
-  name = "Dardan Demiri",
-  title = "Full-Stack Engineer",
-  tagline = "Full-stack engineer with 5+ years building React applications and Ruby on Rails systems that power content delivery, internal tooling, and customer engagement.",
-  availability = {
-    status: "available",
-    message: "Available for new projects",
-  },
-  yearsExperience = "5+",
-}: HeroProps) {
-  const availabilityColors = {
-    available: "bg-green-500",
-    busy: "bg-amber-500",
-    open: "bg-blue-500",
-  };
-
+export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-10"
     >
-      {/* Background gradient - static fallback for performance */}
-      <div
-        className="absolute inset-0 -z-10"
-        style={{
-          background: `
-            radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 107, 71, 0.15), transparent),
-            radial-gradient(ellipse 60% 40% at 80% 50%, rgba(255, 140, 107, 0.1), transparent),
-            linear-gradient(to bottom, var(--background), var(--background-secondary))
-          `,
-        }}
+      {/* Animated background blobs */}
+      <motion.div
+        className="absolute top-1/4 -left-32 w-80 h-80 rounded-full bg-emerald-300/30 dark:bg-emerald-600/20 blur-3xl pointer-events-none"
+        animate={{ y: [0, -20, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        aria-hidden="true"
+      />
+      <motion.div
+        className="absolute bottom-1/4 -right-32 w-96 h-96 rounded-full bg-teal-200/25 dark:bg-teal-700/15 blur-3xl pointer-events-none"
+        animate={{ y: [0, -20, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        aria-hidden="true"
       />
 
-      <Container className="py-20 md:py-32">
+      <Container className="relative z-10">
         <motion.div
           className="max-w-4xl mx-auto text-center"
           variants={containerVariants}
@@ -82,36 +59,37 @@ export function Hero({
         >
           {/* Availability Badge */}
           <motion.div variants={itemVariants} className="mb-6">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface border border-border text-sm font-medium">
-              <span
-                className={`w-2 h-2 rounded-full ${availabilityColors[availability.status]} animate-pulse`}
-              />
-              {availability.message}
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-emerald-900/80 border border-emerald-200 dark:border-emerald-700 text-sm font-medium text-emerald-800 dark:text-emerald-200 backdrop-blur-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+              </span>
+              {personalInfo.status}
             </span>
           </motion.div>
 
-          {/* Headline - highest visual priority */}
+          {/* Name */}
           <motion.h1
             variants={itemVariants}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4"
+            className="text-5xl md:text-7xl font-bold tracking-tight mb-4 text-emerald-950 dark:text-white"
           >
-            <span className="text-foreground">{name}</span>
+            {personalInfo.name}
           </motion.h1>
 
-          {/* Title */}
+          {/* Role */}
           <motion.p
             variants={itemVariants}
-            className="text-xl sm:text-2xl md:text-3xl text-accent font-display font-semibold mb-6"
+            className="text-2xl md:text-3xl text-emerald-600 dark:text-emerald-400 font-space-grotesk font-semibold mb-6"
           >
-            {title}
+            {personalInfo.role}
           </motion.p>
 
-          {/* Tagline */}
+          {/* Intro */}
           <motion.p
             variants={itemVariants}
-            className="text-lg md:text-xl text-foreground-muted max-w-2xl mx-auto mb-8"
+            className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8"
           >
-            {tagline}
+            {personalInfo.heroIntro}
           </motion.p>
 
           {/* CTAs */}
@@ -119,131 +97,33 @@ export function Hero({
             variants={itemVariants}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
           >
-            <Button size="lg" asChild>
-              <a href="#portfolio">View My Work</a>
-            </Button>
-            <Button variant="secondary" size="lg" asChild>
-              <a href="/dardan-demiri-resume.pdf" download>
+            <ScrollLink to="work" smooth={true} offset={-50} duration={500}>
+              <Button size="lg">
+                View My Work
+              </Button>
+            </ScrollLink>
+            <Button variant="outline" size="lg" asChild>
+              <a href={personalInfo.resumeUrl} download>
                 <Download className="w-4 h-4 mr-2" />
                 Download Resume
               </a>
             </Button>
           </motion.div>
 
-          {/* Years of Experience */}
+          {/* Stats */}
           <motion.div
             variants={itemVariants}
-            className="flex items-center justify-center text-center"
+            className="flex flex-col items-center justify-center gap-2"
           >
-            <div>
-              <div className="text-2xl md:text-3xl font-bold text-foreground">
-                {yearsExperience}
-              </div>
-              <div className="text-sm text-foreground-muted">
-                Years Experience
-              </div>
+            <div className="text-3xl font-bold text-emerald-950 dark:text-white">
+              {personalInfo.experienceYears}
             </div>
+            <div className="text-sm text-gray-500 dark:text-gray-400">
+              Years Experience
+            </div>
+            <ArrowDown className="w-5 h-5 text-emerald-500 dark:text-emerald-400 animate-bounce mt-2" />
           </motion.div>
         </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.5 }}
-        >
-          <a
-            href="#about"
-            className="flex flex-col items-center gap-2 text-foreground-muted hover:text-accent transition-colors"
-            aria-label="Scroll to about section"
-          >
-            <span className="text-sm font-medium">Scroll</span>
-            <ArrowDown className="w-5 h-5 animate-bounce" />
-          </a>
-        </motion.div>
-      </Container>
-    </section>
-  );
-}
-
-// CSS-only fallback component for no-JS users
-export function HeroNoJS({
-  name = "Dardan Demiri",
-  title = "Full-Stack Engineer",
-  tagline = "Full-stack engineer with 5+ years building React applications and Ruby on Rails systems that power content delivery, internal tooling, and customer engagement.",
-  availability = {
-    status: "available" as const,
-    message: "Available for new projects",
-  },
-  yearsExperience = "5+",
-}: HeroProps) {
-  const availabilityColors = {
-    available: "bg-green-500",
-    busy: "bg-amber-500",
-    open: "bg-blue-500",
-  };
-
-  return (
-    <section
-      id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-    >
-      <div
-        className="absolute inset-0 -z-10"
-        style={{
-          background: `
-            radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 107, 71, 0.15), transparent),
-            linear-gradient(to bottom, var(--background), var(--background-secondary))
-          `,
-        }}
-      />
-
-      <Container className="py-20 md:py-32">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="mb-6 opacity-0 animate-fade-in animate-delay-1">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface border border-border text-sm font-medium">
-              <span
-                className={`w-2 h-2 rounded-full ${availabilityColors[availability.status]}`}
-              />
-              {availability.message}
-            </span>
-          </div>
-
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4 opacity-0 animate-fade-in-up animate-delay-2">
-            {name}
-          </h1>
-
-          <p className="text-xl sm:text-2xl md:text-3xl text-accent font-display font-semibold mb-6 opacity-0 animate-fade-in-up animate-delay-3">
-            {title}
-          </p>
-
-          <p className="text-lg md:text-xl text-foreground-muted max-w-2xl mx-auto mb-8 opacity-0 animate-fade-in-up animate-delay-4">
-            {tagline}
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 opacity-0 animate-fade-in-up animate-delay-5">
-            <Button size="lg" asChild>
-              <a href="#portfolio">View My Work</a>
-            </Button>
-            <Button variant="secondary" size="lg" asChild>
-              <a href="/dardan-demiri-resume.pdf" download>
-                Download Resume
-              </a>
-            </Button>
-          </div>
-
-          <div className="flex items-center justify-center text-center opacity-0 animate-fade-in animate-delay-5">
-            <div>
-              <div className="text-2xl md:text-3xl font-bold text-foreground">
-                {yearsExperience}
-              </div>
-              <div className="text-sm text-foreground-muted">
-                Years Experience
-              </div>
-            </div>
-          </div>
-        </div>
       </Container>
     </section>
   );

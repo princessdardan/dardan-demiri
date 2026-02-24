@@ -2,116 +2,67 @@
 // SITE CONTENT TYPES
 // ============================================
 
-export interface SiteConfig {
+export interface PersonalInfo {
   name: string;
-  title: string;
-  description: string;
-  url: string;
+  role: string;
   email: string;
+  status: string;
+  experienceYears: string;
+  about: string[];
+  heroIntro: string;
+  profileImage: string;
   socials: {
     github?: string;
     linkedin?: string;
   };
+  resumeUrl: string;
 }
 
-export interface NavItem {
-  label: string;
-  href: string;
-}
-
-// ============================================
-// HERO SECTION
-// ============================================
-
-export interface HeroContent {
-  name: string;
+export interface Feature {
   title: string;
-  tagline: string;
-  availability: {
-    status: "available" | "busy" | "open";
-    message: string;
-  };
-  stats: {
-    years: string;
-    projects: string;
-    clients: string;
-  };
-}
-
-// ============================================
-// ABOUT SECTION
-// ============================================
-
-export interface AboutContent {
-  photo: string;
-  photoAlt: string;
-  bio: string;
-  strengths: Array<{
-    title: string;
-    description: string;
-  }>;
+  description: string;
 }
 
 // ============================================
 // PORTFOLIO SECTION
 // ============================================
 
-export type SkillCategory = "frontend" | "backend" | "tools" | "practices";
-
 export interface Project {
-  slug: string;
   title: string;
-  client?: string;
+  subtitle: string;
   description: string;
-  thumbnail: string;
-  thumbnailAlt: string;
-
-  // Visual layer
-  outcomes?: string[];
-  testimonial?: {
-    quote: string;
-    author: string;
-    role: string;
-    company: string;
+  image: string;
+  tags: string[];
+  features: string[];
+  links: {
+    live?: string;
+    code?: string;
   };
-  liveUrl?: string;
-
-  // Technical layer
-  techStack: string[];
-  architecture: string[];
-  challenges: Array<{
-    challenge: string;
-    solution: string;
-  }>;
-  codeSnippet?: {
-    language: string;
-    code: string;
-    description: string;
-  };
-  githubUrl?: string;
-
-  // Meta
-  featured: boolean;
-  dateCompleted: string;
-  status: "live" | "archived" | "nda";
 }
 
 // ============================================
 // SKILLS SECTION
 // ============================================
 
-export type SkillTier = "primary" | "familiar" | "learning";
+export type SkillCategory = "frontend" | "backend" | "tools" | "practices";
 
-export interface Skill {
-  name: string;
-  icon?: string;
-  tier: SkillTier;
-  category: SkillCategory;
-  projectSlugs?: string[]; // For filtering portfolio
+export interface Skills {
+  frontend: string[];
+  backend: string[];
+  tools: string[];
+  practices: string[];
 }
 
-export interface SkillsContent {
-  skills: Skill[];
+export interface SkillCloudProps {
+  skills: Skills;
+  highlightCategory: string | null;
+  onSkillClick?: (skill: string) => void;
+}
+
+export interface SkillDetailModalProps {
+  skill: string | null;
+  onClose: () => void;
+  projects: Project[];
 }
 
 // ============================================
@@ -119,28 +70,17 @@ export interface SkillsContent {
 // ============================================
 
 export interface Experience {
-  id: string;
-  company: string;
-  companyLogo?: string;
   role: string;
-  startDate: string;
-  endDate?: string; // undefined = "Present"
-  achievements: string[];
-  technologies: string[];
-  order: number; // For manual reordering
+  company: string;
+  period: string;
+  points: string[];
+  tags: string[];
 }
 
 export interface Education {
-  institution: string;
   degree: string;
-  field: string;
-  startDate: string;
-  endDate: string;
-}
-
-export interface ResumeContent {
-  experiences: Experience[];
-  education: Education[];
+  school: string;
+  period: string;
 }
 
 // ============================================
@@ -151,12 +91,6 @@ export interface ContactFormData {
   name: string;
   email: string;
   message: string;
-}
-
-export interface ContactContent {
-  heading: string;
-  description: string;
-  responseTime: string;
 }
 
 // ============================================
@@ -176,7 +110,8 @@ export interface ButtonProps
   asChild?: boolean;
 }
 
-export interface ProjectCardProps {
-  project: Project;
-  onTechClick?: (tech: string) => void;
+export interface NavItem {
+  name: string;
+  to: string;
+  icon: React.ComponentType<{ className?: string }>;
 }

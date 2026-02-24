@@ -1,6 +1,3 @@
-"use client";
-
-import { useState, useCallback } from "react";
 import {
   Navigation,
   Hero,
@@ -10,38 +7,25 @@ import {
   Resume,
   Contact,
   Footer,
+  BackgroundEffect,
+  ModeToggle,
 } from "@/components";
 
 export default function Home() {
-  const [filterTech, setFilterTech] = useState<string | null>(null);
-
-  const handleTechClick = useCallback((tech: string) => {
-    // Scroll to portfolio section when filtering
-    if (tech) {
-      setFilterTech(tech);
-      const portfolioSection = document.getElementById("portfolio");
-      if (portfolioSection) {
-        portfolioSection.scrollIntoView({ behavior: "smooth" });
-      }
-    } else {
-      setFilterTech(null);
-    }
-  }, []);
-
   return (
-    <>
+    <div className="font-body bg-transparent text-foreground selection:bg-emerald-500/20 selection:text-emerald-900 dark:selection:text-emerald-100 overflow-x-hidden min-h-screen relative">
+      <BackgroundEffect />
+      <ModeToggle />
       <Navigation />
-
       <main id="main-content">
         <Hero />
         <About />
-        <Portfolio filterTech={filterTech} onTechClick={handleTechClick} />
-        <Skills onSkillClick={handleTechClick} />
+        <Portfolio />
+        <Skills />
         <Resume />
         <Contact />
       </main>
-
       <Footer />
-    </>
+    </div>
   );
 }
