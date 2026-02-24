@@ -66,7 +66,7 @@ export const projects = [
       "Easy content management for menu updates and specials",
     ],
     links: {
-      live: "https://dannysfc.ca",
+      live: "https://dannys-fish-and-chips.vercel.app/",
       code: "https://github.com/princessdardan/dannys-fish-and-chips",
     },
   },
@@ -156,7 +156,7 @@ export const experience = [
       "Delivered server-rendered and aggressively cached storefronts using modern React tooling, improving page load performance while constraining infrastructure spend",
       "Converted curriculum and publishing requirements from non-technical stakeholders into durable data models and intuitive UI flows",
     ],
-    tags: ["React", "GraphQL", "Next.js", "TypeScript", "Headless CMS"],
+    tags: ["React", "GraphQL", "Next.js", "TypeScript", "Headless CMS", "Github Actions"],
   },
   {
     role: "Software Engineer",
