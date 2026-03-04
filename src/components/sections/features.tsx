@@ -9,6 +9,21 @@ import type { Feature } from "@/types";
 // Map feature index to icon (order matches data/index.ts features array)
 const FEATURE_ICONS = [User, ShieldCheck, Zap, Code2];
 
+// Rotating glow colors per card: purple → green → blue → red
+const FEATURE_GLOW_CLASSES = [
+  "dark:hover:shadow-[0_0_15px_var(--glow-primary)]",
+  "dark:hover:shadow-[0_0_15px_var(--glow-green)]",
+  "dark:hover:shadow-[0_0_15px_var(--glow-secondary)]",
+  "dark:hover:shadow-[0_0_15px_var(--glow-red)]",
+];
+
+const FEATURE_ICON_COLORS = [
+  "text-primary-600 dark:text-primary-400",
+  "text-green-600 dark:text-green-400",
+  "text-secondary-600 dark:text-secondary-400",
+  "text-red-600 dark:text-red-400",
+];
+
 const containerVariants = {
   hidden: {},
   visible: {
@@ -45,26 +60,27 @@ function FeatureCard({ feature, index }: FeatureCardProps) {
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       className={cn(
         "group flex flex-col gap-4 rounded-2xl p-6",
-        "bg-white dark:bg-emerald-900/30",
-        "border border-emerald-100 dark:border-emerald-800",
+        "bg-white dark:bg-primary-900/30",
+        "border border-primary-100 dark:border-primary-800",
         "shadow-sm hover:shadow-md",
-        "transition-shadow duration-200"
+        "transition-all duration-200",
+        FEATURE_GLOW_CLASSES[index % FEATURE_GLOW_CLASSES.length]
       )}
     >
       {/* Icon container */}
       <div
         className={cn(
           "flex h-11 w-11 items-center justify-center rounded-xl",
-          "bg-emerald-50 dark:bg-emerald-800",
-          "transition-colors duration-200 group-hover:bg-emerald-100 dark:group-hover:bg-emerald-700"
+          "bg-primary-50 dark:bg-primary-800",
+          "transition-colors duration-200 group-hover:bg-primary-100 dark:group-hover:bg-primary-700"
         )}
       >
-        <Icon className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+        <Icon className={cn("h-5 w-5", FEATURE_ICON_COLORS[index % FEATURE_ICON_COLORS.length])} />
       </div>
 
       {/* Text */}
       <div className="space-y-1.5">
-        <h3 className="font-space-grotesk text-base font-semibold text-emerald-900 dark:text-emerald-50">
+        <h3 className="font-space-grotesk text-base font-semibold text-primary-900 dark:text-primary-50">
           {feature.title}
         </h3>
         <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">

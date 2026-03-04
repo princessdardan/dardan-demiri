@@ -17,34 +17,34 @@ const SECTION_COLORS: Record<
   { orb1: string; orb2: string; orb3: string }
 > = {
   hero: {
-    orb1: "bg-emerald-300/30 dark:bg-emerald-500/20",
-    orb2: "bg-teal-200/25 dark:bg-teal-600/15",
-    orb3: "bg-cyan-200/20 dark:bg-cyan-700/10",
+    orb1: "bg-primary-300/35 dark:bg-primary-500/30",
+    orb2: "bg-secondary-300/30 dark:bg-secondary-500/25",
+    orb3: "bg-green-300/20 dark:bg-green-500/15",
   },
   about: {
-    orb1: "bg-emerald-200/35 dark:bg-emerald-600/20",
-    orb2: "bg-teal-300/20 dark:bg-teal-500/15",
-    orb3: "bg-emerald-100/30 dark:bg-emerald-800/20",
+    orb1: "bg-primary-200/35 dark:bg-primary-600/30",
+    orb2: "bg-red-300/20 dark:bg-red-500/15",
+    orb3: "bg-secondary-400/25 dark:bg-secondary-400/22",
   },
   work: {
-    orb1: "bg-teal-300/25 dark:bg-teal-500/20",
-    orb2: "bg-emerald-200/30 dark:bg-emerald-600/15",
-    orb3: "bg-cyan-300/20 dark:bg-cyan-600/15",
+    orb1: "bg-secondary-400/30 dark:bg-secondary-400/28",
+    orb2: "bg-green-300/20 dark:bg-green-500/15",
+    orb3: "bg-tertiary-400/25 dark:bg-tertiary-400/20",
   },
   skills: {
-    orb1: "bg-cyan-200/30 dark:bg-cyan-600/20",
-    orb2: "bg-emerald-300/25 dark:bg-emerald-500/15",
-    orb3: "bg-teal-200/20 dark:bg-teal-700/10",
+    orb1: "bg-tertiary-300/35 dark:bg-tertiary-400/28",
+    orb2: "bg-red-300/20 dark:bg-red-500/15",
+    orb3: "bg-secondary-300/25 dark:bg-secondary-500/20",
   },
   experience: {
-    orb1: "bg-emerald-300/25 dark:bg-emerald-500/20",
-    orb2: "bg-indigo-200/15 dark:bg-indigo-800/10",
-    orb3: "bg-teal-200/20 dark:bg-teal-600/15",
+    orb1: "bg-primary-300/30 dark:bg-primary-500/28",
+    orb2: "bg-green-300/20 dark:bg-green-500/15",
+    orb3: "bg-red-200/15 dark:bg-red-500/12",
   },
   contact: {
-    orb1: "bg-teal-200/30 dark:bg-teal-600/20",
-    orb2: "bg-emerald-200/25 dark:bg-emerald-700/15",
-    orb3: "bg-cyan-100/20 dark:bg-cyan-800/10",
+    orb1: "bg-secondary-300/35 dark:bg-secondary-500/28",
+    orb2: "bg-primary-200/25 dark:bg-primary-700/22",
+    orb3: "bg-red-200/20 dark:bg-red-500/15",
   },
 };
 
@@ -193,17 +193,20 @@ export function BackgroundEffect() {
       aria-hidden="true"
     >
       {/* Base gradient */}
-      <div className="absolute inset-0 bg-linear-to-br from-emerald-50 via-white to-emerald-100 dark:from-emerald-950 dark:via-black dark:to-emerald-900 transition-colors duration-700" />
+      <div className="absolute inset-0 bg-linear-to-br from-primary-50 via-white to-primary-100 dark:from-primary-950 dark:via-black dark:to-primary-900 transition-colors duration-700" />
 
-      {/* Grid pattern overlay */}
+      {/* Grid pattern overlay - two-tone synthwave grid */}
       <div
-        className="absolute inset-0 opacity-[0.04] dark:opacity-[0.06]"
+        className="absolute inset-0 animate-glow-pulse"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(16, 185, 129, 0.8) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(16, 185, 129, 0.8) 1px, transparent 1px)
+            linear-gradient(rgba(142, 68, 173, 0.5) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(52, 152, 219, 0.3) 1px, transparent 1px)
           `,
-          backgroundSize: "60px 60px",
+          backgroundSize: "30px 30px",
+          opacity: 0.05,
+          maskImage: "linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%)",
         }}
       />
 
@@ -241,6 +244,37 @@ export function BackgroundEffect() {
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
           backgroundRepeat: "repeat",
           backgroundSize: "256px 256px",
+        }}
+      />
+
+      {/* Scanline overlay - dark mode only, very subtle CRT effect */}
+      <div
+        className="absolute inset-0 hidden dark:block pointer-events-none"
+        style={{
+          background: `repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(52, 152, 219, 0.015) 2px,
+            rgba(52, 152, 219, 0.015) 4px
+          )`,
+        }}
+      />
+
+      {/* Horizon glow line - 5-color gradient */}
+      <div
+        className="absolute left-0 right-0 h-px bottom-1/3 opacity-30 dark:opacity-55"
+        style={{
+          background: `linear-gradient(
+            90deg,
+            transparent 0%,
+            var(--glow-green) 12%,
+            var(--glow-secondary) 28%,
+            var(--glow-primary) 50%,
+            var(--glow-red) 72%,
+            var(--glow-tertiary) 88%,
+            transparent 100%
+          )`,
         }}
       />
     </div>

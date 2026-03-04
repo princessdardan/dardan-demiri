@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Link as ScrollLink } from "react-scroll";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { ArrowDown, Download } from "lucide-react";
@@ -38,15 +37,27 @@ export function Hero() {
     >
       {/* Animated background blobs */}
       <motion.div
-        className="absolute top-1/4 -left-32 w-80 h-80 rounded-full bg-emerald-300/30 dark:bg-emerald-600/20 blur-3xl pointer-events-none"
+        className="absolute top-1/4 -left-32 w-80 h-80 rounded-full bg-primary-300/30 dark:bg-primary-600/25 blur-3xl pointer-events-none"
         animate={{ y: [0, -20, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         aria-hidden="true"
       />
       <motion.div
-        className="absolute bottom-1/4 -right-32 w-96 h-96 rounded-full bg-teal-200/25 dark:bg-teal-700/15 blur-3xl pointer-events-none"
+        className="absolute bottom-1/4 -right-32 w-96 h-96 rounded-full bg-secondary-300/25 dark:bg-secondary-500/20 blur-3xl pointer-events-none"
         animate={{ y: [0, -20, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        aria-hidden="true"
+      />
+      <motion.div
+        className="absolute top-2/3 left-1/3 w-64 h-64 rounded-full bg-red-200/20 dark:bg-red-500/15 blur-3xl pointer-events-none"
+        animate={{ y: [0, -15, 0] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        aria-hidden="true"
+      />
+      <motion.div
+        className="absolute top-1/3 left-2/3 w-48 h-48 rounded-full bg-green-200/15 dark:bg-green-500/10 blur-3xl pointer-events-none"
+        animate={{ y: [0, -12, 0] }}
+        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 3 }}
         aria-hidden="true"
       />
 
@@ -59,10 +70,10 @@ export function Hero() {
         >
           {/* Availability Badge */}
           <motion.div variants={itemVariants} className="mb-6">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-emerald-900/80 border border-emerald-200 dark:border-emerald-700 text-sm font-medium text-emerald-800 dark:text-emerald-200 backdrop-blur-sm">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-primary-900/80 border border-primary-200 dark:border-primary-700 text-sm font-medium text-primary-800 dark:text-primary-200 backdrop-blur-sm">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500 dark:shadow-[0_0_6px_var(--glow-green)]" />
               </span>
               {personalInfo.status}
             </span>
@@ -71,7 +82,7 @@ export function Hero() {
           {/* Name */}
           <motion.h1
             variants={itemVariants}
-            className="text-5xl md:text-7xl font-bold tracking-tight mb-4 text-emerald-950 dark:text-white"
+            className="text-5xl md:text-7xl font-bold tracking-tight mb-4 text-primary-950 dark:text-white dark:neon-text-primary"
           >
             {personalInfo.name}
           </motion.h1>
@@ -79,7 +90,7 @@ export function Hero() {
           {/* Role */}
           <motion.p
             variants={itemVariants}
-            className="text-2xl md:text-3xl text-emerald-600 dark:text-emerald-400 font-space-grotesk font-semibold mb-6"
+            className="text-2xl md:text-3xl text-primary-600 dark:text-primary-400 font-space-grotesk font-semibold mb-6"
           >
             {personalInfo.role}
           </motion.p>
@@ -97,11 +108,11 @@ export function Hero() {
             variants={itemVariants}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
           >
-            <ScrollLink to="work" smooth={true} offset={-50} duration={500}>
-              <Button size="lg">
+            <Button size="lg" asChild>
+              <a href="#work">
                 View My Work
-              </Button>
-            </ScrollLink>
+              </a>
+            </Button>
             <Button variant="outline" size="lg" asChild>
               <a href={personalInfo.resumeUrl} download>
                 <Download className="w-4 h-4 mr-2" />
@@ -115,13 +126,13 @@ export function Hero() {
             variants={itemVariants}
             className="flex flex-col items-center justify-center gap-2"
           >
-            <div className="text-3xl font-bold text-emerald-950 dark:text-white">
+            <div className="text-3xl font-bold text-primary-950 dark:text-white">
               {personalInfo.experienceYears}
             </div>
             <div className="text-sm text-gray-500 dark:text-gray-400">
               Years Experience
             </div>
-            <ArrowDown className="w-5 h-5 text-emerald-500 dark:text-emerald-400 animate-bounce mt-2" />
+            <ArrowDown className="w-5 h-5 text-primary-500 dark:text-primary-400 animate-bounce mt-2" />
           </motion.div>
         </motion.div>
       </Container>

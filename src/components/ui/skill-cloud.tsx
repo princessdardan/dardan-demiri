@@ -6,7 +6,7 @@ import {
   useMotionValue,
   useReducedMotion,
 } from "framer-motion";
-import { useEffect, useState, useRef, useMemo, useCallback } from "react";
+import { useEffect, useState, useRef, useMemo, useCallback, useSyncExternalStore } from "react";
 import {
   Code,
   Database,
@@ -30,11 +30,67 @@ import { cn } from "@/lib/utils";
 
 // Category display names
 const CATEGORY_LABELS: Record<string, string> = {
-  frontend: "Primary Stack",
+  languages: "Languages",
+  frontend: "Frontend",
   backend: "Backend",
-  tools: "Tools & Platforms",
-  practices: "Practices",
+  databases: "Databases",
+  devops: "DevOps & Cloud",
+  testing: "Testing & Quality",
 };
+
+// Category-based color classes for skill pills
+const CATEGORY_PILL_STYLES: Record<string, {
+  bg: string;
+  border: string;
+  text: string;
+  iconColor: string;
+  hoverShadow: string;
+}> = {
+  languages: {
+    bg: "bg-white/90 dark:bg-primary-900/90",
+    border: "border-primary-200 dark:border-primary-700",
+    text: "text-primary-800 dark:text-primary-200",
+    iconColor: "text-primary-600 dark:text-primary-400",
+    hoverShadow: "hover:shadow-[0_0_10px_var(--glow-primary)]",
+  },
+  frontend: {
+    bg: "bg-white/90 dark:bg-secondary-900/50",
+    border: "border-secondary-200 dark:border-secondary-700",
+    text: "text-secondary-800 dark:text-secondary-200",
+    iconColor: "text-secondary-600 dark:text-secondary-400",
+    hoverShadow: "hover:shadow-[0_0_10px_var(--glow-secondary)]",
+  },
+  backend: {
+    bg: "bg-white/90 dark:bg-red-950/50",
+    border: "border-red-200 dark:border-red-700",
+    text: "text-red-800 dark:text-red-200",
+    iconColor: "text-red-600 dark:text-red-400",
+    hoverShadow: "hover:shadow-[0_0_10px_var(--glow-red)]",
+  },
+  databases: {
+    bg: "bg-white/90 dark:bg-tertiary-950/50",
+    border: "border-tertiary-200 dark:border-tertiary-700",
+    text: "text-tertiary-800 dark:text-tertiary-200",
+    iconColor: "text-tertiary-600 dark:text-tertiary-300",
+    hoverShadow: "hover:shadow-[0_0_10px_var(--glow-tertiary)]",
+  },
+  devops: {
+    bg: "bg-white/90 dark:bg-green-950/50",
+    border: "border-green-200 dark:border-green-700",
+    text: "text-green-800 dark:text-green-200",
+    iconColor: "text-green-600 dark:text-green-400",
+    hoverShadow: "hover:shadow-[0_0_10px_var(--glow-green)]",
+  },
+  testing: {
+    bg: "bg-white/90 dark:bg-neutral-900/50",
+    border: "border-neutral-300 dark:border-neutral-600",
+    text: "text-neutral-800 dark:text-neutral-200",
+    iconColor: "text-neutral-600 dark:text-neutral-400",
+    hoverShadow: "hover:shadow-[0_0_10px_var(--glow-neutral)]",
+  },
+};
+
+const DEFAULT_PILL_STYLE = CATEGORY_PILL_STYLES.languages;
 
 // Skill-to-icon keyword matching
 function getSkillIcon(skill: string) {
@@ -110,6 +166,12 @@ export function SkillCloud({ skills, highlightCategory, onSkillClick }: SkillClo
   const containerRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number>(0);
   const isPointerDown = useRef(false);
+
+  // Defer positioned rendering to avoid hydration mismatch
+  // useSyncExternalStore with different server/client snapshots is the
+  // React-recommended way to handle SSR vs client divergence without useEffect+setState
+  const emptySubscribe = useCallback(() => () => {}, []);
+  const isMounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
 
   // Fixed X tilt to show the sphere at a pleasant viewing angle
   const rotationX = 0.3;
@@ -264,7 +326,7 @@ export function SkillCloud({ skills, highlightCategory, onSkillClick }: SkillClo
           fill="none"
           stroke="currentColor"
           strokeWidth="0.5"
-          className="text-emerald-500"
+          className="text-primary-400 dark:text-secondary-700"
         />
       </svg>
 
@@ -274,19 +336,22 @@ export function SkillCloud({ skills, highlightCategory, onSkillClick }: SkillClo
         const categoryLabel = CATEGORY_LABELS[sp.category] ?? sp.category;
         const isDimmed =
           highlightCategory !== null && sp.category !== highlightCategory;
+        const pillStyle = CATEGORY_PILL_STYLES[sp.category] ?? DEFAULT_PILL_STYLE;
 
         return (
           <motion.div
             key={`${sp.category}-${sp.skill}`}
             className="absolute"
             style={{
-              left: sp.px,
-              top: sp.py,
-              transform: `translate(-50%, -50%) scale(${sp.scale})`,
-              zIndex: Math.round(sp.depthFactor * 100),
+              left: isMounted ? sp.px : CENTER,
+              top: isMounted ? sp.py : CENTER,
+              transform: isMounted
+                ? `translate(-50%, -50%) scale(${sp.scale})`
+                : "translate(-50%, -50%) scale(0)",
+              zIndex: isMounted ? Math.round(sp.depthFactor * 100) : 0,
             }}
             animate={{
-              opacity: isDimmed ? 0.15 : sp.opacity,
+              opacity: isMounted ? (isDimmed ? 0.15 : sp.opacity) : 0,
             }}
             transition={{ duration: 0.3 }}
           >
@@ -295,16 +360,18 @@ export function SkillCloud({ skills, highlightCategory, onSkillClick }: SkillClo
               title={`${sp.skill} — ${categoryLabel}`}
               className={cn(
                 "flex items-center gap-1.5 rounded-full px-2.5 py-1",
-                "bg-white/90 dark:bg-emerald-900/90",
-                "border border-emerald-100 dark:border-emerald-700",
-                "shadow-sm hover:shadow-md",
-                "text-xs font-medium text-emerald-800 dark:text-emerald-200",
-                "transition-shadow duration-150 whitespace-nowrap",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                pillStyle.bg,
+                "border", pillStyle.border,
+                "shadow-sm",
+                pillStyle.hoverShadow,
+                pillStyle.text,
+                "text-xs font-medium",
+                "transition-all duration-200 whitespace-nowrap",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
               )}
               style={{ fontSize: `${sp.fontSize ?? 0.85}rem` }}
             >
-              <Icon className="h-3 w-3 shrink-0 text-emerald-600 dark:text-emerald-400" />
+              <Icon className={cn("h-3 w-3 shrink-0", pillStyle.iconColor)} />
               <span>{sp.skill}</span>
             </button>
           </motion.div>

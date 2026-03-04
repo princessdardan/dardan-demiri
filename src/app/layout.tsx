@@ -32,14 +32,18 @@ export const metadata: Metadata = {
     template: "%s | Dardan Demiri",
   },
   description:
-    "Toronto-based full-stack engineer with 5+ years building React applications and Ruby on Rails systems. Specializing in content delivery, internal tooling, and customer engagement.",
+    "Toronto-based full-stack engineer with 5+ years building and scaling customer-facing web applications across e-commerce and ed-tech. Proven track record delivering production systems that reduce costs, automate workflows, and improve performance.",
   keywords: [
     "full-stack engineer",
-    "software engineer",
+    "senior software engineer",
     "React developer",
     "Ruby on Rails developer",
     "Next.js",
     "TypeScript",
+    "Django",
+    "MedusaJS",
+    "e-commerce developer",
+    "ed-tech",
     "Toronto",
     "portfolio",
   ],
@@ -52,7 +56,7 @@ export const metadata: Metadata = {
     siteName: "Dardan Demiri",
     title: "Dardan Demiri | Full-Stack Engineer",
     description:
-      "Toronto-based full-stack engineer with 5+ years building React applications and Ruby on Rails systems. Specializing in content delivery, internal tooling, and customer engagement.",
+      "Toronto-based full-stack engineer with 5+ years building and scaling customer-facing web applications across e-commerce and ed-tech. Proven track record delivering production systems that reduce costs, automate workflows, and improve performance.",
     images: [
       {
         url: "/og-image.png",
@@ -66,7 +70,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dardan Demiri | Full-Stack Engineer",
     description:
-      "Toronto-based full-stack engineer building React and Ruby on Rails systems.",
+      "Toronto-based full-stack engineer building scalable e-commerce and ed-tech applications with React, Ruby on Rails, and Django.",
     images: ["/og-image.png"],
   },
   robots: {

@@ -9,18 +9,18 @@ export const personalInfo = {
   status: "Available for new projects",
   experienceYears: "5+",
   about: [
-    "I'm a full-stack engineer with 5+ years building React applications and Ruby on Rails systems that power content delivery, internal tooling, and customer engagement. My strong mathematical foundation from the University of Toronto supports scalable system design and pragmatic, ROI-driven technical decisions.",
-    "I combine production engineering with first-hand business operations experience—running a restaurant has given me unique insight into customer retention, loyalty incentives, and real-world operational constraints. This perspective helps me build software that actually solves problems for the people using it.",
-    "I approach every project as a partnership. I listen carefully, communicate clearly, and deliver work I'm genuinely proud of. Whether you need a content authoring platform, an e-commerce solution, or analytics-driven tooling, I'm here to help bring your vision to life.",
+    "I'm a full-stack engineer with 5+ years designing, building, and scaling customer-facing web applications across e-commerce and ed-tech. I've delivered production systems that reduce costs, automate workflows, and measurably improve performance — from a Shopify-to-MedusaJS platform migration to a containerized LMS and headless storefronts serving 200+ products.",
+    "I combine production engineering with first-hand business operations experience — co-managing a restaurant has given me real-world insight into customer retention, loyalty incentives, and the operational constraints that software has to actually solve for.",
+    "I thrive in Agile product teams, communicate clearly across disciplines, and care about shipping work I'm genuinely proud of. Whether you need a scalable e-commerce platform, an internal tooling system, or a content-driven application, I'd love to help bring your vision to life.",
   ],
   heroIntro:
-    "Full-stack engineer with 5+ years building React applications and Ruby on Rails systems that power content delivery, internal tooling, and customer engagement.",
+    "Full-stack engineer with 5+ years designing, building, and scaling customer-facing web applications across e-commerce and ed-tech.",
   profileImage: "/images/profile.jpeg",
   socials: {
     github: "https://github.com/princessdardan",
     linkedin: "https://linkedin.com/in/dardan-demiri",
   },
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "/dardan-demiri-resume.pdf",
 };
 
 export const features = [
@@ -113,67 +113,89 @@ export const projects = [
 ];
 
 export const skills = {
-  frontend: [
+  languages: [
     "TypeScript",
     "JavaScript",
-    "React",
-    "Next.js",
-    "Remix",
-    "Tailwind CSS",
-  ],
-  backend: [
     "Ruby",
-    "Ruby on Rails",
     "Python",
     "Java",
     "SQL",
-    "PostgreSQL",
-    "GraphQL",
-    "REST APIs",
+    "HTML",
+    "CSS",
   ],
-  tools: [
-    "Vercel",
+  frontend: [
+    "React",
+    "Next.js",
+    "Tailwind CSS",
+    "Motion.dev",
+    "GSAP",
+    "Component-Based Architecture",
+  ],
+  backend: [
+    "Ruby on Rails",
+    "Django",
+    "Django REST Framework",
+    "Node.js",
+    "RESTful APIs",
+    "GraphQL",
+  ],
+  databases: [
+    "PostgreSQL",
+    "Redis",
+    "Active Record",
+    "Data Modeling",
+  ],
+  devops: [
     "AWS",
+    "Docker",
+    "Nginx",
+    "Vercel",
     "Git",
     "GitHub Actions",
-    "Docker",
-    "Headless CMS",
-    "Supabase",
-    "Railway",
-    "Shopify",
+    "CI/CD",
+    "S3",
   ],
-  practices: ["CI/CD", "Analytics-driven UX", "Content Systems"],
+  testing: [
+    "Jest",
+    "React Testing Library",
+    "RSpec",
+    "Code Review",
+    "Debugging",
+    "Automated Test Pipelines",
+  ],
 };
 
 export const experience = [
   {
-    role: "Software Engineer",
+    role: "Senior Software Engineer",
     company: "Aira Publishing",
-    period: "May 2024 — Present",
+    period: "June 2024 — Present",
     points: [
-      "Architected and shipped a custom headless commerce platform for digital and physical educational products, replacing brittle legacy workflows with a scalable React + GraphQL system",
-      "Designed metadata-driven product models supporting bundles, multi-format SKUs, and grade-level segmentation, reducing catalog maintenance effort and error rates",
-      "Delivered server-rendered and aggressively cached storefronts using modern React tooling, improving page load performance while constraining infrastructure spend",
-      "Converted curriculum and publishing requirements from non-technical stakeholders into durable data models and intuitive UI flows",
+      "Spearheading platform migration from Shopify to Next.js + MedusaJS, eliminating vendor lock-in and gaining full control over the deployment pipeline, codebase, and payment processing workflows",
+      "Architecting and deploying a containerized application stack using Docker, Nginx reverse proxy, and Redis caching, enabling zero-configuration environment parity across development, staging, and production",
+      "Designing and building a full-featured learning management system (LMS) with Django and Django REST Framework, featuring course management, enrolment workflows, lesson progress tracking, and role-based access control",
+      "Engineered a headless e-commerce storefront with React, TypeScript, and GraphQL, integrating REST APIs with reusable UI components to support 200+ products with server-side rendering that improved Largest Contentful Paint",
+      "Collaborating with cross-functional product and content teams to translate complex business requirements into scalable data models and reusable component libraries, accelerating time to market",
     ],
-    tags: ["React", "GraphQL", "Next.js", "TypeScript", "Headless CMS", "Github Actions"],
+    tags: ["Next.js", "TypeScript", "React", "GraphQL", "MedusaJS", "Docker", "Nginx", "Redis", "Django", "Django REST Framework", "GitHub Actions"],
   },
   {
     role: "Software Engineer",
     company: "Scholarly Elite Tutoring",
-    period: "May 2020 — May 2024",
+    period: "June 2020 — June 2024",
     points: [
-      "Designed and maintained a Ruby on Rails content-authoring platform that automated the creation of client-specific tutoring materials, eliminating manual document assembly",
-      "Built admin tooling and configurable templates enabling educators to generate personalized learning content at scale with consistent quality",
-      "Implemented role-based access control (RBAC) and secure content delivery pipelines to protect proprietary educational resources",
-      "Drove continuous system improvement by incorporating direct educator feedback into product and technical decisions",
+      "Designed and shipped an API-driven content platform in Ruby on Rails that automated personalized tutoring packet generation, replacing a manual workflow and reducing document assembly time from hours to seconds",
+      "Developed educator-facing admin tools for managing hierarchical curriculum structures (Closure Tree) and file attachments (Active Storage), enabling personalized learning materials at scale",
+      "Refactored monolithic controller logic into a testable service layer with versioned RESTful APIs, improving code maintainability, test coverage (RSpec), and onboarding speed for new developers",
+      "Implemented asynchronous PDF compilation using Sidekiq background jobs with real-time progress feedback via Server-Sent Events (SSE), cutting export wait times for large document batches",
+      "Mentored junior developers through pair-programming sessions and code reviews, establishing coding standards that improved team velocity and code quality",
     ],
-    tags: ["Ruby on Rails", "PostgreSQL", "JavaScript", "REST APIs"],
+    tags: ["Ruby on Rails", "PostgreSQL", "JavaScript", "REST APIs", "RSpec", "Sidekiq", "Active Storage"],
   },
   {
     role: "Co-Managing Partner",
     company: "Danny's Fish & Chips",
-    period: "Apr 2019 — Present",
+    period: "May 2019 — Present",
     points: [
       "Co-managed daily operations of a high-volume restaurant with a long-standing repeat customer base",
       "Built first-hand understanding of customer retention, promotions, loyalty incentives, and real-world operational constraints",
@@ -198,6 +220,6 @@ export const education = [
   {
     degree: "Honours BSc in Mathematics, Statistics, Economics",
     school: "University of Toronto",
-    period: "Aug 2018 — Apr 2022",
+    period: "2022",
   },
 ];

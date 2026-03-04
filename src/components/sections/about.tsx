@@ -19,7 +19,7 @@ export function About() {
   return (
     <section
       id="about"
-      className="py-24 bg-white/60 dark:bg-emerald-950/60 backdrop-blur-xl"
+      className="py-24 bg-white/60 dark:bg-primary-950/60 backdrop-blur-xl"
     >
       <Container>
         {/* Section header */}
@@ -30,7 +30,7 @@ export function About() {
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-emerald-950 dark:text-white mb-4 font-space-grotesk">
+          <h2 className="text-4xl font-bold text-primary-950 dark:text-white mb-4 font-space-grotesk">
             About Me
           </h2>
           <p className="text-lg text-gray-500 dark:text-gray-400">
@@ -69,7 +69,7 @@ export function About() {
             <motion.div
               whileHover={{ rotate: 2, scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="relative aspect-square max-w-sm mx-auto rounded-3xl overflow-hidden border-4 border-white dark:border-emerald-800 shadow-2xl"
+              className="relative aspect-square max-w-sm mx-auto rounded-3xl overflow-hidden border-4 border-white dark:border-primary-800 shadow-2xl"
             >
               <Image
                 src={personalInfo.profileImage}

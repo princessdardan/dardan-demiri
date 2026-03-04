@@ -5,7 +5,43 @@ import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, GitBranch } from "lucide-react";
-import { projects } from "@/data";
+import { projects, skills } from "@/data";
+import { CATEGORY_COLOR_MAP, type SkillCategory } from "@/types";
+import { cn } from "@/lib/utils";
+
+// Determine a tag's color based on which skill category it best matches
+function getTagColorTheme(tag: string): string {
+  const lowerTag = tag.toLowerCase();
+  for (const [category, skillList] of Object.entries(skills)) {
+    if (skillList.some((s) => s.toLowerCase().includes(lowerTag) || lowerTag.includes(s.toLowerCase()))) {
+      return CATEGORY_COLOR_MAP[category as SkillCategory] ?? "primary";
+    }
+  }
+  return "primary";
+}
+
+const TAG_COLOR_CLASSES: Record<string, { bg: string; text: string }> = {
+  primary: {
+    bg: "bg-primary-100 dark:bg-primary-800",
+    text: "text-primary-800 dark:text-primary-200",
+  },
+  secondary: {
+    bg: "bg-secondary-100 dark:bg-secondary-800",
+    text: "text-secondary-800 dark:text-secondary-200",
+  },
+  tertiary: {
+    bg: "bg-tertiary-100 dark:bg-tertiary-800",
+    text: "text-tertiary-800 dark:text-tertiary-200",
+  },
+  red: {
+    bg: "bg-red-100 dark:bg-red-800",
+    text: "text-red-800 dark:text-red-200",
+  },
+  green: {
+    bg: "bg-green-100 dark:bg-green-800",
+    text: "text-green-800 dark:text-green-200",
+  },
+};
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -20,7 +56,7 @@ export function Portfolio() {
   return (
     <section
       id="work"
-      className="py-24 bg-emerald-50/40 dark:bg-emerald-900/40"
+      className="py-24 bg-primary-50/40 dark:bg-primary-900/40"
     >
       <Container>
         {/* Header */}
@@ -31,7 +67,7 @@ export function Portfolio() {
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-emerald-950 dark:text-white mb-4 font-space-grotesk">
+          <h2 className="text-4xl font-bold text-primary-950 dark:text-white mb-4 font-space-grotesk">
             Featured Work
           </h2>
           <p className="text-lg text-gray-500 dark:text-gray-400">
@@ -73,7 +109,7 @@ export function Portfolio() {
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 {/* Hover overlay */}
-                <div className="absolute inset-0 bg-emerald-950/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="absolute inset-0 bg-primary-950/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   {project.links.live && (
                     <Button asChild size="sm">
                       <a
@@ -92,12 +128,12 @@ export function Portfolio() {
               {/* Details */}
               <div className="w-full md:w-1/2 space-y-4">
                 {/* Subtitle */}
-                <p className="text-sm font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                <p className="text-sm font-semibold uppercase tracking-wider text-primary-600 dark:text-primary-400">
                   {project.subtitle}
                 </p>
 
                 {/* Title */}
-                <h3 className="text-3xl font-bold text-emerald-950 dark:text-white">
+                <h3 className="text-3xl font-bold text-primary-950 dark:text-white">
                   {project.title}
                 </h3>
 
@@ -113,7 +149,7 @@ export function Portfolio() {
                       key={i}
                       className="flex items-start gap-3 text-sm text-gray-600 dark:text-gray-300"
                     >
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 mt-1.5 shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-primary-500 dark:bg-primary-400 mt-1.5 shrink-0" />
                       {feature}
                     </li>
                   ))}
@@ -121,14 +157,22 @@ export function Portfolio() {
 
                 {/* Tag pills */}
                 <div className="flex flex-wrap gap-2 pt-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 bg-emerald-100 dark:bg-emerald-800 text-emerald-800 dark:text-emerald-200 rounded-full text-xs font-medium"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                  {project.tags.map((tag) => {
+                    const theme = getTagColorTheme(tag);
+                    const colors = TAG_COLOR_CLASSES[theme];
+                    return (
+                      <span
+                        key={tag}
+                        className={cn(
+                          "px-3 py-1 rounded-full text-xs font-medium",
+                          colors.bg,
+                          colors.text
+                        )}
+                      >
+                        {tag}
+                      </span>
+                    );
+                  })}
                 </div>
 
                 {/* Action links */}

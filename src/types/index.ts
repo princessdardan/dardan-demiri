@@ -44,13 +44,28 @@ export interface Project {
 // SKILLS SECTION
 // ============================================
 
-export type SkillCategory = "frontend" | "backend" | "tools" | "practices";
+export type SkillCategory = "languages" | "frontend" | "backend" | "databases" | "devops" | "testing";
+
+export type CategoryColorTheme = "primary" | "secondary" | "tertiary" | "red" | "green" | "neutral";
+
+// Maps skill categories to their synthwave color theme
+// primary = purple, secondary = blue, tertiary = yellow, red = coral, green = emerald
+export const CATEGORY_COLOR_MAP: Record<SkillCategory, CategoryColorTheme> = {
+  languages: "primary",
+  frontend: "secondary",
+  backend: "red",
+  databases: "tertiary",
+  devops: "green",
+  testing: "neutral",
+} as const;
 
 export interface Skills {
+  languages: string[];
   frontend: string[];
   backend: string[];
-  tools: string[];
-  practices: string[];
+  databases: string[];
+  devops: string[];
+  testing: string[];
 }
 
 export interface SkillCloudProps {

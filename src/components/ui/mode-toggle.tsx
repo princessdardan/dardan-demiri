@@ -53,7 +53,7 @@ export function ModeToggle() {
   if (!mounted) {
     // Render a skeleton placeholder to avoid layout shift
     return (
-      <div className="fixed top-6 right-6 z-50 h-10 w-10 rounded-full bg-white/80 dark:bg-emerald-900/80 border border-emerald-100 dark:border-emerald-800" />
+      <div className="fixed top-6 right-6 z-50 h-10 w-10 rounded-full bg-white/80 dark:bg-primary-900/80 border border-primary-100 dark:border-primary-800" />
     );
   }
 
@@ -68,11 +68,12 @@ export function ModeToggle() {
         aria-expanded={open}
         className={cn(
           "relative flex h-10 w-10 items-center justify-center rounded-full",
-          "bg-white/80 dark:bg-emerald-900/80 backdrop-blur-md",
-          "border border-emerald-100 dark:border-emerald-700",
+          "bg-white/80 dark:bg-primary-900/80 backdrop-blur-md",
+          "border border-primary-100 dark:border-primary-700",
           "shadow-md hover:shadow-lg",
-          "transition-shadow duration-200",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+          "dark:hover:shadow-[0_0_12px_var(--glow-primary)]",
+          "transition-all duration-200",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
         )}
       >
         <AnimatePresence mode="wait" initial={false}>
@@ -85,7 +86,7 @@ export function ModeToggle() {
               transition={{ duration: 0.2, ease: [0, 0, 0.2, 1] as const }}
               className="absolute"
             >
-              <Moon className="h-4 w-4 text-emerald-300" />
+              <Moon className="h-4 w-4 text-secondary-300" />
             </motion.span>
           ) : (
             <motion.span
@@ -96,7 +97,7 @@ export function ModeToggle() {
               transition={{ duration: 0.2, ease: [0, 0, 0.2, 1] as const }}
               className="absolute"
             >
-              <Sun className="h-4 w-4 text-emerald-700" />
+              <Sun className="h-4 w-4 text-primary-700" />
             </motion.span>
           )}
         </AnimatePresence>
@@ -112,8 +113,8 @@ export function ModeToggle() {
             transition={{ duration: 0.15, ease: [0, 0, 0.2, 1] as const }}
             className={cn(
               "absolute right-0 top-12 min-w-[140px]",
-              "rounded-xl border border-emerald-100 dark:border-emerald-700",
-              "bg-white/90 dark:bg-emerald-900/90 backdrop-blur-md",
+              "rounded-xl border border-primary-100 dark:border-primary-700",
+              "bg-white/90 dark:bg-primary-900/90 backdrop-blur-md",
               "shadow-xl py-1.5 overflow-hidden"
             )}
           >
@@ -129,9 +130,9 @@ export function ModeToggle() {
                   className={cn(
                     "flex w-full items-center gap-2.5 px-3.5 py-2 text-sm",
                     "transition-colors duration-150",
-                    "hover:bg-emerald-50 dark:hover:bg-emerald-800/60",
+                    "hover:bg-primary-50 dark:hover:bg-primary-800/60",
                     isActive
-                      ? "text-emerald-700 dark:text-emerald-300 font-medium"
+                      ? "text-primary-700 dark:text-primary-300 font-medium"
                       : "text-neutral-600 dark:text-neutral-400"
                   )}
                 >
@@ -139,7 +140,7 @@ export function ModeToggle() {
                   <span className="flex-1 text-left">{label}</span>
                   {/* Active indicator dot */}
                   {isActive && (
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 shrink-0" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary-500 dark:bg-primary-400 shrink-0" />
                   )}
                 </button>
               );

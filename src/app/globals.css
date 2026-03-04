@@ -5,22 +5,74 @@
 
 /* ============================================
    DESIGN SYSTEM TOKENS
-   Emerald/forest green palette with dark mode
+   Purple accent palette with dark mode
    ============================================ */
 
 :root {
-  /* Primary emerald accent palette */
-  --color-primary-50: #ecfdf5;
-  --color-primary-100: #d1fae5;
-  --color-primary-200: #a7f3d0;
-  --color-primary-300: #6ee7b7;
-  --color-primary-400: #34d399;
-  --color-primary-500: #10b981;
-  --color-primary-600: #059669;
-  --color-primary-700: #047857;
-  --color-primary-800: #065f46;
-  --color-primary-900: #064e3b;
-  --color-primary-950: #022c22;
+  /* Primary purple accent palette */
+  --color-primary-50: #f5f0f7;
+  --color-primary-100: #e8dced;
+  --color-primary-200: #d4bfdd;
+  --color-primary-300: #bb97c9;
+  --color-primary-400: #a66dba;
+  --color-primary-500: #9b4daf;
+  --color-primary-600: #8e44ad;
+  --color-primary-700: #763a91;
+  --color-primary-800: #5e2f74;
+  --color-primary-900: #4a2560;
+  --color-primary-950: #2d1639;
+
+  /* Secondary blue accent palette (#3498DB base) */
+  --color-secondary-50: #eef7fe;
+  --color-secondary-100: #d4ebfc;
+  --color-secondary-200: #a9d7f9;
+  --color-secondary-300: #7ec3f6;
+  --color-secondary-400: #53aff3;
+  --color-secondary-500: #3498db;
+  --color-secondary-600: #2a7ab0;
+  --color-secondary-700: #1f5c84;
+  --color-secondary-800: #153e58;
+  --color-secondary-900: #0a1f2c;
+  --color-secondary-950: #051019;
+
+  /* Tertiary yellow accent palette (#F1C40F base) */
+  --color-tertiary-50: #fef9e7;
+  --color-tertiary-100: #fcf0c3;
+  --color-tertiary-200: #f9e187;
+  --color-tertiary-300: #f6d24b;
+  --color-tertiary-400: #f1c40f;
+  --color-tertiary-500: #d4ac0d;
+  --color-tertiary-600: #b7940b;
+  --color-tertiary-700: #8a6f08;
+  --color-tertiary-800: #5c4a06;
+  --color-tertiary-900: #2e2503;
+  --color-tertiary-950: #171301;
+
+  /* Red/Coral accent palette (#E74C3C base) */
+  --color-red-50: #fef2f1;
+  --color-red-100: #fce0dd;
+  --color-red-200: #f9bfb9;
+  --color-red-300: #f49890;
+  --color-red-400: #ef6f64;
+  --color-red-500: #e74c3c;
+  --color-red-600: #c94133;
+  --color-red-700: #a33529;
+  --color-red-800: #7e2a20;
+  --color-red-900: #5a1e17;
+  --color-red-950: #31100c;
+
+  /* Green/Emerald accent palette (#2ECC71 base) */
+  --color-green-50: #ecfdf3;
+  --color-green-100: #d1fae3;
+  --color-green-200: #a6f4c5;
+  --color-green-300: #6ee7a0;
+  --color-green-400: #4ade7e;
+  --color-green-500: #2ecc71;
+  --color-green-600: #25a35a;
+  --color-green-700: #1d7f46;
+  --color-green-800: #166438;
+  --color-green-900: #104a2a;
+  --color-green-950: #082617;
 
   /* Neutral palette */
   --color-neutral-50: #fafafa;
@@ -53,6 +105,38 @@
   --accent-hover: var(--color-primary-800);
   --accent-muted: var(--color-primary-100);
   --accent-foreground: #ffffff;
+
+  /* Secondary semantic tokens */
+  --accent-secondary: var(--color-secondary-600);
+  --accent-secondary-hover: var(--color-secondary-500);
+  --accent-secondary-muted: var(--color-secondary-100);
+  --accent-secondary-foreground: #ffffff;
+
+  /* Tertiary semantic tokens */
+  --accent-tertiary: var(--color-tertiary-500);
+  --accent-tertiary-hover: var(--color-tertiary-400);
+  --accent-tertiary-muted: var(--color-tertiary-100);
+  --accent-tertiary-foreground: var(--color-primary-950);
+
+  /* Red semantic tokens */
+  --accent-red: var(--color-red-600);
+  --accent-red-hover: var(--color-red-500);
+  --accent-red-muted: var(--color-red-100);
+  --accent-red-foreground: #ffffff;
+
+  /* Green semantic tokens */
+  --accent-green: var(--color-green-600);
+  --accent-green-hover: var(--color-green-500);
+  --accent-green-muted: var(--color-green-100);
+  --accent-green-foreground: #ffffff;
+
+  /* Glow colors (for box-shadow/text-shadow neon effects) */
+  --glow-primary: rgba(142, 68, 173, 0.6);
+  --glow-secondary: rgba(52, 152, 219, 0.6);
+  --glow-tertiary: rgba(241, 196, 15, 0.5);
+  --glow-red: rgba(231, 76, 60, 0.5);
+  --glow-green: rgba(46, 204, 113, 0.45);
+  --glow-neutral: rgba(115, 115, 115, 0.4);
 
   /* Code snippet colors (One Dark inspired) */
   --code-bg: #282c34;
@@ -96,25 +180,52 @@
 
 /* Dark mode tokens */
 .dark {
-  --background: var(--color-primary-950);
-  --background-secondary: #0a2e23;
+  --background: #130a1a;
+  --background-secondary: #1a0d24;
   --foreground: var(--color-primary-50);
   --foreground-muted: var(--color-neutral-400);
   --foreground-subtle: var(--color-neutral-500);
 
-  --surface: var(--color-primary-900);
-  --surface-elevated: var(--color-primary-800);
-  --surface-overlay: rgba(2, 44, 34, 0.9);
+  --surface: var(--color-primary-950);
+  --surface-elevated: var(--color-primary-900);
+  --surface-overlay: rgba(19, 10, 26, 0.92);
 
   --border: var(--color-primary-800);
   --border-subtle: var(--color-primary-900);
 
   --accent: var(--color-primary-400);
   --accent-hover: var(--color-primary-300);
-  --accent-muted: rgba(52, 211, 153, 0.15);
+  --accent-muted: rgba(166, 109, 186, 0.15);
   --accent-foreground: var(--color-primary-950);
 
   --ring-color: var(--color-primary-400);
+
+  --accent-secondary: var(--color-secondary-400);
+  --accent-secondary-hover: var(--color-secondary-300);
+  --accent-secondary-muted: rgba(52, 152, 219, 0.15);
+  --accent-secondary-foreground: var(--color-secondary-950);
+
+  --accent-tertiary: var(--color-tertiary-300);
+  --accent-tertiary-hover: var(--color-tertiary-200);
+  --accent-tertiary-muted: rgba(241, 196, 15, 0.12);
+  --accent-tertiary-foreground: var(--color-tertiary-950);
+
+  --accent-red: var(--color-red-400);
+  --accent-red-hover: var(--color-red-300);
+  --accent-red-muted: rgba(231, 76, 60, 0.15);
+  --accent-red-foreground: var(--color-red-950);
+
+  --accent-green: var(--color-green-400);
+  --accent-green-hover: var(--color-green-300);
+  --accent-green-muted: rgba(46, 204, 113, 0.15);
+  --accent-green-foreground: var(--color-green-950);
+
+  --glow-primary: rgba(166, 109, 186, 0.7);
+  --glow-secondary: rgba(83, 175, 243, 0.65);
+  --glow-tertiary: rgba(246, 210, 75, 0.6);
+  --glow-red: rgba(239, 111, 100, 0.6);
+  --glow-green: rgba(110, 231, 160, 0.5);
+  --glow-neutral: rgba(212, 212, 212, 0.5);
 
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
@@ -154,6 +265,58 @@
   --color-primary-900: var(--color-primary-900);
   --color-primary-950: var(--color-primary-950);
 
+  /* Secondary palette */
+  --color-secondary-50: var(--color-secondary-50);
+  --color-secondary-100: var(--color-secondary-100);
+  --color-secondary-200: var(--color-secondary-200);
+  --color-secondary-300: var(--color-secondary-300);
+  --color-secondary-400: var(--color-secondary-400);
+  --color-secondary-500: var(--color-secondary-500);
+  --color-secondary-600: var(--color-secondary-600);
+  --color-secondary-700: var(--color-secondary-700);
+  --color-secondary-800: var(--color-secondary-800);
+  --color-secondary-900: var(--color-secondary-900);
+  --color-secondary-950: var(--color-secondary-950);
+
+  /* Tertiary palette */
+  --color-tertiary-50: var(--color-tertiary-50);
+  --color-tertiary-100: var(--color-tertiary-100);
+  --color-tertiary-200: var(--color-tertiary-200);
+  --color-tertiary-300: var(--color-tertiary-300);
+  --color-tertiary-400: var(--color-tertiary-400);
+  --color-tertiary-500: var(--color-tertiary-500);
+  --color-tertiary-600: var(--color-tertiary-600);
+  --color-tertiary-700: var(--color-tertiary-700);
+  --color-tertiary-800: var(--color-tertiary-800);
+  --color-tertiary-900: var(--color-tertiary-900);
+  --color-tertiary-950: var(--color-tertiary-950);
+
+  /* Red palette */
+  --color-red-50: var(--color-red-50);
+  --color-red-100: var(--color-red-100);
+  --color-red-200: var(--color-red-200);
+  --color-red-300: var(--color-red-300);
+  --color-red-400: var(--color-red-400);
+  --color-red-500: var(--color-red-500);
+  --color-red-600: var(--color-red-600);
+  --color-red-700: var(--color-red-700);
+  --color-red-800: var(--color-red-800);
+  --color-red-900: var(--color-red-900);
+  --color-red-950: var(--color-red-950);
+
+  /* Green palette */
+  --color-green-50: var(--color-green-50);
+  --color-green-100: var(--color-green-100);
+  --color-green-200: var(--color-green-200);
+  --color-green-300: var(--color-green-300);
+  --color-green-400: var(--color-green-400);
+  --color-green-500: var(--color-green-500);
+  --color-green-600: var(--color-green-600);
+  --color-green-700: var(--color-green-700);
+  --color-green-800: var(--color-green-800);
+  --color-green-900: var(--color-green-900);
+  --color-green-950: var(--color-green-950);
+
   --font-display: var(--font-space-grotesk);
   --font-body: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
@@ -167,10 +330,6 @@
 /* ============================================
    BASE STYLES
    ============================================ */
-
-html {
-  scroll-behavior: smooth;
-}
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -361,4 +520,130 @@ pre {
 
 .font-space-grotesk {
   font-family: var(--font-display), system-ui, sans-serif;
+}
+
+/* ============================================
+   SYNTHWAVE / CYBERPUNK EFFECTS
+   ============================================ */
+
+/* Glow pulse - gentle throb for atmospheric elements */
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* Slow gradient position shift */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Grid opacity wave */
+@keyframes grid-pulse {
+  0%, 100% { opacity: 0.04; }
+  50% { opacity: 0.07; }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* Neon glow box-shadow utilities */
+.glow-primary {
+  box-shadow: 0 0 10px var(--glow-primary), 0 0 25px var(--glow-primary), 0 0 50px var(--glow-primary);
+}
+
+.glow-secondary {
+  box-shadow: 0 0 10px var(--glow-secondary), 0 0 25px var(--glow-secondary), 0 0 50px var(--glow-secondary);
+}
+
+.glow-tertiary {
+  box-shadow: 0 0 10px var(--glow-tertiary), 0 0 25px var(--glow-tertiary), 0 0 50px var(--glow-tertiary);
+}
+
+.glow-red {
+  box-shadow: 0 0 10px var(--glow-red), 0 0 25px var(--glow-red), 0 0 50px var(--glow-red);
+}
+
+.glow-green {
+  box-shadow: 0 0 10px var(--glow-green), 0 0 25px var(--glow-green), 0 0 50px var(--glow-green);
+}
+
+/* Hover glow - interactive elements */
+.hover-glow-primary {
+  transition: box-shadow var(--duration-normal) var(--ease-standard);
+}
+.hover-glow-primary:hover {
+  box-shadow: 0 0 12px var(--glow-primary), 0 0 24px var(--glow-primary);
+}
+
+.hover-glow-secondary {
+  transition: box-shadow var(--duration-normal) var(--ease-standard);
+}
+.hover-glow-secondary:hover {
+  box-shadow: 0 0 12px var(--glow-secondary), 0 0 24px var(--glow-secondary);
+}
+
+.hover-glow-tertiary {
+  transition: box-shadow var(--duration-normal) var(--ease-standard);
+}
+.hover-glow-tertiary:hover {
+  box-shadow: 0 0 12px var(--glow-tertiary), 0 0 24px var(--glow-tertiary);
+}
+
+.hover-glow-red {
+  transition: box-shadow var(--duration-normal) var(--ease-standard);
+}
+.hover-glow-red:hover {
+  box-shadow: 0 0 12px var(--glow-red), 0 0 24px var(--glow-red);
+}
+
+.hover-glow-green {
+  transition: box-shadow var(--duration-normal) var(--ease-standard);
+}
+.hover-glow-green:hover {
+  box-shadow: 0 0 12px var(--glow-green), 0 0 24px var(--glow-green);
+}
+
+/* Neon text glow */
+.neon-text-primary {
+  text-shadow: 0 0 7px var(--glow-primary), 0 0 20px var(--glow-primary);
+}
+
+.neon-text-secondary {
+  text-shadow: 0 0 7px var(--glow-secondary), 0 0 20px var(--glow-secondary);
+}
+
+.neon-text-tertiary {
+  text-shadow: 0 0 7px var(--glow-tertiary), 0 0 20px var(--glow-tertiary);
+}
+
+.neon-text-red {
+  text-shadow: 0 0 7px var(--glow-red), 0 0 20px var(--glow-red);
+}
+
+.neon-text-green {
+  text-shadow: 0 0 7px var(--glow-green), 0 0 20px var(--glow-green);
+}
+
+/* 5-color gradient section divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--glow-green) 15%,
+    var(--glow-secondary) 30%,
+    var(--glow-primary) 50%,
+    var(--glow-red) 70%,
+    var(--glow-tertiary) 85%,
+    transparent 100%
+  );
+  opacity: 0.6;
 }

@@ -13,16 +13,21 @@ import {
 
 export default function Home() {
   return (
-    <div className="font-body bg-transparent text-foreground selection:bg-emerald-500/20 selection:text-emerald-900 dark:selection:text-emerald-100 overflow-x-hidden min-h-screen relative">
+    <div className="font-body bg-transparent text-foreground selection:bg-primary-500/20 selection:text-primary-900 dark:selection:text-primary-100 overflow-x-hidden min-h-screen relative">
       <BackgroundEffect />
       <ModeToggle />
       <Navigation />
       <main id="main-content">
         <Hero />
+        <div className="section-divider" aria-hidden="true" />
         <About />
+        <div className="section-divider" aria-hidden="true" />
         <Portfolio />
+        <div className="section-divider" aria-hidden="true" />
         <Skills />
+        <div className="section-divider" aria-hidden="true" />
         <Resume />
+        <div className="section-divider" aria-hidden="true" />
         <Contact />
       </main>
       <Footer />

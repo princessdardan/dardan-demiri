@@ -11,7 +11,7 @@ interface PersonSchemaProps {
 export function PersonJsonLd({
   name = "Dardan Demiri",
   jobTitle = "Full-Stack Engineer",
-  description = "Full-stack engineer with 5+ years building React applications and Ruby on Rails systems that power content delivery, internal tooling, and customer engagement.",
+  description = "Full-stack engineer with 5+ years designing, building, and scaling customer-facing web applications across e-commerce and ed-tech. Proven track record delivering production systems that reduce costs, automate workflows, and improve performance.",
   url = "https://dardandemiri.com",
   email = "dardandemiridev@gmail.com",
   sameAs = [
@@ -40,6 +40,12 @@ export function PersonJsonLd({
       "Full-Stack Development",
       "PostgreSQL",
       "GraphQL",
+      "Django",
+      "Docker",
+      "Redis",
+      "MedusaJS",
+      "Python",
+      "Nginx",
     ],
   };
 
