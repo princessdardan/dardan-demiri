@@ -47,45 +47,45 @@ const CATEGORY_PILL_STYLES: Record<string, {
   hoverShadow: string;
 }> = {
   languages: {
-    bg: "bg-white/90 dark:bg-primary-900/90",
-    border: "border-primary-200 dark:border-primary-700",
-    text: "text-primary-800 dark:text-primary-200",
-    iconColor: "text-primary-600 dark:text-primary-400",
+    bg: "bg-primary-900/90",
+    border: "border-primary-700",
+    text: "text-primary-200",
+    iconColor: "text-primary-400",
     hoverShadow: "hover:shadow-[0_0_10px_var(--glow-primary)]",
   },
   frontend: {
-    bg: "bg-white/90 dark:bg-secondary-900/50",
-    border: "border-secondary-200 dark:border-secondary-700",
-    text: "text-secondary-800 dark:text-secondary-200",
-    iconColor: "text-secondary-600 dark:text-secondary-400",
+    bg: "bg-secondary-900/50",
+    border: "border-secondary-700",
+    text: "text-secondary-200",
+    iconColor: "text-secondary-400",
     hoverShadow: "hover:shadow-[0_0_10px_var(--glow-secondary)]",
   },
   backend: {
-    bg: "bg-white/90 dark:bg-red-950/50",
-    border: "border-red-200 dark:border-red-700",
-    text: "text-red-800 dark:text-red-200",
-    iconColor: "text-red-600 dark:text-red-400",
+    bg: "bg-red-950/50",
+    border: "border-red-700",
+    text: "text-red-200",
+    iconColor: "text-red-400",
     hoverShadow: "hover:shadow-[0_0_10px_var(--glow-red)]",
   },
   databases: {
-    bg: "bg-white/90 dark:bg-tertiary-950/50",
-    border: "border-tertiary-200 dark:border-tertiary-700",
-    text: "text-tertiary-800 dark:text-tertiary-200",
-    iconColor: "text-tertiary-600 dark:text-tertiary-300",
+    bg: "bg-tertiary-950/50",
+    border: "border-tertiary-700",
+    text: "text-tertiary-200",
+    iconColor: "text-tertiary-300",
     hoverShadow: "hover:shadow-[0_0_10px_var(--glow-tertiary)]",
   },
   devops: {
-    bg: "bg-white/90 dark:bg-green-950/50",
-    border: "border-green-200 dark:border-green-700",
-    text: "text-green-800 dark:text-green-200",
-    iconColor: "text-green-600 dark:text-green-400",
+    bg: "bg-green-950/50",
+    border: "border-green-700",
+    text: "text-green-200",
+    iconColor: "text-green-400",
     hoverShadow: "hover:shadow-[0_0_10px_var(--glow-green)]",
   },
   testing: {
-    bg: "bg-white/90 dark:bg-neutral-900/50",
-    border: "border-neutral-300 dark:border-neutral-600",
-    text: "text-neutral-800 dark:text-neutral-200",
-    iconColor: "text-neutral-600 dark:text-neutral-400",
+    bg: "bg-neutral-900/50",
+    border: "border-neutral-600",
+    text: "text-neutral-200",
+    iconColor: "text-neutral-400",
     hoverShadow: "hover:shadow-[0_0_10px_var(--glow-neutral)]",
   },
 };
@@ -315,7 +315,7 @@ export function SkillCloud({ skills, highlightCategory, onSkillClick }: SkillClo
     >
       {/* SVG connection lines (subtle) */}
       <svg
-        className="absolute inset-0 h-full w-full opacity-10 dark:opacity-5 pointer-events-none"
+        className="absolute inset-0 h-full w-full opacity-5 pointer-events-none"
         viewBox="0 0 500 500"
         aria-hidden="true"
       >
@@ -326,7 +326,7 @@ export function SkillCloud({ skills, highlightCategory, onSkillClick }: SkillClo
           fill="none"
           stroke="currentColor"
           strokeWidth="0.5"
-          className="text-primary-400 dark:text-secondary-700"
+          className="text-secondary-700"
         />
       </svg>
 

@@ -48,8 +48,8 @@ export type SkillCategory = "languages" | "frontend" | "backend" | "databases" |
 
 export type CategoryColorTheme = "primary" | "secondary" | "tertiary" | "red" | "green" | "neutral";
 
-// Maps skill categories to their synthwave color theme
-// primary = purple, secondary = blue, tertiary = yellow, red = coral, green = emerald
+// Maps skill categories to their color theme
+// primary = peach, secondary = charcoal blue, tertiary = papaya whip, red = coral, green = teal
 export const CATEGORY_COLOR_MAP: Record<SkillCategory, CategoryColorTheme> = {
   languages: "primary",
   frontend: "secondary",
@@ -78,6 +78,12 @@ export interface SkillDetailModalProps {
   skill: string | null;
   onClose: () => void;
   projects: Project[];
+}
+
+export interface ParticleDisplayProps {
+  activeCategory: string | null;
+  skills: Skills;
+  className?: string;
 }
 
 // ============================================

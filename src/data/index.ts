@@ -84,7 +84,6 @@ export const projects = [
     ],
     links: {
       live: "https://airapublishing.com",
-      code: "https://github.com/princessdardan/aira-publishing",
     },
   },
   {
@@ -107,7 +106,7 @@ export const projects = [
     ],
     links: {
       live: "https://lashher.ca",
-      code: "https://github.com/princessdardan/lash-her",
+      code: "https://github.com/princessdardan/lash-her-frontend",
     },
   },
 ];

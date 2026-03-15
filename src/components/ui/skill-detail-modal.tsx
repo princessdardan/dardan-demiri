@@ -8,6 +8,7 @@ import type { SkillDetailModalProps, SkillCategory } from "@/types";
 import { CATEGORY_COLOR_MAP } from "@/types";
 import { skills } from "@/data";
 import { cn } from "@/lib/utils";
+import { GlowCard } from "@/components/ui/spotlight-card";
 
 // Reverse lookup: skill name -> category
 function getSkillCategory(skillName: string): SkillCategory | null {
@@ -27,34 +28,34 @@ const MODAL_ACCENT_COLORS: Record<string, {
   emptyIcon: string;
 }> = {
   primary: {
-    label: "text-primary-500 dark:text-primary-400",
-    highlight: "text-primary-600 dark:text-primary-400",
-    tagMatch: "bg-primary-200 dark:bg-primary-700 text-primary-800 dark:text-primary-100",
-    emptyIcon: "bg-primary-100 dark:bg-primary-800",
+    label: "text-primary-400",
+    highlight: "text-primary-400",
+    tagMatch: "bg-primary-700 text-primary-100",
+    emptyIcon: "bg-primary-800",
   },
   secondary: {
-    label: "text-secondary-500 dark:text-secondary-400",
-    highlight: "text-secondary-600 dark:text-secondary-400",
-    tagMatch: "bg-secondary-200 dark:bg-secondary-700 text-secondary-800 dark:text-secondary-100",
-    emptyIcon: "bg-secondary-100 dark:bg-secondary-800",
+    label: "text-secondary-400",
+    highlight: "text-secondary-400",
+    tagMatch: "bg-secondary-700 text-secondary-100",
+    emptyIcon: "bg-secondary-800",
   },
   tertiary: {
-    label: "text-tertiary-500 dark:text-tertiary-400",
-    highlight: "text-tertiary-600 dark:text-tertiary-400",
-    tagMatch: "bg-tertiary-200 dark:bg-tertiary-700 text-tertiary-800 dark:text-tertiary-100",
-    emptyIcon: "bg-tertiary-100 dark:bg-tertiary-800",
+    label: "text-tertiary-400",
+    highlight: "text-tertiary-400",
+    tagMatch: "bg-tertiary-700 text-tertiary-100",
+    emptyIcon: "bg-tertiary-800",
   },
   red: {
-    label: "text-red-500 dark:text-red-400",
-    highlight: "text-red-600 dark:text-red-400",
-    tagMatch: "bg-red-200 dark:bg-red-700 text-red-800 dark:text-red-100",
-    emptyIcon: "bg-red-100 dark:bg-red-800",
+    label: "text-red-400",
+    highlight: "text-red-400",
+    tagMatch: "bg-red-700 text-red-100",
+    emptyIcon: "bg-red-800",
   },
   green: {
-    label: "text-green-500 dark:text-green-400",
-    highlight: "text-green-600 dark:text-green-400",
-    tagMatch: "bg-green-200 dark:bg-green-700 text-green-800 dark:text-green-100",
-    emptyIcon: "bg-green-100 dark:bg-green-800",
+    label: "text-green-400",
+    highlight: "text-green-400",
+    tagMatch: "bg-green-700 text-green-100",
+    emptyIcon: "bg-green-800",
   },
 };
 
@@ -113,7 +114,9 @@ export function SkillDetailModal({ skill, onClose, projects }: SkillDetailModalP
           />
 
           {/* Modal card */}
-          <motion.div
+          <GlowCard
+            as={motion.div}
+            glowColor="pink"
             key="modal"
             role="dialog"
             aria-modal="true"
@@ -125,19 +128,17 @@ export function SkillDetailModal({ skill, onClose, projects }: SkillDetailModalP
             className={cn(
               "fixed left-1/2 top-1/2 z-[101] w-full max-w-2xl -translate-x-1/2 -translate-y-1/2",
               "max-h-[90vh] overflow-hidden",
-              "bg-white dark:bg-primary-950",
               "rounded-2xl shadow-2xl",
-              "border border-primary-100 dark:border-primary-800",
               "flex flex-col"
             )}
           >
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-primary-100 dark:border-primary-800 px-6 py-4">
+            <div className="flex items-center justify-between border-b border-primary-800 px-6 py-4">
               <div>
                 <p className={cn("text-xs font-medium uppercase tracking-wider mb-0.5", accentColors.label)}>
                   Skill highlight
                 </p>
-                <h2 className="font-space-grotesk text-lg font-bold text-primary-900 dark:text-primary-50">
+                <h2 className="font-space-grotesk text-lg font-bold text-primary-50">
                   Projects using{" "}
                   <span className={accentColors.highlight}>{skill}</span>
                 </h2>
@@ -147,8 +148,8 @@ export function SkillDetailModal({ skill, onClose, projects }: SkillDetailModalP
                 aria-label="Close modal"
                 className={cn(
                   "flex h-9 w-9 items-center justify-center rounded-full",
-                  "text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200",
-                  "bg-neutral-100 hover:bg-neutral-200 dark:bg-primary-800 dark:hover:bg-primary-700",
+                  "text-neutral-400 hover:text-neutral-200",
+                  "bg-primary-800 hover:bg-primary-700",
                   "transition-colors duration-150",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                 )}
@@ -162,17 +163,15 @@ export function SkillDetailModal({ skill, onClose, projects }: SkillDetailModalP
               {matchingProjects.length > 0 ? (
                 <ul className="space-y-4">
                   {matchingProjects.map((project) => (
-                    <li
+                    <GlowCard
                       key={project.title}
-                      className={cn(
-                        "flex gap-4 rounded-xl p-4",
-                        "bg-primary-50/60 dark:bg-primary-900/40",
-                        "border border-primary-100 dark:border-primary-800"
-                      )}
+                      as="li"
+                      glowColor="pink"
+                      className="flex gap-4 rounded-xl p-4"
                     >
                       {/* Thumbnail */}
                       {project.image && (
-                        <div className="hidden sm:block h-20 w-28 shrink-0 overflow-hidden rounded-lg bg-primary-100 dark:bg-primary-800">
+                        <div className="hidden sm:block h-20 w-28 shrink-0 overflow-hidden rounded-lg bg-primary-800">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
                             src={project.image}
@@ -185,10 +184,10 @@ export function SkillDetailModal({ skill, onClose, projects }: SkillDetailModalP
 
                       {/* Text content */}
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-space-grotesk font-semibold text-primary-900 dark:text-primary-50 truncate">
+                        <h3 className="font-space-grotesk font-semibold text-primary-50 truncate">
                           {project.title}
                         </h3>
-                        <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2">
+                        <p className="mt-1 text-sm text-neutral-400 line-clamp-2">
                           {project.description}
                         </p>
 
@@ -202,7 +201,7 @@ export function SkillDetailModal({ skill, onClose, projects }: SkillDetailModalP
                                 tag.toLowerCase().includes(skill!.toLowerCase()) ||
                                   skill!.toLowerCase().includes(tag.toLowerCase())
                                   ? accentColors.tagMatch
-                                  : "bg-neutral-100 dark:bg-primary-900/60 text-neutral-600 dark:text-neutral-400"
+                                  : "bg-primary-900/60 text-neutral-400"
                               )}
                             >
                               {tag}
@@ -219,7 +218,7 @@ export function SkillDetailModal({ skill, onClose, projects }: SkillDetailModalP
                               rel="noopener noreferrer"
                               className={cn(
                                 "inline-flex items-center gap-1 text-xs font-medium",
-                                "text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300",
+                                "text-primary-400 hover:text-primary-300",
                                 "transition-colors duration-150"
                               )}
                             >
@@ -234,7 +233,7 @@ export function SkillDetailModal({ skill, onClose, projects }: SkillDetailModalP
                               rel="noopener noreferrer"
                               className={cn(
                                 "inline-flex items-center gap-1 text-xs font-medium",
-                                "text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200",
+                                "text-neutral-400 hover:text-neutral-200",
                                 "transition-colors duration-150"
                               )}
                             >
@@ -244,7 +243,7 @@ export function SkillDetailModal({ skill, onClose, projects }: SkillDetailModalP
                           )}
                         </div>
                       </div>
-                    </li>
+                    </GlowCard>
                   ))}
                 </ul>
               ) : (
@@ -255,10 +254,10 @@ export function SkillDetailModal({ skill, onClose, projects }: SkillDetailModalP
                       🛠️
                     </span>
                   </div>
-                  <h3 className="font-space-grotesk font-semibold text-primary-900 dark:text-primary-100 mb-2">
+                  <h3 className="font-space-grotesk font-semibold text-primary-100 mb-2">
                     Part of the toolkit
                   </h3>
-                  <p className="text-sm text-neutral-500 dark:text-neutral-400 max-w-xs mx-auto">
+                  <p className="text-sm text-neutral-400 max-w-xs mx-auto">
                     <strong className={accentColors.highlight}>{skill}</strong>{" "}
                     is actively used across projects, though no featured case studies are tagged
                     with it yet.
@@ -268,12 +267,12 @@ export function SkillDetailModal({ skill, onClose, projects }: SkillDetailModalP
             </div>
 
             {/* Footer */}
-            <div className="border-t border-primary-100 dark:border-primary-800 px-6 py-3">
-              <p className="text-xs text-neutral-400 dark:text-neutral-500">
+            <div className="border-t border-primary-800 px-6 py-3">
+              <p className="text-xs text-neutral-500">
                 {matchingProjects.length} project{matchingProjects.length !== 1 ? "s" : ""} found
               </p>
             </div>
-          </motion.div>
+          </GlowCard>
         </>
       )}
     </AnimatePresence>,

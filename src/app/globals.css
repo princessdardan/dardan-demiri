@@ -1,152 +1,155 @@
 @import "tailwindcss";
 
-/* Tailwind CSS 4 dark mode with class strategy */
-@custom-variant dark (&:is(.dark *));
-
 /* ============================================
    DESIGN SYSTEM TOKENS
-   Purple accent palette with dark mode
+   Vibrant block-based dark theme
    ============================================ */
 
 :root {
-  /* Primary purple accent palette */
-  --color-primary-50: #f5f0f7;
-  --color-primary-100: #e8dced;
-  --color-primary-200: #d4bfdd;
-  --color-primary-300: #bb97c9;
-  --color-primary-400: #a66dba;
-  --color-primary-500: #9b4daf;
-  --color-primary-600: #8e44ad;
-  --color-primary-700: #763a91;
-  --color-primary-800: #5e2f74;
-  --color-primary-900: #4a2560;
-  --color-primary-950: #2d1639;
 
-  /* Secondary blue accent palette (#3498DB base) */
-  --color-secondary-50: #eef7fe;
-  --color-secondary-100: #d4ebfc;
-  --color-secondary-200: #a9d7f9;
-  --color-secondary-300: #7ec3f6;
-  --color-secondary-400: #53aff3;
-  --color-secondary-500: #3498db;
-  --color-secondary-600: #2a7ab0;
-  --color-secondary-700: #1f5c84;
-  --color-secondary-800: #153e58;
-  --color-secondary-900: #0a1f2c;
-  --color-secondary-950: #051019;
+  /* Primary Peach Glow accent palette (#FFC49B base) */
+  --color-primary-50:  #FFF5EC;
+  --color-primary-100: #FFEBD9;
+  --color-primary-200: #FFD7B3;
+  --color-primary-300: #FFC49B;
+  --color-primary-400: #FFB380;
+  --color-primary-500: #FF9F5C;
+  --color-primary-600: #E88A47;
+  --color-primary-700: #C27038;
+  --color-primary-800: #9C572A;
+  --color-primary-900: #7A421F;
+  --color-primary-950: #4D2912;
 
-  /* Tertiary yellow accent palette (#F1C40F base) */
-  --color-tertiary-50: #fef9e7;
-  --color-tertiary-100: #fcf0c3;
-  --color-tertiary-200: #f9e187;
-  --color-tertiary-300: #f6d24b;
-  --color-tertiary-400: #f1c40f;
-  --color-tertiary-500: #d4ac0d;
-  --color-tertiary-600: #b7940b;
-  --color-tertiary-700: #8a6f08;
-  --color-tertiary-800: #5c4a06;
-  --color-tertiary-900: #2e2503;
-  --color-tertiary-950: #171301;
+  /* Secondary Charcoal Blue accent palette (#294C60 base) */
+  --color-secondary-50:  #E8EEF2;
+  --color-secondary-100: #C8D8E2;
+  --color-secondary-200: #9BB6CA;
+  --color-secondary-300: #6E94B2;
+  --color-secondary-400: #4A7899;
+  --color-secondary-500: #294C60;
+  --color-secondary-600: #234152;
+  --color-secondary-700: #1D3644;
+  --color-secondary-800: #172B36;
+  --color-secondary-900: #112028;
+  --color-secondary-950: #0B151A;
 
-  /* Red/Coral accent palette (#E74C3C base) */
-  --color-red-50: #fef2f1;
-  --color-red-100: #fce0dd;
-  --color-red-200: #f9bfb9;
-  --color-red-300: #f49890;
-  --color-red-400: #ef6f64;
-  --color-red-500: #e74c3c;
-  --color-red-600: #c94133;
-  --color-red-700: #a33529;
-  --color-red-800: #7e2a20;
-  --color-red-900: #5a1e17;
-  --color-red-950: #31100c;
+  /* Tertiary Papaya Whip accent palette (#FFEFD3 base) */
+  --color-tertiary-50:  #FFFBF5;
+  --color-tertiary-100: #FFF7EB;
+  --color-tertiary-200: #FFF3E0;
+  --color-tertiary-300: #FFEFD3;
+  --color-tertiary-400: #FFE7BF;
+  --color-tertiary-500: #FFDFAB;
+  --color-tertiary-600: #E8C896;
+  --color-tertiary-700: #C2A87D;
+  --color-tertiary-800: #9C8864;
+  --color-tertiary-900: #7A6B4F;
+  --color-tertiary-950: #4D4331;
 
-  /* Green/Emerald accent palette (#2ECC71 base) */
-  --color-green-50: #ecfdf3;
-  --color-green-100: #d1fae3;
-  --color-green-200: #a6f4c5;
-  --color-green-300: #6ee7a0;
-  --color-green-400: #4ade7e;
-  --color-green-500: #2ecc71;
-  --color-green-600: #25a35a;
-  --color-green-700: #1d7f46;
-  --color-green-800: #166438;
-  --color-green-900: #104a2a;
-  --color-green-950: #082617;
+  /* Red — harmonized warm coral (#E05252 base) */
+  --color-red-50:  #FDE8E8;
+  --color-red-100: #FBC5C5;
+  --color-red-200: #F79B9B;
+  --color-red-300: #F27171;
+  --color-red-400: #EE4848;
+  --color-red-500: #E05252;
+  --color-red-600: #C24545;
+  --color-red-700: #A33838;
+  --color-red-800: #852C2C;
+  --color-red-900: #662020;
+  --color-red-950: #401414;
 
-  /* Neutral palette */
-  --color-neutral-50: #fafafa;
-  --color-neutral-100: #f5f5f5;
-  --color-neutral-200: #e5e5e5;
-  --color-neutral-300: #d4d4d4;
-  --color-neutral-400: #a3a3a3;
-  --color-neutral-500: #737373;
-  --color-neutral-600: #525252;
-  --color-neutral-700: #404040;
-  --color-neutral-800: #262626;
-  --color-neutral-900: #171717;
-  --color-neutral-950: #0a0a0a;
+  /* Green — harmonized muted teal (#4CAF82 base) */
+  --color-green-50:  #E8F5EE;
+  --color-green-100: #C5E8D5;
+  --color-green-200: #9BD8B8;
+  --color-green-300: #71C89B;
+  --color-green-400: #4CAF82;
+  --color-green-500: #3D9B71;
+  --color-green-600: #338760;
+  --color-green-700: #2A7350;
+  --color-green-800: #205F40;
+  --color-green-900: #184B30;
+  --color-green-950: #0F3720;
 
-  /* Semantic colors - Light mode */
-  --background: #ffffff;
-  --background-secondary: var(--color-neutral-50);
-  --foreground: var(--color-primary-950);
-  --foreground-muted: var(--color-neutral-600);
-  --foreground-subtle: var(--color-neutral-500);
+  /* Neutral palette (Prussian Blue → Papaya Whip spectrum) */
+  --color-neutral-50:  #FFEFD3;
+  --color-neutral-100: #E8DCC8;
+  --color-neutral-200: #ADB6C4;
+  --color-neutral-300: #8A96A8;
+  --color-neutral-400: #6B7A8C;
+  --color-neutral-500: #4D6070;
+  --color-neutral-600: #3A5266;
+  --color-neutral-700: #294C60;
+  --color-neutral-800: #1A3547;
+  --color-neutral-900: #0D2438;
+  --color-neutral-950: #001B2E;
 
-  --surface: #ffffff;
-  --surface-elevated: #ffffff;
-  --surface-overlay: rgba(255, 255, 255, 0.9);
+  /* Semantic colors */
+  --background: #001B2E;
+  --background-secondary: #0D2438;
+  --foreground: #FFEFD3;
+  --foreground-muted: #ADB6C4;
+  --foreground-subtle: #6B7A8C;
 
-  --border: var(--color-neutral-200);
-  --border-subtle: var(--color-primary-100);
+  --surface: #0D2438;
+  --surface-elevated: #1A3547;
+  --surface-overlay: rgba(0, 27, 46, 0.94);
 
-  --accent: var(--color-primary-900);
-  --accent-hover: var(--color-primary-800);
-  --accent-muted: var(--color-primary-100);
-  --accent-foreground: #ffffff;
+  --border: #294C60;
+  --border-subtle: #1A3547;
+
+  --accent: #FFC49B;
+  --accent-hover: #FFD7B3;
+  --accent-muted: rgba(255, 196, 155, 0.12);
+  --accent-foreground: #001B2E;
 
   /* Secondary semantic tokens */
-  --accent-secondary: var(--color-secondary-600);
-  --accent-secondary-hover: var(--color-secondary-500);
-  --accent-secondary-muted: var(--color-secondary-100);
-  --accent-secondary-foreground: #ffffff;
+  --accent-secondary: var(--color-secondary-400);
+  --accent-secondary-hover: var(--color-secondary-300);
+  --accent-secondary-muted: rgba(41, 76, 96, 0.15);
+  --accent-secondary-foreground: var(--color-secondary-950);
 
   /* Tertiary semantic tokens */
-  --accent-tertiary: var(--color-tertiary-500);
-  --accent-tertiary-hover: var(--color-tertiary-400);
-  --accent-tertiary-muted: var(--color-tertiary-100);
-  --accent-tertiary-foreground: var(--color-primary-950);
+  --accent-tertiary: var(--color-tertiary-300);
+  --accent-tertiary-hover: var(--color-tertiary-200);
+  --accent-tertiary-muted: rgba(255, 239, 211, 0.12);
+  --accent-tertiary-foreground: var(--color-tertiary-950);
 
   /* Red semantic tokens */
-  --accent-red: var(--color-red-600);
-  --accent-red-hover: var(--color-red-500);
-  --accent-red-muted: var(--color-red-100);
-  --accent-red-foreground: #ffffff;
+  --accent-red: var(--color-red-400);
+  --accent-red-hover: var(--color-red-300);
+  --accent-red-muted: rgba(224, 82, 82, 0.15);
+  --accent-red-foreground: var(--color-red-950);
 
   /* Green semantic tokens */
-  --accent-green: var(--color-green-600);
-  --accent-green-hover: var(--color-green-500);
-  --accent-green-muted: var(--color-green-100);
-  --accent-green-foreground: #ffffff;
+  --accent-green: var(--color-green-400);
+  --accent-green-hover: var(--color-green-300);
+  --accent-green-muted: rgba(76, 175, 130, 0.15);
+  --accent-green-foreground: var(--color-green-950);
 
-  /* Glow colors (for box-shadow/text-shadow neon effects) */
-  --glow-primary: rgba(142, 68, 173, 0.6);
-  --glow-secondary: rgba(52, 152, 219, 0.6);
-  --glow-tertiary: rgba(241, 196, 15, 0.5);
-  --glow-red: rgba(231, 76, 60, 0.5);
-  --glow-green: rgba(46, 204, 113, 0.45);
-  --glow-neutral: rgba(115, 115, 115, 0.4);
+  /* Wave-glow canonical triad */
+  --wg-red: #FFC49B;
+  --wg-green: #294C60;
+  --wg-purple: #ADB6C4;
 
-  /* Code snippet colors (One Dark inspired) */
-  --code-bg: #282c34;
-  --code-fg: #abb2bf;
-  --code-comment: #5c6370;
-  --code-keyword: #c678dd;
-  --code-string: #98c379;
-  --code-function: #61afef;
-  --code-variable: #e06c75;
-  --code-number: #d19a66;
+  /* Glow colors (for box-shadow/text-shadow effects) */
+  --glow-primary: rgba(255, 196, 155, 0.5);
+  --glow-secondary: rgba(41, 76, 96, 0.45);
+  --glow-tertiary: rgba(255, 239, 211, 0.4);
+  --glow-red: rgba(224, 82, 82, 0.45);
+  --glow-green: rgba(76, 175, 130, 0.45);
+  --glow-neutral: rgba(173, 182, 196, 0.35);
+
+  /* Code snippet colors */
+  --code-bg: #0D2438;
+  --code-fg: #E8DCC8;
+  --code-comment: #6B7A8C;
+  --code-keyword: #FFC49B;
+  --code-string: #4CAF82;
+  --code-function: #FFD7B3;
+  --code-variable: #ADB6C4;
+  --code-number: #FFEFD3;
 
   /* Animation timings */
   --duration-instant: 0ms;
@@ -165,73 +168,17 @@
   --section-padding-y-mobile: 3rem;
 
   /* Shadow scale */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-
-  /* Card hover shadow */
-  --shadow-card-hover: 0 20px 40px -12px rgb(0 0 0 / 0.15);
-
-  /* Focus ring */
-  --ring-color: var(--color-primary-600);
-  --ring-offset: 2px;
-}
-
-/* Dark mode tokens */
-.dark {
-  --background: #130a1a;
-  --background-secondary: #1a0d24;
-  --foreground: var(--color-primary-50);
-  --foreground-muted: var(--color-neutral-400);
-  --foreground-subtle: var(--color-neutral-500);
-
-  --surface: var(--color-primary-950);
-  --surface-elevated: var(--color-primary-900);
-  --surface-overlay: rgba(19, 10, 26, 0.92);
-
-  --border: var(--color-primary-800);
-  --border-subtle: var(--color-primary-900);
-
-  --accent: var(--color-primary-400);
-  --accent-hover: var(--color-primary-300);
-  --accent-muted: rgba(166, 109, 186, 0.15);
-  --accent-foreground: var(--color-primary-950);
-
-  --ring-color: var(--color-primary-400);
-
-  --accent-secondary: var(--color-secondary-400);
-  --accent-secondary-hover: var(--color-secondary-300);
-  --accent-secondary-muted: rgba(52, 152, 219, 0.15);
-  --accent-secondary-foreground: var(--color-secondary-950);
-
-  --accent-tertiary: var(--color-tertiary-300);
-  --accent-tertiary-hover: var(--color-tertiary-200);
-  --accent-tertiary-muted: rgba(241, 196, 15, 0.12);
-  --accent-tertiary-foreground: var(--color-tertiary-950);
-
-  --accent-red: var(--color-red-400);
-  --accent-red-hover: var(--color-red-300);
-  --accent-red-muted: rgba(231, 76, 60, 0.15);
-  --accent-red-foreground: var(--color-red-950);
-
-  --accent-green: var(--color-green-400);
-  --accent-green-hover: var(--color-green-300);
-  --accent-green-muted: rgba(46, 204, 113, 0.15);
-  --accent-green-foreground: var(--color-green-950);
-
-  --glow-primary: rgba(166, 109, 186, 0.7);
-  --glow-secondary: rgba(83, 175, 243, 0.65);
-  --glow-tertiary: rgba(246, 210, 75, 0.6);
-  --glow-red: rgba(239, 111, 100, 0.6);
-  --glow-green: rgba(110, 231, 160, 0.5);
-  --glow-neutral: rgba(212, 212, 212, 0.5);
-
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.3);
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.3);
+
+  /* Card hover shadow */
   --shadow-card-hover: 0 20px 40px -12px rgb(0 0 0 / 0.5);
+
+  /* Focus ring */
+  --ring-color: #FFC49B;
+  --ring-offset: 2px;
 }
 
 /* Tailwind CSS 4 theme integration */
@@ -352,7 +299,6 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s, color 0.3s;
 }
 
 /* ============================================
@@ -380,12 +326,8 @@ h1, h2, h3, h4, h5, h6 {
    ============================================ */
 
 ::selection {
-  background-color: var(--accent-muted);
-  color: var(--color-primary-900);
-}
-
-.dark ::selection {
-  color: var(--color-primary-100);
+  background-color: rgba(255, 196, 155, 0.25);
+  color: var(--color-neutral-50);
 }
 
 /* ============================================
@@ -424,20 +366,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-neutral-300);
+  background: var(--color-neutral-700);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-neutral-400);
-}
-
-.dark ::-webkit-scrollbar-thumb {
-  background: var(--color-primary-800);
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary-700);
+  background: var(--color-neutral-600);
 }
 
 /* ============================================
@@ -523,7 +457,7 @@ pre {
 }
 
 /* ============================================
-   SYNTHWAVE / CYBERPUNK EFFECTS
+   GLOW & BRAND EFFECTS
    ============================================ */
 
 /* Glow pulse - gentle throb for atmospheric elements */
@@ -543,6 +477,14 @@ pre {
 @keyframes grid-pulse {
   0%, 100% { opacity: 0.04; }
   50% { opacity: 0.07; }
+}
+
+@keyframes orbit {
+  0%   { transform: translate(0, -12px); }
+  25%  { transform: translate(12px, 0); }
+  50%  { transform: translate(0, 12px); }
+  75%  { transform: translate(-12px, 0); }
+  100% { transform: translate(0, -12px); }
 }
 
 .animate-glow-pulse {
@@ -611,39 +553,125 @@ pre {
   box-shadow: 0 0 12px var(--glow-green), 0 0 24px var(--glow-green);
 }
 
-/* Neon text glow */
-.neon-text-primary {
+/* Text glow */
+.glow-text-primary {
   text-shadow: 0 0 7px var(--glow-primary), 0 0 20px var(--glow-primary);
 }
 
-.neon-text-secondary {
+.glow-text-secondary {
   text-shadow: 0 0 7px var(--glow-secondary), 0 0 20px var(--glow-secondary);
 }
 
-.neon-text-tertiary {
+.glow-text-tertiary {
   text-shadow: 0 0 7px var(--glow-tertiary), 0 0 20px var(--glow-tertiary);
 }
 
-.neon-text-red {
+.glow-text-red {
   text-shadow: 0 0 7px var(--glow-red), 0 0 20px var(--glow-red);
 }
 
-.neon-text-green {
+.glow-text-green {
   text-shadow: 0 0 7px var(--glow-green), 0 0 20px var(--glow-green);
 }
 
-/* 5-color gradient section divider */
+/* Section overlay tiers — let wave-glow bleed through at varying intensities */
+.section-overlay-dense {
+  background: rgba(0, 27, 46, 0.85);
+  backdrop-filter: blur(8px);
+}
+.section-overlay-medium {
+  background: rgba(0, 27, 46, 0.70);
+  backdrop-filter: blur(4px);
+}
+.section-overlay-light {
+  background: rgba(0, 27, 46, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+/* Wave-glow triad section divider */
 .section-divider {
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    var(--glow-green) 15%,
-    var(--glow-secondary) 30%,
-    var(--glow-primary) 50%,
-    var(--glow-red) 70%,
-    var(--glow-tertiary) 85%,
-    transparent 100%
+  background: linear-gradient(90deg, transparent, var(--wg-purple) 20%, var(--wg-red) 50%, var(--wg-green) 80%, transparent);
+  opacity: 0.4;
+}
+
+/* ============================================
+   GLOW CARD (data-glow) — pointer-tracking spotlight
+   ============================================ */
+
+[data-glow]::before,
+[data-glow]::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  inset: calc(var(--border-size) * -1);
+  border: var(--border-size) solid transparent;
+  border-radius: calc(var(--radius) * 1px);
+  background-attachment: fixed;
+  background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
+  mask-clip: padding-box, border-box;
+  mask-composite: intersect;
+}
+
+[data-glow]::before {
+  background-image: radial-gradient(
+    calc(var(--spotlight-size) * 0.75) calc(var(--spotlight-size) * 0.75) at
+    calc(var(--x, 0) * 1px)
+    calc(var(--y, 0) * 1px),
+    hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--lightness, 50) * 1%) / var(--border-spot-opacity, 1)), transparent 100%
   );
-  opacity: 0.6;
+  filter: brightness(2);
+}
+
+[data-glow]::after {
+  background-image: radial-gradient(
+    calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5) at
+    calc(var(--x, 0) * 1px)
+    calc(var(--y, 0) * 1px),
+    hsl(0 100% 100% / var(--border-light-opacity, 1)), transparent 100%
+  );
+}
+
+/* Inner glow layer (outer blur halo) — scoped to direct child to avoid nesting conflicts */
+[data-glow] > [data-glow-inner] {
+  position: absolute;
+  inset: 0;
+  will-change: filter;
+  opacity: var(--outer, 1);
+  border-radius: calc(var(--radius) * 1px);
+  border-width: calc(var(--border-size) * 20);
+  filter: blur(calc(var(--border-size) * 10));
+  background: none;
+  pointer-events: none;
+  border: none;
+}
+
+[data-glow] > [data-glow-inner]::before {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border: 10px solid transparent;
+  border-radius: calc(var(--radius) * 1px);
+  background-attachment: fixed;
+  background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
+  mask-clip: padding-box, border-box;
+  mask-composite: intersect;
+}
+
+/* Brand gradient utilities */
+.brand-gradient {
+  background: linear-gradient(135deg, #FFC49B, #294C60, #ADB6C4);
+}
+.brand-gradient-text {
+  color: #FFEFD3;
+  text-shadow:
+    0 0 3px var(--glow-primary),
+    0 0 9px var(--glow-primary);
 }

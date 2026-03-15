@@ -4,10 +4,12 @@ export { Container } from "./ui/container";
 export { Section, SectionHeader } from "./ui/section";
 export { Navigation } from "./ui/navigation";
 export { Footer } from "./ui/footer";
-export { ModeToggle } from "./ui/mode-toggle";
 export { BackgroundEffect } from "./ui/background-effect";
-export { SkillCloud } from "./ui/skill-cloud";
 export { SkillDetailModal } from "./ui/skill-detail-modal";
+export { GlowCard } from "./ui/spotlight-card";
+export { ParticleDisplay } from "./ui/particle-display";
+export { ParticleDisplayFrame } from "./ui/particle-display-frame";
+export { DownloadButton } from "./ui/download-animation";
 
 // Section Components
 export { Hero } from "./sections/hero";

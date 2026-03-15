@@ -22,24 +22,24 @@ function getTagColorTheme(tag: string): string {
 
 const TAG_COLOR_CLASSES: Record<string, { bg: string; text: string }> = {
   primary: {
-    bg: "bg-primary-100 dark:bg-primary-800",
-    text: "text-primary-800 dark:text-primary-200",
+    bg: "bg-primary-800",
+    text: "text-primary-200",
   },
   secondary: {
-    bg: "bg-secondary-100 dark:bg-secondary-800",
-    text: "text-secondary-800 dark:text-secondary-200",
+    bg: "bg-secondary-800",
+    text: "text-secondary-200",
   },
   tertiary: {
-    bg: "bg-tertiary-100 dark:bg-tertiary-800",
-    text: "text-tertiary-800 dark:text-tertiary-200",
+    bg: "bg-tertiary-800",
+    text: "text-tertiary-200",
   },
   red: {
-    bg: "bg-red-100 dark:bg-red-800",
-    text: "text-red-800 dark:text-red-200",
+    bg: "bg-red-800",
+    text: "text-red-200",
   },
   green: {
-    bg: "bg-green-100 dark:bg-green-800",
-    text: "text-green-800 dark:text-green-200",
+    bg: "bg-green-800",
+    text: "text-green-200",
   },
 };
 
@@ -56,7 +56,7 @@ export function Portfolio() {
   return (
     <section
       id="work"
-      className="py-24 bg-primary-50/40 dark:bg-primary-900/40"
+      className="py-24 section-overlay-light"
     >
       <Container>
         {/* Header */}
@@ -67,10 +67,10 @@ export function Portfolio() {
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-primary-950 dark:text-white mb-4 font-space-grotesk">
+          <h2 className="text-4xl font-bold mb-4 font-space-grotesk brand-gradient-text inline-block">
             Featured Work
           </h2>
-          <p className="text-lg text-gray-500 dark:text-gray-400">
+          <p className="text-lg text-foreground-muted">
             A selection of projects I&apos;m proud of
           </p>
         </motion.div>
@@ -128,17 +128,17 @@ export function Portfolio() {
               {/* Details */}
               <div className="w-full md:w-1/2 space-y-4">
                 {/* Subtitle */}
-                <p className="text-sm font-semibold uppercase tracking-wider text-primary-600 dark:text-primary-400">
+                <p className="text-sm font-semibold uppercase tracking-wider text-primary-400">
                   {project.subtitle}
                 </p>
 
                 {/* Title */}
-                <h3 className="text-3xl font-bold text-primary-950 dark:text-white">
+                <h3 className="text-3xl font-bold text-white">
                   {project.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p className="text-foreground-muted leading-relaxed">
                   {project.description}
                 </p>
 
@@ -147,9 +147,9 @@ export function Portfolio() {
                   {project.features.map((feature, i) => (
                     <li
                       key={i}
-                      className="flex items-start gap-3 text-sm text-gray-600 dark:text-gray-300"
+                      className="flex items-start gap-3 text-sm text-foreground-muted"
                     >
-                      <span className="w-2 h-2 rounded-full bg-primary-500 dark:bg-primary-400 mt-1.5 shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-primary-400 mt-1.5 shrink-0" />
                       {feature}
                     </li>
                   ))}

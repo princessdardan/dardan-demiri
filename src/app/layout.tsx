@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
-import { ThemeProvider } from "next-themes";
 import { PersonJsonLd } from "@/components/seo/json-ld";
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css";
@@ -92,18 +91,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth">
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} antialiased`}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <PersonJsonLd />
-          <a href="#main-content" className="skip-to-content">
-            Skip to main content
-          </a>
-          {children}
-          <Analytics />
-        </ThemeProvider>
+        <PersonJsonLd />
+        <a href="#main-content" className="skip-to-content">
+          Skip to main content
+        </a>
+        {children}
+        <Analytics />
       </body>
     </html>
   );

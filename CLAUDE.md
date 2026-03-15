@@ -58,12 +58,12 @@ src/
 ### From Interview Session
 
 1. **Visual Priority**: Optimized for clients (Sarah persona) - visual-first, clean layouts
-2. **Color Palette**: Coral/warm accent (#ff6b47 primary)
+2. **Color Palette**: Peach Glow (#FFC49B accent), Prussian Blue (#001B2E base), Charcoal Blue (#294C60), Pale Slate (#ADB6C4), Papaya Whip (#FFEFD3)
 3. **Dual-Layer Projects**: Visual layer default, technical layer expands accordion-style
 4. **Skills Filtering**: Clicking featured skill icons filters portfolio
 5. **Progressive Enhancement**: CSS animations as base, Framer Motion enhances
 6. **Reduced Motion**: Completely disabled animations when `prefers-reduced-motion` is set
-7. **Dark Mode Ready**: CSS variables structured for future dark mode (currently light only)
+7. **Dark Theme**: Exclusively dark theme (Prussian Blue base) — no light mode or theme toggle
 
 ### Typography
 

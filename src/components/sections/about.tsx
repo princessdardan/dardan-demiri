@@ -19,7 +19,7 @@ export function About() {
   return (
     <section
       id="about"
-      className="py-24 bg-white/60 dark:bg-primary-950/60 backdrop-blur-xl"
+      className="py-24 section-overlay-medium"
     >
       <Container>
         {/* Section header */}
@@ -30,10 +30,10 @@ export function About() {
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-primary-950 dark:text-white mb-4 font-space-grotesk">
+          <h2 className="text-4xl font-bold mb-4 font-space-grotesk brand-gradient-text inline-block">
             About Me
           </h2>
-          <p className="text-lg text-gray-500 dark:text-gray-400">
+          <p className="text-lg text-foreground-muted">
             Get to know the person behind the code
           </p>
         </motion.div>
@@ -51,7 +51,7 @@ export function About() {
             {personalInfo.about.map((paragraph, index) => (
               <p
                 key={index}
-                className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg"
+                className="text-foreground-muted leading-relaxed text-lg"
               >
                 {paragraph}
               </p>
@@ -69,7 +69,7 @@ export function About() {
             <motion.div
               whileHover={{ rotate: 2, scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="relative aspect-square max-w-sm mx-auto rounded-3xl overflow-hidden border-4 border-white dark:border-primary-800 shadow-2xl"
+              className="relative aspect-square max-w-sm mx-auto rounded-3xl overflow-hidden border-4 border-primary-800 shadow-2xl"
             >
               <Image
                 src={personalInfo.profileImage}

@@ -56,7 +56,7 @@ export function Navigation() {
           damping: 20,
           delay: 0.3,
         }}
-        className="pointer-events-auto bg-white/80 dark:bg-primary-950/80 backdrop-blur-md border border-primary-100 dark:border-primary-800 dark:shadow-[0_0_15px_rgba(142,68,173,0.15),0_0_30px_rgba(52,152,219,0.08),0_0_10px_rgba(46,204,113,0.06)] rounded-2xl shadow-lg p-2 flex items-center gap-1 sm:gap-2"
+        className="pointer-events-auto bg-[rgba(0,27,46,0.90)] backdrop-blur-md border border-[rgba(255,196,155,0.20)] shadow-[0_0_20px_rgba(255,196,155,0.08)] rounded-2xl p-2 flex items-center gap-1 sm:gap-2"
       >
         {NAV_ITEMS.map((item) => {
           const Icon = item.icon;
@@ -69,16 +69,16 @@ export function Navigation() {
               }}
               className={cn(
                 "group relative p-3 rounded-xl cursor-pointer",
-                "text-primary-700 dark:text-primary-400",
-                "hover:bg-primary-50 dark:hover:bg-primary-900/50",
+                "text-primary-400",
+                "hover:bg-[rgba(255,196,155,0.08)]",
                 "transition-colors duration-150",
                 isActive &&
-                  "!bg-primary-100 dark:!bg-primary-900 !text-primary-900 dark:!text-primary-100 dark:shadow-[0_0_8px_var(--glow-primary)]"
+                  "!bg-[rgba(255,196,155,0.15)] !text-primary-100 shadow-[0_0_10px_rgba(255,196,155,0.15)]"
               )}
             >
               <Icon className="w-5 h-5" />
               {/* Tooltip */}
-              <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 rounded-lg text-xs font-medium whitespace-nowrap pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 bg-primary-900 dark:bg-primary-100 text-white dark:text-primary-900">
+              <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 rounded-lg text-xs font-medium whitespace-nowrap pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 bg-[rgba(0,27,46,0.95)] text-primary-100 border border-[rgba(255,196,155,0.20)] shadow-[0_0_8px_rgba(255,196,155,0.08)]">
                 {item.label}
               </span>
             </button>

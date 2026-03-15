@@ -8,14 +8,12 @@ import {
   Contact,
   Footer,
   BackgroundEffect,
-  ModeToggle,
 } from "@/components";
 
 export default function Home() {
   return (
-    <div className="font-body bg-transparent text-foreground selection:bg-primary-500/20 selection:text-primary-900 dark:selection:text-primary-100 overflow-x-hidden min-h-screen relative">
+    <div className="font-body bg-transparent text-foreground selection:bg-primary-500/20 selection:text-primary-100 overflow-x-hidden min-h-screen relative">
       <BackgroundEffect />
-      <ModeToggle />
       <Navigation />
       <main id="main-content">
         <Hero />
