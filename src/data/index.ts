@@ -9,8 +9,8 @@ export const personalInfo = {
   status: "Available for new projects",
   experienceYears: "5+",
   about: [
-    "I'm a full-stack engineer with 5+ years designing, building, and scaling customer-facing web applications across e-commerce and ed-tech. I've delivered production systems that reduce costs, automate workflows, and measurably improve performance — from a Shopify-to-MedusaJS platform migration to a containerized LMS and headless storefronts serving 200+ products.",
-    "I combine production engineering with first-hand business operations experience — co-managing a restaurant has given me real-world insight into customer retention, loyalty incentives, and the operational constraints that software has to actually solve for.",
+    "I'm a full-stack engineer with 5+ years designing, building, and scaling customer-facing web applications across e-commerce and ed-tech. I've delivered production systems that reduce costs, automate workflows, and measurably improve performance. From a Shopify to MedusaJS platform migration to a containerized LMS and headless storefronts serving 200+ products.",
+    "I combine production engineering with first-hand business operations experience. Co-managing a restaurant has given me real-world insight into customer retention, loyalty incentives, and the operational constraints that software has to actually solve for.",
     "I thrive in Agile product teams, communicate clearly across disciplines, and care about shipping work I'm genuinely proud of. Whether you need a scalable e-commerce platform, an internal tooling system, or a content-driven application, I'd love to help bring your vision to life.",
   ],
   heroIntro:
