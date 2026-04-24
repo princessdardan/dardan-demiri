@@ -1,14 +1,30 @@
 import { MetadataRoute } from "next";
+import { getBaseUrl } from "@/lib/seo";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://dardandemiri.com";
+  const baseUrl = getBaseUrl();
 
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-      disallow: ["/api/"],
-    },
-    sitemap: `${baseUrl}/sitemap.xml`,
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/api/"],
+      },
+      {
+        userAgent: [
+          "GPTBot",
+          "ChatGPT-User",
+          "OAI-SearchBot",
+          "ClaudeBot",
+          "PerplexityBot",
+          "Google-Extended",
+        ],
+        allow: ["/", "/llms.txt", "/llms-full.txt", "/structured-data.json"],
+        disallow: ["/api/"],
+      },
+    ],
+    sitemap: [`${baseUrl}/sitemap.xml`],
+    host: baseUrl,
   };
 }

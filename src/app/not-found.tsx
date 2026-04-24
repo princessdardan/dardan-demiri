@@ -25,8 +25,8 @@ export default function NotFound() {
         </h1>
 
         <p className="text-foreground-muted mb-8">
-          Looks like this page took a wrong turn. The page you're looking for
-          doesn't exist or has been moved.
+          Looks like this page took a wrong turn. The page you&apos;re looking
+          for doesn&apos;t exist or has been moved.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

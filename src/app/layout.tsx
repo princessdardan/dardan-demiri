@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
-import { PersonJsonLd } from "@/components/seo/json-ld";
-import { Analytics } from "@vercel/analytics/next"
+import { JsonLd } from "@/components/seo/json-ld";
+import { siteConfig } from "@/lib/seo";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -23,53 +24,51 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_BASE_URL || "https://dardandemiri.com"
-  ),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || siteConfig.url),
   title: {
-    default: "Dardan Demiri | Full-Stack Engineer",
-    template: "%s | Dardan Demiri",
+    default: `${siteConfig.name} | Freelance Full-Stack Web Developer`,
+    template: `%s | ${siteConfig.name}`,
   },
-  description:
-    "Toronto-based full-stack engineer with 5+ years building and scaling customer-facing web applications across e-commerce and ed-tech. Proven track record delivering production systems that reduce costs, automate workflows, and improve performance.",
-  keywords: [
-    "full-stack engineer",
-    "senior software engineer",
-    "React developer",
-    "Ruby on Rails developer",
-    "Next.js",
-    "TypeScript",
-    "Django",
-    "MedusaJS",
-    "e-commerce developer",
-    "ed-tech",
-    "Toronto",
-    "portfolio",
-  ],
-  authors: [{ name: "Dardan Demiri" }],
-  creator: "Dardan Demiri",
+  description: siteConfig.description,
+  keywords: siteConfig.keywords,
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  alternates: {
+    canonical: "/",
+    types: {
+      "text/plain": [
+        { url: "/llms.txt", title: "LLMs.txt" },
+        { url: "/llms-full.txt", title: "Full LLM context" },
+      ],
+      "application/ld+json": [
+        { url: "/structured-data.json", title: "Structured data graph" },
+      ],
+    },
+  },
+  category: "technology",
+  classification:
+    "Freelance web development, full-stack software engineering, e-commerce development, LMS development",
   openGraph: {
     type: "website",
-    locale: "en_US",
-    url: "https://dardandemiri.com",
-    siteName: "Dardan Demiri",
-    title: "Dardan Demiri | Full-Stack Engineer",
-    description:
-      "Toronto-based full-stack engineer with 5+ years building and scaling customer-facing web applications across e-commerce and ed-tech. Proven track record delivering production systems that reduce costs, automate workflows, and improve performance.",
+    locale: siteConfig.locale,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: `${siteConfig.name} | Freelance Full-Stack Web Developer`,
+    description: siteConfig.description,
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Dardan Demiri - Full-Stack Engineer",
+        alt: `${siteConfig.name} - Freelance Full-Stack Web Developer`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dardan Demiri | Full-Stack Engineer",
-    description:
-      "Toronto-based full-stack engineer building scalable e-commerce and ed-tech applications with React, Ruby on Rails, and Django.",
+    title: `${siteConfig.name} | Freelance Full-Stack Web Developer`,
+    description: siteConfig.description,
     images: ["/og-image.png"],
   },
   robots: {
@@ -95,7 +94,7 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} antialiased`}
       >
-        <PersonJsonLd />
+        <JsonLd />
         <a href="#main-content" className="skip-to-content">
           Skip to main content
         </a>
