@@ -27,13 +27,30 @@ export interface Feature {
 // PORTFOLIO SECTION
 // ============================================
 
+export interface ProjectCaseStudy {
+  problem: string;
+  systemBuilt: string;
+  keyTechnicalWork: string[];
+  businessValue: string;
+}
+
+export interface ProjectVisual {
+  src: string;
+  alt: string;
+  sourceUrl?: string;
+  caption?: string;
+}
+
 export interface Project {
+  slug: string;
   title: string;
   subtitle: string;
-  description: string;
-  image: string;
+  status: string;
+  summary: string;
+  caseStudy: ProjectCaseStudy;
+  stack: string[];
   tags: string[];
-  features: string[];
+  visual: ProjectVisual;
   links: {
     live?: string;
     code?: string;

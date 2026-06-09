@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { createPortal } from "react-dom";
-import { X, ExternalLink, Github } from "lucide-react";
+import { X, ExternalLink, Github, Wrench } from "lucide-react";
 import { useEffect, useCallback } from "react";
 import type { SkillDetailModalProps, SkillCategory } from "@/types";
 import { CATEGORY_COLOR_MAP } from "@/types";
@@ -144,6 +144,7 @@ export function SkillDetailModal({ skill, onClose, projects }: SkillDetailModalP
                 </h2>
               </div>
               <button
+                type="button"
                 onClick={onClose}
                 aria-label="Close modal"
                 className={cn(
@@ -170,17 +171,15 @@ export function SkillDetailModal({ skill, onClose, projects }: SkillDetailModalP
                       className="flex gap-4 rounded-xl p-4"
                     >
                       {/* Thumbnail */}
-                      {project.image && (
-                        <div className="hidden sm:block h-20 w-28 shrink-0 overflow-hidden rounded-lg bg-primary-800">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={project.image}
-                            alt={`${project.title} screenshot`}
-                            className="h-full w-full object-cover"
-                            loading="lazy"
-                          />
-                        </div>
-                      )}
+                      <div className="hidden sm:block h-20 w-28 shrink-0 overflow-hidden rounded-lg bg-primary-800">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={project.visual.src}
+                          alt={project.visual.alt}
+                          className="h-full w-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
 
                       {/* Text content */}
                       <div className="flex-1 min-w-0">
@@ -188,7 +187,7 @@ export function SkillDetailModal({ skill, onClose, projects }: SkillDetailModalP
                           {project.title}
                         </h3>
                         <p className="mt-1 text-sm text-neutral-400 line-clamp-2">
-                          {project.description}
+                          {project.summary}
                         </p>
 
                         {/* Tag pills */}
@@ -250,9 +249,7 @@ export function SkillDetailModal({ skill, onClose, projects }: SkillDetailModalP
                 /* Empty state */
                 <div className="py-10 text-center">
                   <div className={cn("mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full", accentColors.emptyIcon)}>
-                    <span className="text-2xl" aria-hidden="true">
-                      🛠️
-                    </span>
+                    <Wrench className="h-6 w-6 text-primary-100" aria-hidden="true" />
                   </div>
                   <h3 className="font-space-grotesk font-semibold text-primary-100 mb-2">
                     Part of the toolkit

@@ -1,16 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, GitBranch } from "lucide-react";
 import { projects, skills } from "@/data";
-import { CATEGORY_COLOR_MAP, type SkillCategory } from "@/types";
+import { CATEGORY_COLOR_MAP, type CategoryColorTheme, type Project, type SkillCategory } from "@/types";
 import { cn } from "@/lib/utils";
 
-// Determine a tag's color based on which skill category it best matches
-function getTagColorTheme(tag: string): string {
+function getTagColorTheme(tag: string): CategoryColorTheme {
   const lowerTag = tag.toLowerCase();
   for (const [category, skillList] of Object.entries(skills)) {
     if (skillList.some((s) => s.toLowerCase().includes(lowerTag) || lowerTag.includes(s.toLowerCase()))) {
@@ -20,66 +19,179 @@ function getTagColorTheme(tag: string): string {
   return "primary";
 }
 
-const TAG_COLOR_CLASSES: Record<string, { bg: string; text: string }> = {
-  primary: {
-    bg: "bg-primary-800",
-    text: "text-primary-200",
-  },
-  secondary: {
-    bg: "bg-secondary-800",
-    text: "text-secondary-200",
-  },
-  tertiary: {
-    bg: "bg-tertiary-800",
-    text: "text-tertiary-200",
-  },
-  red: {
-    bg: "bg-red-800",
-    text: "text-red-200",
-  },
-  green: {
-    bg: "bg-green-800",
-    text: "text-green-200",
-  },
+const TAG_COLOR_CLASSES: Record<CategoryColorTheme, { bg: string; text: string }> = {
+  primary: { bg: "bg-primary-800", text: "text-primary-200" },
+  secondary: { bg: "bg-secondary-800", text: "text-secondary-200" },
+  tertiary: { bg: "bg-tertiary-800", text: "text-tertiary-200" },
+  red: { bg: "bg-red-800", text: "text-red-200" },
+  green: { bg: "bg-green-800", text: "text-green-200" },
+  neutral: { bg: "bg-neutral-800", text: "text-neutral-200" },
 };
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0, 0, 0.2, 1] as const },
-  },
-};
+// Variants are defined inside the Portfolio component so they can read
+// useReducedMotion. The `initial` prop is always "hidden" (stable on SSR)
+// and the transition duration is set to 0 when reduced motion is enabled.
+// This avoids a hydration mismatch that would occur if we branched `initial`
+// directly on useReducedMotion().
+
+function CaseStudySection({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <section className="space-y-1.5">
+      <h4 className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-300">
+        {title}
+      </h4>
+      <div className="text-sm leading-relaxed text-foreground-muted">
+        {children}
+      </div>
+    </section>
+  );
+}
+
+function StackPills({ stack }: { stack: string[] }) {
+  return (
+    <div className="flex flex-wrap gap-2 pt-1">
+      {stack.map((tag) => {
+        const theme = getTagColorTheme(tag);
+        const colors = TAG_COLOR_CLASSES[theme] ?? TAG_COLOR_CLASSES.primary;
+        return (
+          <span
+            key={tag}
+            className={cn("rounded-full px-3 py-1 text-xs font-medium", colors.bg, colors.text)}
+          >
+            {tag}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
+function ProjectVisual({ project, className }: { project: Project; className?: string }) {
+  return (
+    <figure className={cn("w-full md:w-1/2 space-y-3", className)}>
+      <div className="group relative aspect-video overflow-hidden rounded-2xl border border-white/10 bg-primary-900 shadow-xl">
+        <Image
+          src={project.visual.src}
+          alt={project.visual.alt}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
+      </div>
+      {project.visual.caption && (
+        <figcaption className="text-xs leading-relaxed text-foreground-muted/80">
+          {project.visual.caption}
+        </figcaption>
+      )}
+    </figure>
+  );
+}
+
+function ProjectDetails({ project }: { project: Project }) {
+  return (
+    <div className="w-full space-y-5 md:w-1/2">
+      <div className="space-y-2">
+        <p className="text-sm font-semibold uppercase tracking-wider text-primary-400">
+          {project.subtitle} · {project.status}
+        </p>
+        <h3 className="text-3xl font-bold text-white">
+          {project.title}
+        </h3>
+        <p className="leading-relaxed text-foreground-muted">
+          {project.summary}
+        </p>
+      </div>
+
+      <ProjectVisual project={project} className="md:hidden" />
+
+      <div className="grid gap-4">
+        <CaseStudySection title="Problem">
+          <p>{project.caseStudy.problem}</p>
+        </CaseStudySection>
+
+        <CaseStudySection title="System built">
+          <p>{project.caseStudy.systemBuilt}</p>
+        </CaseStudySection>
+
+        <CaseStudySection title="Key technical work">
+          <ul className="space-y-2">
+            {project.caseStudy.keyTechnicalWork.map((work) => (
+              <li key={work} className="flex items-start gap-3">
+                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary-400" />
+                <span>{work}</span>
+              </li>
+            ))}
+          </ul>
+        </CaseStudySection>
+
+        <CaseStudySection title="Business value">
+          <p>{project.caseStudy.businessValue}</p>
+        </CaseStudySection>
+
+        <CaseStudySection title="Stack">
+          <StackPills stack={project.stack} />
+        </CaseStudySection>
+      </div>
+
+      <div className="flex flex-wrap items-center gap-4 pt-1">
+        {project.links.live && (
+          <Button variant="outline" size="md" asChild>
+            <a href={project.links.live} target="_blank" rel="noopener noreferrer">
+              <ExternalLink className="mr-2 h-4 w-4" />
+              View Live Site
+            </a>
+          </Button>
+        )}
+        {project.links.code && (
+          <Button variant="ghost" size="md" asChild>
+            <a href={project.links.code} target="_blank" rel="noopener noreferrer">
+              <GitBranch className="mr-2 h-4 w-4" />
+              View Code
+            </a>
+          </Button>
+        )}
+      </div>
+    </div>
+  );
+}
 
 export function Portfolio() {
+  const reducedMotion = useReducedMotion();
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: reducedMotion ? 0 : 0.5,
+        ease: [0, 0, 0.2, 1] as const,
+      },
+    },
+  };
+
   return (
-    <section
-      id="work"
-      className="py-24 section-overlay-light"
-    >
+    <section id="work" className="py-24 section-overlay-light">
       <Container>
-        {/* Header */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={fadeInUp}
-          className="text-center mb-16"
+          className="mb-16 text-center"
         >
-          <h2 className="text-4xl font-bold mb-4 font-space-grotesk brand-gradient-text inline-block">
+          <h2 className="brand-gradient-text mb-4 inline-block font-space-grotesk text-4xl font-bold">
             Featured Work
           </h2>
-          <p className="text-lg text-foreground-muted">
-            A selection of projects I&apos;m proud of
+          <p className="mx-auto max-w-3xl text-lg text-foreground-muted">
+            Production systems spanning real estate, publishing, bookings, restaurants, and education workflows.
           </p>
         </motion.div>
 
-        {/* Projects */}
         <div className="space-y-24">
           {projects.map((project, index) => (
             <motion.article
-              key={project.title}
+              key={project.slug}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-80px" }}
@@ -89,120 +201,20 @@ export function Portfolio() {
                   opacity: 1,
                   y: 0,
                   transition: {
-                    duration: 0.5,
+                    duration: reducedMotion ? 0 : 0.5,
                     ease: [0, 0, 0.2, 1] as const,
-                    delay: index * 0.1,
+                    delay: reducedMotion ? 0 : index * 0.1,
                   },
                 },
               }}
-              className={`flex flex-col md:flex-row gap-10 lg:gap-16 items-center ${
-                index % 2 === 1 ? "md:flex-row-reverse" : ""
-              }`}
+              className={cn(
+                "flex flex-col gap-8 lg:gap-14",
+                index % 2 === 1 ? "md:flex-row-reverse" : "md:flex-row",
+                "md:items-start"
+              )}
             >
-              {/* Image */}
-              <div className="w-full md:w-1/2 group relative aspect-video rounded-2xl overflow-hidden shadow-xl">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-                {/* Hover overlay */}
-                <div className="absolute inset-0 bg-primary-950/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  {project.links.live && (
-                    <Button asChild size="sm">
-                      <a
-                        href={project.links.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        View Live Site
-                      </a>
-                    </Button>
-                  )}
-                </div>
-              </div>
-
-              {/* Details */}
-              <div className="w-full md:w-1/2 space-y-4">
-                {/* Subtitle */}
-                <p className="text-sm font-semibold uppercase tracking-wider text-primary-400">
-                  {project.subtitle}
-                </p>
-
-                {/* Title */}
-                <h3 className="text-3xl font-bold text-white">
-                  {project.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-foreground-muted leading-relaxed">
-                  {project.description}
-                </p>
-
-                {/* Feature bullets */}
-                <ul className="space-y-2">
-                  {project.features.map((feature, i) => (
-                    <li
-                      key={i}
-                      className="flex items-start gap-3 text-sm text-foreground-muted"
-                    >
-                      <span className="w-2 h-2 rounded-full bg-primary-400 mt-1.5 shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Tag pills */}
-                <div className="flex flex-wrap gap-2 pt-2">
-                  {project.tags.map((tag) => {
-                    const theme = getTagColorTheme(tag);
-                    const colors = TAG_COLOR_CLASSES[theme];
-                    return (
-                      <span
-                        key={tag}
-                        className={cn(
-                          "px-3 py-1 rounded-full text-xs font-medium",
-                          colors.bg,
-                          colors.text
-                        )}
-                      >
-                        {tag}
-                      </span>
-                    );
-                  })}
-                </div>
-
-                {/* Action links */}
-                <div className="flex items-center gap-4 pt-2">
-                  {project.links.live && (
-                    <Button variant="outline" size="sm" asChild>
-                      <a
-                        href={project.links.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        View Live Site
-                      </a>
-                    </Button>
-                  )}
-                  {project.links.code && (
-                    <Button variant="ghost" size="sm" asChild>
-                      <a
-                        href={project.links.code}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <GitBranch className="w-4 h-4 mr-2" />
-                        View Code
-                      </a>
-                    </Button>
-                  )}
-                </div>
-              </div>
+              <ProjectVisual project={project} className="hidden md:block" />
+              <ProjectDetails project={project} />
             </motion.article>
           ))}
         </div>

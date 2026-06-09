@@ -182,9 +182,9 @@ export function buildJsonLdGraph(baseUrl = siteConfig.url) {
           item: {
             "@type": "CreativeWork",
             name: project.title,
-            description: project.description,
-            url: project.links.live,
-            image: new URL(project.image, baseUrl).toString(),
+            description: project.summary,
+            ...(project.links.live ? { url: project.links.live } : {}),
+            image: new URL(project.visual.src, baseUrl).toString(),
             creator: {
               "@id": personId,
             },
@@ -204,7 +204,7 @@ export function buildLlmsTxt(baseUrl = siteConfig.url) {
   const work = projects
     .map(
       (project) =>
-        `- ${project.title}: ${project.description} Technologies: ${project.tags.join(", ")}. Live site: ${project.links.live}`
+        `- ${project.title}: ${project.summary} Technologies: ${project.stack.join(", ")}.${project.links.live ? ` Live site: ${project.links.live}` : ""}`
     )
     .join("\n");
 
