@@ -74,14 +74,41 @@ for (const weakPhrase of [
   assert(!data.includes(weakPhrase), `Weak portfolio wording remains: ${weakPhrase}`);
 }
 
-for (const imagePath of [
+const requiredImageAssets = [
   "public/images/projects/drenova-group.webp",
+  "public/images/projects/drenova-group-sellers-guide.webp",
+  "public/images/projects/drenova-group-home-evaluation.webp",
   "public/images/projects/aira-publishing.webp",
+  "public/images/projects/aira-publishing-airamath.webp",
+  "public/images/projects/aira-publishing-airaliteracy.webp",
   "public/images/projects/lash-her.webp",
+  "public/images/projects/lash-her-training.webp",
+  "public/images/projects/lash-her-booking.webp",
   "public/images/projects/dannys-fish-and-chips.webp",
+  "public/images/projects/dannys-fish-and-chips-about-us.webp",
+  "public/images/projects/dannys-fish-and-chips-menu.webp",
   "public/images/projects/plp-personalized-learning-plan.webp",
-]) {
+];
+
+for (const imagePath of requiredImageAssets) {
   assert(existsSync(path.join(root, imagePath)), `Missing image asset: ${imagePath}`);
+}
+
+assert(!projectsBody.includes("Live production"), "Featured Work statuses must not include 'Live production'");
+assert(!projectsBody.includes("live production"), "Featured Work statuses must not include 'live production'");
+
+for (const publicTitle of expectedTitles.slice(0, 4)) {
+  const titleIndex = projectsBody.indexOf(`title: "${publicTitle}"`);
+  const nextTitleIndexes = expectedTitles
+    .filter((otherTitle) => otherTitle !== publicTitle)
+    .map((otherTitle) => projectsBody.indexOf(`title: "${otherTitle}"`, titleIndex + 1))
+    .filter((index) => index !== -1);
+  const nextTitleIndex = nextTitleIndexes.length > 0 ? Math.min(...nextTitleIndexes) : projectsBody.length;
+  const projectBlock = titleIndex === -1 ? "" : projectsBody.slice(titleIndex, nextTitleIndex);
+  const visualSrcCount = [...projectBlock.matchAll(/src:\s*"\/images\/projects\/[^\"]+\.webp"/g)].length;
+
+  assert(projectBlock.includes("visuals:"), `${publicTitle} is missing visuals gallery`);
+  assert(visualSrcCount >= 4, `${publicTitle} must include primary visual plus three gallery visual src values`);
 }
 
 // Scan root llms.txt if it exists for stale portfolio content
