@@ -67,20 +67,44 @@ function StackPills({ stack }: { stack: string[] }) {
 }
 
 function ProjectVisual({ project, className }: { project: Project; className?: string }) {
+  const visuals = project.visuals && project.visuals.length > 0 ? project.visuals : [project.visual];
+  const [primaryVisual, ...secondaryVisuals] = visuals;
+
   return (
-    <figure className={cn("w-full md:w-1/2 space-y-3", className)}>
-      <div className="group relative aspect-video overflow-hidden rounded-2xl border border-white/10 bg-primary-900 shadow-xl">
+    <figure className={cn("w-full space-y-3 md:w-1/2", className)}>
+      <div className="relative aspect-video overflow-hidden rounded-2xl border border-white/10 bg-primary-900 shadow-xl">
         <Image
-          src={project.visual.src}
-          alt={project.visual.alt}
+          src={primaryVisual.src}
+          alt={primaryVisual.alt}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover transition-transform duration-500 hover:scale-105"
           sizes="(max-width: 768px) 100vw, 50vw"
+          priority={false}
         />
       </div>
-      {project.visual.caption && (
+
+      {secondaryVisuals.length > 0 && (
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {secondaryVisuals.slice(0, 2).map((visual) => (
+            <div
+              key={visual.src}
+              className="relative aspect-video overflow-hidden rounded-xl border border-white/10 bg-primary-900 shadow-lg"
+            >
+              <Image
+                src={visual.src}
+                alt={visual.alt}
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-105"
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
+              />
+            </div>
+          ))}
+        </div>
+      )}
+
+      {primaryVisual.caption && (
         <figcaption className="text-xs leading-relaxed text-foreground-muted/80">
-          {project.visual.caption}
+          {primaryVisual.caption}
         </figcaption>
       )}
     </figure>
