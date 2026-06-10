@@ -29,13 +29,17 @@ ${projects
   .map(
     (project) => `### ${project.title}
 
-${project.description}
+${project.summary}
 
-Highlights:
-${project.features.map((feature) => `- ${feature}`).join("\n")}
+Case study:
+- Problem: ${project.caseStudy.problem}
+- System built: ${project.caseStudy.systemBuilt}
+- Key technical work:
+${project.caseStudy.keyTechnicalWork.map((point) => `  - ${point}`).join("\n")}
+- Business value: ${project.caseStudy.businessValue}
 
-Technologies: ${project.tags.join(", ")}
-Live site: ${project.links.live}
+Technologies: ${project.stack.join(", ")}
+${project.links.live ? `Live site: ${project.links.live}` : "Live site: Private / Not publicly available"}
 ${project.links.code ? `Code: ${project.links.code}` : ""}`
   )
   .join("\n\n")}

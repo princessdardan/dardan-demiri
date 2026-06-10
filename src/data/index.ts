@@ -1,10 +1,12 @@
+import type { Project } from "@/types";
+
 // ============================================
 // CENTRALIZED SITE CONTENT
 // ============================================
 
 export const personalInfo = {
   name: "Dardan Demiri",
-  role: "Full-Stack Engineer",
+  role: "Full-stack engineer building commerce, CMS, booking, payment, and business workflow platforms.",
   email: "dardandemiridev@gmail.com",
   status: "Available for new projects",
   experienceYears: "5+",
@@ -14,7 +16,7 @@ export const personalInfo = {
     "I thrive in Agile product teams, communicate clearly across disciplines, and care about shipping work I'm genuinely proud of. Whether you need a scalable e-commerce platform, an internal tooling system, or a content-driven application, I'd love to help bring your vision to life.",
   ],
   heroIntro:
-    "Full-stack engineer with 5+ years designing, building, and scaling customer-facing web applications across e-commerce and ed-tech.",
+    "I design and ship production web systems with Next.js, TypeScript, Rails, Sanity, Strapi, PostgreSQL, Redis, Docker, and CI/CD — from client-facing websites to backend workflows, payment integrations, admin tools, and content platforms.",
   profileImage: "/images/profile.jpeg",
   socials: {
     github: "https://github.com/princessdardan",
@@ -48,68 +50,246 @@ export const features = [
 
 export const projects = [
   {
-    title: "Danny's Fish and Chips Website",
-    subtitle: "Danny's Fish and Chips",
-    description:
-      "A modern restaurant website for a beloved Barrie, Ontario fish and chips establishment serving Simcoe County since 1975. Features server-rendered pages with dynamic content management through a headless CMS.",
-    image: "/images/projects/dannys-fish-and-chips-site.png",
-    tags: [
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "Radix UI",
-      "Strapi CMS",
-    ],
-    features: [
-      "Complete redesign modernizing a 50-year-old brand for the digital age",
-      "Server-rendered pages with optimal Core Web Vitals scores",
-      "Easy content management for menu updates and specials",
+    slug: "drenova-group",
+    title: "Drenova Group Real Estate Platform",
+    subtitle: "Drenova Group",
+    status: "Real-estate platform",
+    summary:
+      "Built a real-estate platform for GTA/York Region with Sanity CMS, AMPRE/MLS listing sync, Redis-backed listing cache, lead capture workflows, listing inquiry forms, ISR revalidation, and compliance-aware address suppression.",
+    caseStudy: {
+      problem:
+        "The brokerage needed a credible public platform that could present team content, capture buyer and seller leads, and handle real-estate listings without exposing compliance-sensitive listing details incorrectly.",
+      systemBuilt:
+        "A production Next.js and Sanity platform with CMS-managed pages, team profiles, listing pages, AMPRE/MLS data sync, cached listing reads, lead capture flows, and server-side revalidation paths.",
+      keyTechnicalWork: [
+        "Integrated AMPRE/MLS listing data with cron-authorized sync routes and public listing fetch layers.",
+        "Designed Redis-backed listing caching with ISR tag revalidation for fast listing pages and controlled content freshness.",
+        "Implemented compliance-aware address suppression, listing inquiry forms, lead capture workflows, and Resend email notifications.",
+      ],
+      businessValue:
+        "Gives the real-estate team a maintainable platform for publishing local market content, surfacing listings, and routing qualified buyer, seller, and listing inquiries through structured workflows.",
+    },
+    stack: ["Next.js", "TypeScript", "Sanity", "GROQ", "Redis", "AMPRE/MLS", "Resend", "Playwright"],
+    tags: ["Next.js", "TypeScript", "Sanity", "Redis", "Resend", "Playwright"],
+    visual: {
+      src: "/images/projects/drenova-group.webp",
+      alt: "Drenova Group live real-estate platform homepage screenshot",
+      sourceUrl: "https://drenova.ca",
+      caption: "Screenshot captured from the live Drenova Group production site.",
+    },
+    visuals: [
+      {
+        src: "/images/projects/drenova-group.webp",
+        alt: "Drenova Group live real-estate platform homepage screenshot",
+        sourceUrl: "https://drenova.ca",
+        caption: "Homepage screenshot captured from the Drenova Group site.",
+      },
+      {
+        src: "/images/projects/drenova-group-sellers-guide.webp",
+        alt: "Drenova Group sellers guide page screenshot",
+        sourceUrl: "https://drenova.ca/sellers-guide",
+        caption: "Sellers guide page showing CMS-managed real-estate content.",
+      },
+      {
+        src: "/images/projects/drenova-group-home-evaluation.webp",
+        alt: "Drenova Group home evaluation lead capture page screenshot",
+        sourceUrl: "https://drenova.ca/home-evaluation",
+        caption: "Home evaluation page showing lead capture workflow content.",
+      },
     ],
     links: {
-      live: "https://dannys-fish-and-chips.vercel.app/",
-      code: "https://github.com/princessdardan/dannys-fish-and-chips",
+      live: "https://drenova.ca",
+      code: "https://github.com/princessdardan/drenova-group",
     },
   },
   {
-    title: "Aira Publishing E-Commerce Platform",
+    slug: "aira-publishing",
+    title: "Aira Publishing Platform",
     subtitle: "Aira Publishing",
-    description:
-      "A custom headless commerce platform for Ontario's educational market, enabling teachers to easily find and purchase curriculum-aligned resources for Math, English, and French classrooms.",
-    image: "/images/projects/aira-publishing-site.png",
-    tags: ["React", "GraphQL", "Next.js", "TypeScript", "Headless CMS"],
-    features: [
-      "Replaced legacy workflows with a scalable React + GraphQL system",
-      "Metadata-driven product models supporting bundles and multi-format SKUs",
-      "Grade-level segmentation reducing catalog maintenance effort",
+    status: "Education publishing platform",
+    summary:
+      "Built an education publishing platform connecting CMS content, checkout, Helcim payment validation, Schoology fulfillment, credential delivery, admin operations, audit logging, and Playwright-tested storefront/admin flows.",
+    caseStudy: {
+      problem:
+        "The publisher needed a platform that could connect public curriculum content, checkout, secure payment confirmation, fulfillment, and internal operations instead of relying on disconnected manual workflows.",
+      systemBuilt:
+        "A full-stack Next.js, Sanity, and PostgreSQL platform with storefront content, checkout confirmation, Schoology fulfillment, credential delivery, and a separate admin operations surface.",
+      keyTechnicalWork: [
+        "Implemented Helcim checkout confirmation, webhook reconciliation, payment validation, and idempotent paid-order fulfillment.",
+        "Modeled products, orders, payment events, customers, Schoology accounts, course entitlements, admin sessions, audit events, leads, and support workflows in PostgreSQL.",
+        "Built admin authentication, RBAC, step-up challenges, audit logging, manual fulfillment operations, and Playwright coverage across storefront and admin flows.",
+      ],
+      businessValue:
+        "Connects marketing, commerce, course access, and internal operations so education products can move from CMS-managed content to paid fulfillment with clearer auditability and less manual coordination.",
+    },
+    stack: ["Next.js", "TypeScript", "Sanity", "PostgreSQL", "Helcim", "Schoology", "Resend", "Playwright"],
+    tags: ["Next.js", "TypeScript", "Sanity", "PostgreSQL", "Resend", "Playwright"],
+    visual: {
+      src: "/images/projects/aira-publishing.webp",
+      alt: "Aira Publishing live education publishing platform screenshot",
+      sourceUrl: "https://airapublishing.com",
+      caption: "Screenshot captured from the live Aira Publishing production site.",
+    },
+    visuals: [
+      {
+        src: "/images/projects/aira-publishing.webp",
+        alt: "Aira Publishing education publishing platform homepage screenshot",
+        sourceUrl: "https://airapublishing.com",
+        caption: "Homepage screenshot captured from the Aira Publishing site.",
+      },
+      {
+        src: "/images/projects/aira-publishing-airamath.webp",
+        alt: "AiraMath product page screenshot on Aira Publishing",
+        sourceUrl: "https://airapublishing.com/airamath",
+        caption: "AiraMath product page showing curriculum product content.",
+      },
+      {
+        src: "/images/projects/aira-publishing-airaliteracy.webp",
+        alt: "AiraLiteracy product page screenshot on Aira Publishing",
+        sourceUrl: "https://airapublishing.com/airaliteracy",
+        caption: "AiraLiteracy product page showing education publishing content.",
+      },
     ],
     links: {
       live: "https://airapublishing.com",
     },
   },
   {
-    title: "Lash Her Beauty Platform",
+    slug: "lash-her",
+    title: "Lash Her Booking and Commerce Platform",
     subtitle: "Lash Her",
-    description:
-      "A modern beauty services website offering bespoke lash artistry booking and professional training programs. Features an elegant design with booking integration and training course showcases.",
-    image: "/images/projects/lash-her-site.png",
-    tags: [
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "Playwright",
-      "Analytics-driven UX",
-    ],
-    features: [
-      "Streamlined booking experience for lash services",
-      "Professional training program showcase with course details",
-      "Mobile-responsive design for on-the-go booking",
+    status: "Booking and commerce platform",
+    summary:
+      "A booking and commerce platform for a beauty-services business, integrating CMS-managed content, Google Calendar availability, Helcim checkout, Redis idempotency, PostgreSQL order storage, and Resend confirmation emails.",
+    caseStudy: {
+      problem:
+        "The business needed more than a brochure site: service booking, product and training content, payment flow reliability, confirmation emails, and editable marketing content had to work together.",
+      systemBuilt:
+        "A Next.js and Sanity platform with CMS-managed pages, booking flows, product and training content, Google Calendar availability, Helcim checkout, private order storage, and transactional email workflows.",
+      keyTechnicalWork: [
+        "Integrated Google Calendar OAuth availability with lead-time rules, buffer logic, and server-side conflict checks.",
+        "Implemented Helcim session creation, payment validation, Redis-backed idempotency, and PostgreSQL order/payment event storage with Drizzle.",
+        "Connected Sanity-managed content, booking confirmations, checkout emails, and Playwright coverage for critical booking and commerce paths.",
+      ],
+      businessValue:
+        "Turns a service-business website into an operational platform where clients can discover services, book time, buy products or training, and receive confirmations through reliable backend workflows.",
+    },
+    stack: ["Next.js", "TypeScript", "Sanity", "Google Calendar", "Helcim", "PostgreSQL", "Redis", "Resend"],
+    tags: ["Next.js", "TypeScript", "Sanity", "PostgreSQL", "Redis", "Resend", "Playwright"],
+    visual: {
+      src: "/images/projects/lash-her.webp",
+      alt: "Lash Her booking and commerce platform homepage screenshot without contact pop-up",
+      sourceUrl: "https://lashher.com",
+      caption: "Clean homepage screenshot captured from the Lash Her site.",
+    },
+    visuals: [
+      {
+        src: "/images/projects/lash-her.webp",
+        alt: "Lash Her booking and commerce platform homepage screenshot without contact pop-up",
+        sourceUrl: "https://lashher.com",
+        caption: "Clean homepage screenshot captured from the Lash Her site.",
+      },
+      {
+        src: "/images/projects/lash-her-training.webp",
+        alt: "Lash Her beginner private training page screenshot",
+        sourceUrl: "https://lashher.com/training-programs/beginner-private-training",
+        caption: "Training program page showing CMS-managed course content.",
+      },
+      {
+        src: "/images/projects/lash-her-booking.webp",
+        alt: "Lash Her lash fill booking page screenshot",
+        sourceUrl: "https://lashher.com/services/lash-fill/booking",
+        caption: "Booking page showing service scheduling workflow content.",
+      },
     ],
     links: {
-      live: "https://lashher.ca",
+      live: "https://lashher.com",
       code: "https://github.com/princessdardan/lash-her-frontend",
     },
   },
-];
+  {
+    slug: "dannys-fish-and-chips",
+    title: "Danny’s Fish & Chips Restaurant Platform",
+    subtitle: "Danny’s Fish & Chips",
+    status: "Restaurant platform",
+    summary:
+      "A production CMS-backed restaurant platform with Strapi-managed menus, specials, announcements, gallery content, contact forms, mailing-list signup, CI/CD, and Playwright preview testing.",
+    caseStudy: {
+      problem:
+        "The restaurant needed a maintainable digital presence for a long-running local brand, including menus, specials, announcements, contact flows, gallery content, and operational updates without developer-only edits.",
+      systemBuilt:
+        "A deployed Next.js frontend and Strapi backend with CMS-managed pages, dynamic content blocks, menu and specials content, announcements, gallery media, contact forms, and mailing-list signup.",
+      keyTechnicalWork: [
+        "Built typed data loaders and a dynamic Strapi block renderer for CMS-managed home, menu, specials, location, about, gallery, and contact pages.",
+        "Implemented contact and mailing-list flows with Resend, SEO metadata, sitemap, robots, and responsive UI across restaurant content pages.",
+        "Configured split frontend/backend deployment with Vercel, Railway, GitHub Actions CI, and Playwright preview E2E testing.",
+      ],
+      businessValue:
+        "Gives staff a practical CMS-backed way to keep restaurant content current while customers can quickly find menus, specials, hours, location details, and contact paths.",
+    },
+    stack: ["Next.js", "TypeScript", "Strapi", "Tailwind CSS", "Resend", "Vercel", "Railway", "GitHub Actions"],
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Strapi CMS", "Resend", "GitHub Actions", "Playwright"],
+    visual: {
+      src: "/images/projects/dannys-fish-and-chips.webp",
+      alt: "Danny’s Fish & Chips live CMS-backed restaurant platform screenshot",
+      sourceUrl: "https://dannysfishandchips.com",
+      caption: "Screenshot captured from the live Danny’s Fish & Chips production site.",
+    },
+    visuals: [
+      {
+        src: "/images/projects/dannys-fish-and-chips.webp",
+        alt: "Danny's Fish & Chips restaurant platform homepage screenshot",
+        sourceUrl: "https://dannysfishandchips.com",
+        caption: "Homepage screenshot captured from the Danny's Fish & Chips site.",
+      },
+      {
+        src: "/images/projects/dannys-fish-and-chips-about-us.webp",
+        alt: "Danny's Fish & Chips about us page screenshot",
+        sourceUrl: "https://dannysfishandchips.com/about",
+        caption: "About us page showing the restaurant story and brand content.",
+      },
+      {
+        src: "/images/projects/dannys-fish-and-chips-menu.webp",
+        alt: "Danny's Fish & Chips food and drink menu page screenshot",
+        sourceUrl: "https://dannysfishandchips.com/menu",
+        caption: "Menu page showing CMS-backed food and drink content.",
+      },
+    ],
+    links: {
+      live: "https://dannysfishandchips.com",
+      code: "https://github.com/princessdardan/dannys-fish-and-chips",
+    },
+  },
+  {
+    slug: "plp-personalized-learning-plan",
+    title: "PLP — Personalized Learning Plan",
+    subtitle: "Scholarly Elite Tutoring",
+    status: "Private education workflow platform",
+    summary:
+      "A private education platform for Scholarly Elite Tutoring that manages personalized curriculum trees, admin and creator workflows, file attachments, asynchronous PDF/ZIP exports, API documentation, and tested Rails/React workflows.",
+    caseStudy: {
+      problem:
+        "The tutoring organization needed software to manage personalized curriculum content and document-generation workflows that were too complex and time-consuming for manual assembly.",
+      systemBuilt:
+        "A Rails API and React/TypeScript platform for curriculum management, role-based admin and creator workflows, hierarchical content trees, file attachments, background exports, and API-documented operations.",
+      keyTechnicalWork: [
+        "Modeled hierarchical curriculum structures with Rails, PostgreSQL, authorization policies, and admin/creator authentication scopes.",
+        "Implemented Sidekiq workflows for curriculum import/export, PDF merging, ZIP generation, ActiveStorage attachments, and progress-aware long-running jobs.",
+        "Supported tested API workflows with RSpec, RSwag documentation, and a React/TypeScript frontend for education operations.",
+      ],
+      businessValue:
+        "Transforms personalized tutoring material assembly into a structured workflow system, reducing manual document handling and giving education staff clearer tools for managing curriculum operations.",
+    },
+    stack: ["Ruby on Rails", "React", "TypeScript", "PostgreSQL", "Redis", "Sidekiq", "ActiveStorage", "RSpec"],
+    tags: ["Ruby on Rails", "React", "TypeScript", "PostgreSQL", "Redis", "RSpec", "REST APIs"],
+    visual: {
+      src: "/images/projects/plp-personalized-learning-plan.webp",
+      alt: "Representative visual for the private PLP education workflow platform",
+      caption: "Representative private-platform visual for PLP — Personalized Learning Plan.",
+    },
+    links: {},
+  },
+] satisfies Project[];
 
 export const skills = {
   languages: [
@@ -193,7 +373,7 @@ export const experience = [
   },
   {
     role: "Co-Managing Partner",
-    company: "Danny's Fish & Chips",
+    company: "Danny’s Fish & Chips",
     period: "May 2019 — Present",
     points: [
       "Co-managed daily operations of a high-volume restaurant with a long-standing repeat customer base",
