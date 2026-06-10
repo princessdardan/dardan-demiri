@@ -53,7 +53,7 @@ export const projects = [
     slug: "drenova-group",
     title: "Drenova Group Real Estate Platform",
     subtitle: "Drenova Group",
-    status: "Live production real-estate platform",
+    status: "Real-estate platform",
     summary:
       "Built a real-estate platform for GTA/York Region with Sanity CMS, AMPRE/MLS listing sync, Redis-backed listing cache, lead capture workflows, listing inquiry forms, ISR revalidation, and compliance-aware address suppression.",
     caseStudy: {
@@ -77,6 +77,26 @@ export const projects = [
       sourceUrl: "https://drenova.ca",
       caption: "Screenshot captured from the live Drenova Group production site.",
     },
+    visuals: [
+      {
+        src: "/images/projects/drenova-group.webp",
+        alt: "Drenova Group live real-estate platform homepage screenshot",
+        sourceUrl: "https://drenova.ca",
+        caption: "Homepage screenshot captured from the Drenova Group site.",
+      },
+      {
+        src: "/images/projects/drenova-group-sellers-guide.webp",
+        alt: "Drenova Group sellers guide page screenshot",
+        sourceUrl: "https://drenova.ca/sellers-guide",
+        caption: "Sellers guide page showing CMS-managed real-estate content.",
+      },
+      {
+        src: "/images/projects/drenova-group-home-evaluation.webp",
+        alt: "Drenova Group home evaluation lead capture page screenshot",
+        sourceUrl: "https://drenova.ca/home-evaluation",
+        caption: "Home evaluation page showing lead capture workflow content.",
+      },
+    ],
     links: {
       live: "https://drenova.ca",
       code: "https://github.com/princessdardan/drenova-group",
@@ -86,7 +106,7 @@ export const projects = [
     slug: "aira-publishing",
     title: "Aira Publishing Platform",
     subtitle: "Aira Publishing",
-    status: "Live production education publishing platform",
+    status: "Education publishing platform",
     summary:
       "Built an education publishing platform connecting CMS content, checkout, Helcim payment validation, Schoology fulfillment, credential delivery, admin operations, audit logging, and Playwright-tested storefront/admin flows.",
     caseStudy: {
@@ -110,6 +130,26 @@ export const projects = [
       sourceUrl: "https://airapublishing.com",
       caption: "Screenshot captured from the live Aira Publishing production site.",
     },
+    visuals: [
+      {
+        src: "/images/projects/aira-publishing.webp",
+        alt: "Aira Publishing education publishing platform homepage screenshot",
+        sourceUrl: "https://airapublishing.com",
+        caption: "Homepage screenshot captured from the Aira Publishing site.",
+      },
+      {
+        src: "/images/projects/aira-publishing-airamath.webp",
+        alt: "AiraMath product page screenshot on Aira Publishing",
+        sourceUrl: "https://airapublishing.com/airamath",
+        caption: "AiraMath product page showing curriculum product content.",
+      },
+      {
+        src: "/images/projects/aira-publishing-airaliteracy.webp",
+        alt: "AiraLiteracy product page screenshot on Aira Publishing",
+        sourceUrl: "https://airapublishing.com/airaliteracy",
+        caption: "AiraLiteracy product page showing education publishing content.",
+      },
+    ],
     links: {
       live: "https://airapublishing.com",
     },
@@ -118,7 +158,7 @@ export const projects = [
     slug: "lash-her",
     title: "Lash Her Booking and Commerce Platform",
     subtitle: "Lash Her",
-    status: "Live production booking and commerce platform",
+    status: "Booking and commerce platform",
     summary:
       "A booking and commerce platform for a beauty-services business, integrating CMS-managed content, Google Calendar availability, Helcim checkout, Redis idempotency, PostgreSQL order storage, and Resend confirmation emails.",
     caseStudy: {
@@ -138,10 +178,30 @@ export const projects = [
     tags: ["Next.js", "TypeScript", "Sanity", "PostgreSQL", "Redis", "Resend", "Playwright"],
     visual: {
       src: "/images/projects/lash-her.webp",
-      alt: "Lash Her live booking and commerce platform screenshot",
+      alt: "Lash Her booking and commerce platform homepage screenshot without contact pop-up",
       sourceUrl: "https://lashher.com",
-      caption: "Screenshot captured from the live Lash Her production site.",
+      caption: "Clean homepage screenshot captured from the Lash Her site.",
     },
+    visuals: [
+      {
+        src: "/images/projects/lash-her.webp",
+        alt: "Lash Her booking and commerce platform homepage screenshot without contact pop-up",
+        sourceUrl: "https://lashher.com",
+        caption: "Clean homepage screenshot captured from the Lash Her site.",
+      },
+      {
+        src: "/images/projects/lash-her-training.webp",
+        alt: "Lash Her beginner private training page screenshot",
+        sourceUrl: "https://lashher.com/training-programs/beginner-private-training",
+        caption: "Training program page showing CMS-managed course content.",
+      },
+      {
+        src: "/images/projects/lash-her-booking.webp",
+        alt: "Lash Her lash fill booking page screenshot",
+        sourceUrl: "https://lashher.com/services/lash-fill/booking",
+        caption: "Booking page showing service scheduling workflow content.",
+      },
+    ],
     links: {
       live: "https://lashher.com",
       code: "https://github.com/princessdardan/lash-her-frontend",
@@ -151,7 +211,7 @@ export const projects = [
     slug: "dannys-fish-and-chips",
     title: "Danny’s Fish & Chips Restaurant Platform",
     subtitle: "Danny’s Fish & Chips",
-    status: "Live production restaurant platform",
+    status: "Restaurant platform",
     summary:
       "A production CMS-backed restaurant platform with Strapi-managed menus, specials, announcements, gallery content, contact forms, mailing-list signup, CI/CD, and Playwright preview testing.",
     caseStudy: {
@@ -175,6 +235,26 @@ export const projects = [
       sourceUrl: "https://dannysfishandchips.com",
       caption: "Screenshot captured from the live Danny’s Fish & Chips production site.",
     },
+    visuals: [
+      {
+        src: "/images/projects/dannys-fish-and-chips.webp",
+        alt: "Danny's Fish & Chips restaurant platform homepage screenshot",
+        sourceUrl: "https://dannysfishandchips.com",
+        caption: "Homepage screenshot captured from the Danny's Fish & Chips site.",
+      },
+      {
+        src: "/images/projects/dannys-fish-and-chips-about-us.webp",
+        alt: "Danny's Fish & Chips about us page screenshot",
+        sourceUrl: "https://dannysfishandchips.com/about",
+        caption: "About us page showing the restaurant story and brand content.",
+      },
+      {
+        src: "/images/projects/dannys-fish-and-chips-menu.webp",
+        alt: "Danny's Fish & Chips food and drink menu page screenshot",
+        sourceUrl: "https://dannysfishandchips.com/menu",
+        caption: "Menu page showing CMS-backed food and drink content.",
+      },
+    ],
     links: {
       live: "https://dannysfishandchips.com",
       code: "https://github.com/princessdardan/dannys-fish-and-chips",

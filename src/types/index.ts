@@ -51,6 +51,7 @@ export interface Project {
   stack: string[];
   tags: string[];
   visual: ProjectVisual;
+  visuals?: ProjectVisual[];
   links: {
     live?: string;
     code?: string;
