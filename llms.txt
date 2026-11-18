@@ -76,6 +76,11 @@ Dardan Demiri builds production web applications, e-commerce platforms, content-
 - About: https://www.dardandemiri.com/#about
 - Work: https://www.dardandemiri.com/#work
 - Résumé: https://www.dardandemiri.com/resume
+- Website and booking builds: https://www.dardandemiri.com/services/website-and-booking
+- Technical SEO: https://www.dardandemiri.com/services/technical-seo
+- Drenova Group case study: https://www.dardandemiri.com/work/drenova-group
+- Lash Her case study: https://www.dardandemiri.com/work/lash-her
+- Danny’s Fish & Chips case study: https://www.dardandemiri.com/work/dannys-fish-and-chips
 - Contact: https://www.dardandemiri.com/#contact
 
 ## Machine-readable metadata

@@ -1,4 +1,6 @@
+import type { Metadata } from "next";
 import { personalInfo, projects, skills } from "@/data";
+import { caseStudyPages, servicePages } from "@/data/marketing";
 import { canonicalOrigin } from "@/lib/site-url";
 
 export const siteConfig = {
@@ -86,6 +88,15 @@ export function socialMetadata(title: string, description: string, path = "/") {
       description,
       images: [socialImage],
     },
+  };
+}
+
+export function marketingMetadata(title: string, description: string, path: string): Metadata {
+  return {
+    title,
+    description,
+    alternates: { canonical: path },
+    ...socialMetadata(`${title} | ${siteConfig.name}`, description, path),
   };
 }
 
@@ -203,28 +214,37 @@ export function buildJsonLdGraph(baseUrl = siteConfig.url) {
         "@type": "ItemList",
         "@id": `${homeUrl}#featured-work`,
         name: "Featured web development work",
-        itemListElement: projects.map((project, index) => ({
-          "@type": "ListItem",
-          position: index + 1,
-          item: {
-            "@type": "CreativeWork",
-            name: project.title,
-            description: project.summary,
-            ...(project.links.live ? { url: project.links.live } : {}),
-            image: new URL(project.visual.src, baseUrl).toString(),
-            creator: {
-              "@id": personId,
+        itemListElement: projects.map((project, index) => {
+          const study = caseStudyPages.find(({ slug }) => slug === project.slug);
+
+          return {
+            "@type": "ListItem",
+            position: index + 1,
+            item: {
+              "@type": "CreativeWork",
+              name: project.title,
+              description: project.summary,
+              ...(project.links.live ? { url: project.links.live } : {}),
+              ...(study ? { mainEntityOfPage: new URL(study.path, baseUrl).toString() } : {}),
+              image: new URL(project.visual.src, baseUrl).toString(),
+              creator: {
+                "@id": personId,
+              },
+              keywords: project.tags,
             },
-            keywords: project.tags,
-          },
-        })),
+          };
+        }),
       },
     ],
   };
 }
 
 export function buildLlmsTxt(baseUrl = siteConfig.url) {
-  const sections = siteConfig.sections
+  const sections = [
+    ...siteConfig.sections,
+    ...servicePages.map(({ name, path }) => ({ name, url: path })),
+    ...caseStudyPages.map(({ project, path }) => ({ name: `${project.subtitle} case study`, url: path })),
+  ]
     .map((section) => `- ${section.name}: ${new URL(section.url, baseUrl)}`)
     .join("\n");
 

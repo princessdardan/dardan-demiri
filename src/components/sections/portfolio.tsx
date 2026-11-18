@@ -1,37 +1,37 @@
-import Image from "next/image";
-import { ArrowUpRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronDown } from "lucide-react";
+import Link from "next/link";
 import { projects } from "@/data";
+import { caseStudyPages } from "@/data/marketing";
 import { Container } from "@/components/ui/container";
 import { ProjectCta } from "@/components/ui/project-cta";
-import type { Project, ProjectVisual } from "@/types";
+import { ProjectImage } from "@/components/ui/project-image";
+import type { Project } from "@/types";
 
-function ProjectImage({ visual }: { visual: ProjectVisual }) {
-  return (
-    <div className="relative aspect-video overflow-hidden rounded-xl border border-border bg-background">
-      <Image
-        src={visual.src}
-        alt={visual.alt}
-        fill
-        className="object-cover object-top"
-        sizes="(min-width: 1152px) 340px, (min-width: 1024px) 30vw, (min-width: 640px) 46vw, 90vw"
-      />
-    </div>
-  );
-}
+const imageSizes = "(min-width: 1152px) 340px, (min-width: 1024px) 30vw, (min-width: 640px) 46vw, 90vw";
 
 function ProjectCard({ project }: { project: Project }) {
   const [cover, ...gallery] = project.visuals?.length ? project.visuals : [project.visual];
   const { problem, systemBuilt, keyTechnicalWork, businessValue } = project.caseStudy;
+  const study = caseStudyPages.find(({ slug }) => slug === project.slug);
 
   return (
     <article id={project.slug} className="self-start rounded-2xl border border-border bg-background p-4 sm:p-5">
       <figure>
-        <ProjectImage visual={cover} />
+        <ProjectImage visual={cover} sizes={imageSizes} />
         {cover.caption && <figcaption className="mt-2 text-xs text-foreground-muted">{cover.caption}</figcaption>}
       </figure>
       <h3 className="mb-2 mt-5 text-xl text-white">{project.title}</h3>
-      <p className="text-sm leading-relaxed text-foreground-muted">{businessValue}</p>
+      <p className="text-sm leading-relaxed text-foreground-muted">{study?.description ?? businessValue}</p>
       <div className="mt-3 flex flex-wrap gap-x-4">
+        {study && (
+          <Link
+            href={study.path}
+            className="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-accent hover:underline"
+            aria-label={`Read case study for ${project.subtitle}`}
+          >
+            Read case study <ArrowRight aria-hidden="true" className="size-4" />
+          </Link>
+        )}
         {project.links.live && (
           <a
             href={project.links.live}
@@ -55,7 +55,8 @@ function ProjectCard({ project }: { project: Project }) {
       </div>
       <details className="group mt-2 border-t border-border pt-1">
         <summary className="flex min-h-11 cursor-pointer items-center justify-between gap-2 text-sm font-medium text-accent [&::-webkit-details-marker]:hidden">
-          Project details <ChevronDown aria-hidden="true" className="size-4 group-open:rotate-180" />
+          {study ? "Technical details" : "Project details"}
+          <ChevronDown aria-hidden="true" className="size-4 group-open:rotate-180" />
         </summary>
         <div className="space-y-4 pt-2 text-sm text-foreground-muted">
           <div>
@@ -70,7 +71,7 @@ function ProjectCard({ project }: { project: Project }) {
             </ul>
           </div>
           <p><strong className="text-white">Stack</strong> {project.stack.join(" · ")}</p>
-          {gallery.map((visual) => <ProjectImage key={visual.src} visual={visual} />)}
+          {gallery.map((visual) => <ProjectImage key={visual.src} visual={visual} sizes={imageSizes} />)}
         </div>
       </details>
     </article>

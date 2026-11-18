@@ -12,14 +12,16 @@ export function ProjectCta({
   compact = false,
 }: (
   | { placement: "services"; service: ContactService; compact?: never }
+  | { placement: "service_page" | "case_study"; service: ContactService; compact?: never }
   | { placement: "navigation" | "hero" | "work"; service?: never; compact?: boolean }
 )) {
+  const href = service ? `/?service=${service}#contact` : "/#contact";
   const trackClick = () => track("project_cta_clicked", { placement, service: service ?? "unspecified" });
 
   if (placement === "services") {
     return (
       <Link
-        href={`/?service=${service}#contact`}
+        href={href}
         onClick={trackClick}
         className="inline-flex min-h-11 items-center gap-1.5 self-start font-medium text-accent hover:underline"
       >
@@ -31,7 +33,7 @@ export function ProjectCta({
 
   return (
     <Button asChild size={compact ? "sm" : "lg"} className={compact ? "min-h-11 px-2 text-xs min-[375px]:text-sm sm:px-4" : undefined}>
-      <Link href="/#contact" onClick={trackClick}>
+      <Link href={href} onClick={trackClick}>
         Discuss your project
         {!compact && <ArrowUpRight aria-hidden="true" className="ml-2 size-5" />}
       </Link>
