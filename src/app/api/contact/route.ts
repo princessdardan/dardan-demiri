@@ -123,7 +123,7 @@ ${details.map(([label, value]) => `<p><strong>${label}:</strong> ${escapeHtml(va
         to: email,
         replyTo: confirmationReplyTo,
         subject: "I received your project inquiry",
-        text: `${contactMessages.received}\n\n${personalInfo.name}`,
+        text: `Thanks for contacting me through dardandemiri.com. I’ll get back to you as soon as possible.\n\n${personalInfo.name}`,
       }, { idempotencyKey: `contact-confirmation/${submissionId}` });
       if (error) console.error("Contact visitor confirmation failed:", error.name);
     } catch {
