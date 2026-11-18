@@ -115,14 +115,16 @@ Update in `src/components/sections/resume.tsx`:
 
 ## Environment Variables
 
-Copy `.env.example` to `.env.local`:
+Set these variables in `.env.local` for local development and in the deployment environment.
 
 ```bash
 NEXT_PUBLIC_BASE_URL=https://yourdomain.com
 RESEND_API_KEY=re_xxxxxxxxxxxx
-RESEND_FROM_EMAIL=Contact Form <contact@yourdomain.com>
-CONTACT_EMAIL=hello@yourdomain.com
+RESEND_FROM_EMAIL="Contact Form <contact@yourdomain.com>"
+REPLY_TO=dardandemiridev@gmail.com
 ```
+
+The contact form requires all three email variables. Use a sender on a domain verified in Resend. Work Inquiry notifications go to the site's contact address in `src/data/index.ts`. Replies to confirmations go to `REPLY_TO`.
 
 ## Adding Images
 

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { Resend } from "resend";
+import { personalInfo } from "@/data";
 
 // Create Resend client (only if API key exists)
 const resend = process.env.RESEND_API_KEY
@@ -87,13 +88,20 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Send email via Resend (if configured)
-    if (resend) {
-      await resend.emails.send({
-        from: process.env.RESEND_FROM_EMAIL || "Contact Form <onboarding@resend.dev>",
-        to: process.env.CONTACT_EMAIL || "dardandemiridev@gmail.com",
+    const from = process.env.RESEND_FROM_EMAIL?.trim();
+    const confirmationReplyTo = process.env.REPLY_TO?.trim();
+    if (!resend || !from || !confirmationReplyTo) {
+      throw new Error(
+        "Contact form requires RESEND_API_KEY, RESEND_FROM_EMAIL, and REPLY_TO."
+      );
+    }
+
+    const { error } = await resend.batch.send([
+      {
+        from,
+        to: personalInfo.email,
         replyTo: email,
-        subject: `New contact from ${name}`,
+        subject: "Work Inquiry",
         text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
         html: `
 <h2>New Contact Form Submission</h2>
@@ -102,10 +110,18 @@ export async function POST(request: NextRequest) {
 <h3>Message:</h3>
 <p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>
         `.trim(),
-      });
-    } else {
-      // Log to console if Resend not configured (development)
-      console.log("Contact form submission:", { name, email, message });
+      },
+      {
+        from,
+        to: email,
+        replyTo: confirmationReplyTo,
+        subject: "I received your message",
+        text: `Thanks for reaching out. I’ll get back to you as soon as possible.\n\n${personalInfo.name}`,
+      },
+    ]);
+
+    if (error) {
+      throw error;
     }
 
     return NextResponse.json({ success: true });
