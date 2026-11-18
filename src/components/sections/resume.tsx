@@ -1,34 +1,18 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import { GlowCard } from "@/components/ui/spotlight-card";
 import { Briefcase, GraduationCap } from "lucide-react";
 import { experience, education } from "@/data";
 import { cn } from "@/lib/utils";
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0, 0, 0.2, 1] as const },
-  },
-};
-
 export function Resume() {
   return (
     <section
       id="experience"
-      className="py-24 section-overlay-light"
+      className="py-14 sm:py-20 section-overlay-light"
     >
       <Container size="narrow">
         {/* Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeInUp}
+        <div
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold mb-4 font-space-grotesk brand-gradient-text inline-block">
@@ -37,7 +21,7 @@ export function Resume() {
           <p className="text-lg text-foreground-muted">
             My professional journey
           </p>
-        </motion.div>
+        </div>
 
         {/* Work Experience Timeline */}
         <div className="mb-16">
@@ -52,12 +36,8 @@ export function Resume() {
 
           <div className="relative border-l-2 border-secondary-800 space-y-10">
             {experience.map((exp, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
-                variants={fadeInUp}
                 className="relative pl-8 md:pl-12"
               >
                 {/* Timeline dot - wave-glow triad cycling */}
@@ -109,7 +89,7 @@ export function Resume() {
                     ))}
                   </div>
                 </GlowCard>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -129,12 +109,7 @@ export function Resume() {
             {education.map((edu, index) => (
               <GlowCard
                 key={index}
-                as={motion.div}
                 glowColor="purple"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
-                variants={fadeInUp}
                 className="p-6 rounded-xl"
               >
                 <div className="flex flex-wrap items-start justify-between gap-2">

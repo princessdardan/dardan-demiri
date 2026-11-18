@@ -1,11 +1,10 @@
-import { buildJsonLdGraph, buildLlmsTxt, getBaseUrl, siteConfig } from "@/lib/seo";
+import { absoluteUrl, buildJsonLdGraph, buildLlmsTxt, siteConfig } from "@/lib/seo";
 import { experience, personalInfo, projects } from "@/data";
 
 export const dynamic = "force-static";
 
 export function GET() {
-  const baseUrl = getBaseUrl();
-  const content = `${buildLlmsTxt(baseUrl)}
+  const content = `${buildLlmsTxt()}
 ## Detailed profile
 
 ${personalInfo.about.join("\n\n")}
@@ -46,16 +45,16 @@ ${project.links.code ? `Code: ${project.links.code}` : ""}`
 
 ## Structured data snapshot
 
-Canonical structured data is available at ${new URL("/structured-data.json", baseUrl)}.
+Canonical structured data is available at ${absoluteUrl("/structured-data.json")}.
 
 \`\`\`json
-${JSON.stringify(buildJsonLdGraph(baseUrl), null, 2)}
+${JSON.stringify(buildJsonLdGraph(), null, 2)}
 \`\`\`
 
 ## Contact
 
 ${siteConfig.email}
-${new URL("/#contact", baseUrl)}
+${absoluteUrl("/#contact")}
 `;
 
   return new Response(content, {

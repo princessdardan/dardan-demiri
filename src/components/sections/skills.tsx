@@ -1,19 +1,7 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { FileCode, Layout, Server, Database, Cloud, ShieldCheck } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { GlowCard } from "@/components/ui/spotlight-card";
 import { skills } from "@/data";
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0, 0, 0.2, 1] as const },
-  },
-};
 
 const categories = [
   { name: "languages", label: "Languages", icon: FileCode, skills: skills.languages },
@@ -28,15 +16,11 @@ export function Skills() {
   return (
     <section
       id="skills"
-      className="py-24 section-overlay-medium"
+      className="py-14 sm:py-20 section-overlay-medium"
     >
       <Container>
         {/* Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeInUp}
+        <div
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold mb-4 font-space-grotesk brand-gradient-text inline-block">
@@ -45,17 +29,10 @@ export function Skills() {
           <p className="text-lg text-foreground-muted">
             The tools and technologies I work with
           </p>
-        </motion.div>
+        </div>
 
         {/* Category cards */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: 0.1 } },
-          }}
+        <div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
         >
           {categories.map((category) => {
@@ -64,9 +41,7 @@ export function Skills() {
             return (
               <GlowCard
                 key={category.name}
-                as={motion.div}
                 glowColor="pink"
-                variants={fadeInUp}
                 className="p-6 cursor-default"
               >
                 <div className="flex items-center gap-3 mb-4">
@@ -90,7 +65,7 @@ export function Skills() {
               </GlowCard>
             );
           })}
-        </motion.div>
+        </div>
       </Container>
 
     </section>

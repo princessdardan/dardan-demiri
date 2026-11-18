@@ -1,6 +1,6 @@
 # Dardan Demiri
 
-> Freelance full-stack web developer and software engineer serving Toronto, the Greater Toronto Area, Ontario, and remote clients across Canada, the USA, and worldwide.
+> Dardan Demiri builds websites, booking systems, and online stores for Toronto-area businesses and remote teams, with technical SEO and email automation.
 
 Primary website: https://www.dardandemiri.com/
 Contact email: dardandemiridev@gmail.com
@@ -72,10 +72,10 @@ Dardan Demiri builds production web applications, e-commerce platforms, content-
 ## Pages and sections
 
 - Home: https://www.dardandemiri.com/
+- Services: https://www.dardandemiri.com/#services
 - About: https://www.dardandemiri.com/#about
 - Work: https://www.dardandemiri.com/#work
-- Skills: https://www.dardandemiri.com/#skills
-- Experience: https://www.dardandemiri.com/#experience
+- Résumé: https://www.dardandemiri.com/resume
 - Contact: https://www.dardandemiri.com/#contact
 
 ## Machine-readable metadata

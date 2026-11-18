@@ -4,7 +4,7 @@ import { Home, Search, ArrowLeft } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background px-4">
+    <main id="main-content" className="min-h-screen flex items-center justify-center bg-background px-4">
       <div className="text-center max-w-md">
         {/* Creative 404 illustration */}
         <div className="relative mb-8">
@@ -37,7 +37,7 @@ export default function NotFound() {
             </Link>
           </Button>
           <Button variant="outline" asChild>
-            <Link href="/#portfolio">
+            <Link href="/#work">
               <ArrowLeft className="w-4 h-4 mr-2" />
               View My Work
             </Link>
@@ -50,6 +50,6 @@ export default function NotFound() {
           getting lost on the internet ever since.
         </p>
       </div>
-    </div>
+    </main>
   );
 }

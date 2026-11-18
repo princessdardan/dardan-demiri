@@ -1,7 +1,7 @@
-import { buildJsonLdGraph, getBaseUrl } from "@/lib/seo";
+import { buildJsonLdGraph } from "@/lib/seo";
 
 export function JsonLd() {
-  const schema = buildJsonLdGraph(getBaseUrl());
+  const schema = buildJsonLdGraph();
 
   return (
     <script

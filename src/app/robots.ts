@@ -1,9 +1,7 @@
 import { MetadataRoute } from "next";
-import { getBaseUrl } from "@/lib/seo";
+import { absoluteUrl } from "@/lib/seo";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = getBaseUrl();
-
   return {
     rules: [
       {
@@ -24,7 +22,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/"],
       },
     ],
-    sitemap: [`${baseUrl}/sitemap.xml`],
-    host: baseUrl,
+    sitemap: absoluteUrl("/sitemap.xml"),
   };
 }

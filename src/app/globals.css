@@ -278,6 +278,10 @@
    BASE STYLES
    ============================================ */
 
+html {
+  scroll-padding-top: 5rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

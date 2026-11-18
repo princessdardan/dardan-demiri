@@ -1,10 +1,11 @@
 import { personalInfo, projects, skills } from "@/data";
+import { canonicalOrigin } from "@/lib/site-url";
 
 export const siteConfig = {
   name: personalInfo.name,
   role: personalInfo.role,
-  url: "https://www.dardandemiri.com",
-  alternateUrl: "https://dardandemiri.com",
+  url: canonicalOrigin,
+  title: `${personalInfo.name} | Toronto Web Development & Technical SEO`,
   email: personalInfo.email,
   locale: "en_CA",
   location: {
@@ -22,7 +23,7 @@ export const siteConfig = {
     "Remote",
   ],
   description:
-    "Freelance full-stack web developer and software engineer serving Toronto, the Greater Toronto Area, Ontario, and remote clients across Canada, the USA, and worldwide.",
+    "Dardan Demiri builds websites, booking systems, and online stores for Toronto-area businesses and remote teams, with technical SEO and email automation.",
   longDescription:
     "Dardan Demiri builds production web applications, e-commerce platforms, content-driven websites, internal tools, learning platforms, and custom business software. He has 5+ years of experience designing, building, and scaling customer-facing web applications across e-commerce, education technology, restaurant/service businesses, and small-business operations.",
   keywords: [
@@ -46,11 +47,11 @@ export const siteConfig = {
   ],
   sections: [
     { name: "Home", url: "/" },
-    { name: "About", url: "/#about" },
+    { name: "Services", url: "/#services" },
     { name: "Work", url: "/#work" },
-    { name: "Skills", url: "/#skills" },
-    { name: "Experience", url: "/#experience" },
     { name: "Contact", url: "/#contact" },
+    { name: "About", url: "/#about" },
+    { name: "Résumé", url: "/resume" },
   ],
   llmFiles: [
     { name: "LLMs.txt", url: "/llms.txt" },
@@ -61,8 +62,32 @@ export const siteConfig = {
 
 export const absoluteUrl = (path = "/") => new URL(path, siteConfig.url).toString();
 
-export const getBaseUrl = () =>
-  process.env.NEXT_PUBLIC_BASE_URL || siteConfig.url;
+const socialImage = {
+  url: "/og-image.png",
+  width: 1200,
+  height: 630,
+  alt: `${siteConfig.name}, freelance web developer in Toronto`,
+};
+
+export function socialMetadata(title: string, description: string, path = "/") {
+  return {
+    openGraph: {
+      type: "website" as const,
+      locale: siteConfig.locale,
+      url: absoluteUrl(path),
+      siteName: siteConfig.name,
+      title,
+      description,
+      images: [socialImage],
+    },
+    twitter: {
+      card: "summary_large_image" as const,
+      title,
+      description,
+      images: [socialImage],
+    },
+  };
+}
 
 export const siteServices = [
   "Custom mobile-responsive website design and development",
@@ -78,6 +103,8 @@ export const siteServices = [
   "Learning management systems and education platforms",
   "Restaurant, service-business, and local-business websites",
   "Booking, catalog, menu, and content management features",
+  "Technical SEO audits and implementation",
+  "Mailing-list signup setup and email automation for bookings and orders",
   "Docker, Nginx, Vercel, AWS, S3-compatible storage, and CI/CD deployment workflows",
   "Core Web Vitals, accessibility, mobile responsiveness, and performance optimization",
   "AI consulting for businesses adding AI workflows",

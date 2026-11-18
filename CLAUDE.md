@@ -118,19 +118,18 @@ Update in `src/components/sections/resume.tsx`:
 Set these variables in `.env.local` for local development and in the deployment environment.
 
 ```bash
-NEXT_PUBLIC_BASE_URL=https://yourdomain.com
 RESEND_API_KEY=re_xxxxxxxxxxxx
 RESEND_FROM_EMAIL="Contact Form <contact@yourdomain.com>"
 REPLY_TO=dardandemiridev@gmail.com
 ```
 
-The contact form requires all three email variables. Use a sender on a domain verified in Resend. Work Inquiry notifications go to the site's contact address in `src/data/index.ts`. Replies to confirmations go to `REPLY_TO`.
+The contact form requires `RESEND_API_KEY` and a `RESEND_FROM_EMAIL` sender on a verified domain. Work Inquiry notifications go to the site's contact address in `src/data/index.ts`. Replies to confirmations go to `REPLY_TO` when set and to the site's contact address otherwise.
 
 ## Adding Images
 
 1. Profile photo: `public/images/profile.jpg`
 2. Project screenshots: `public/images/projects/[project-slug].jpg`
-3. OG image: `public/og-image.png` (1200x630)
+3. OG image: generated at `/og-image.png` by `src/app/og-image.png/route.tsx` (1200x630)
 
 ## Deployment
 
@@ -139,6 +138,7 @@ Recommended: Vercel
 1. Connect GitHub repository
 2. Add environment variables
 3. Deploy
+4. Set the apex domain's redirect to `www.dardandemiri.com` to Permanent Redirect (308) in Vercel if a domain-level redirect is configured. A domain-level redirect runs before the app's redirect.
 
 ## Anti-Patterns
 
