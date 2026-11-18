@@ -106,7 +106,7 @@ export async function POST(request: NextRequest) {
         html: `
 <h2>New Contact Form Submission</h2>
 <p><strong>Name:</strong> ${escapeHtml(name)}</p>
-<p><strong>Email:</strong> <a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></p>
+<p><strong>Email:</strong> ${escapeHtml(email)}</p>
 <h3>Message:</h3>
 <p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>
         `.trim(),
